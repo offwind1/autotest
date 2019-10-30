@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="基础测试集合">
+
+    <test name="亲子关系测试">
+        <classes>
+            <class name="com.mizholdings.kacha.cases.testInitCase"/>
+            <class name="com.mizholdings.kacha.cases.TestSchoolCase">
+            </class>
+        </classes>
+    </test>
+    <!--    <test name="用户中心">-->
+    <!--        <classes>-->
+    <!--            <class name="com.mizholdings.kacha.cases.testInitCase"/>-->
+    <!--            <class name="com.mizholdings.kacha.cases.TestUserCase"/>-->
+    <!--        </classes>-->
+    <!--    </test>-->
+
+
+    <listeners>
+        <listener class-name="com.myreport.ExtentTestNGIReporterListener"></listener>
+    </listeners>
+
+</suite>

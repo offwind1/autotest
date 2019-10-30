@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="TestAll">
+
+    <test name="order">
+        <classes>
+            <class name="com.mizholdings.me2.cases.BeforeTestCase" />
+<!--            <class name="com.mizholdings.me2.cases.TopV2TestCase"/>-->
+            <class name="com.mizholdings.me2.cases.LessonTestCase"/>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="com.myreport.ExtentTestNGIReporterListenerold"></listener>
+    </listeners>
+
+</suite>
