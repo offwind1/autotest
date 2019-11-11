@@ -9,9 +9,14 @@ import com.mizholdings.kacha.core.user.KCSuperAdmin;
 import com.mizholdings.kacha.playload.PLSchool;
 import com.mizholdings.util.SampleAssert;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
 import org.testng.Assert;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Feature("学校模块")
 public class TestSchoolCase {
@@ -61,6 +66,11 @@ public class TestSchoolCase {
         plSchool = new PLSchool();
         plSchool.setClassMembers(schoolId, classId, "3");
         object = modSchool.classMembers(plSchool);
+
+        // 退出班级
+        plSchool = new PLSchool();
+        plSchool.setClassStudentExit(classId, userId);
+        object = modSchool.classStudentExit(plSchool);
     }
 
 
@@ -84,6 +94,101 @@ public class TestSchoolCase {
         plSchool.setClassDetailOwner("培老师", "19900000002", "2019");
         JSONObject object = modSchool.classDetailOwner(plSchool);
         SampleAssert.assertEquals("获取成功", object);
+    }
+
+    private String newClassId;
+    String className = "新建的班级";
+
+    public JSONObject getClassInfo(String classId) {
+        PLSchool plSchool = new PLSchool();
+        plSchool.setClassInfo(classId);
+        return modSchool.classInfo(plSchool);
+    }
+
+    public JSONObject getClassList() {
+        PLSchool plSchool = new PLSchool();
+        plSchool.setClassList(schoolId);
+        return modSchool.classList(plSchool);
+    }
+
+    public JSONObject creatClass() {
+        PLSchool plSchool = new PLSchool();
+        plSchool.setClassManageCreat(schoolId, className);
+        return modSchool.classManageCreat(plSchool);
+    }
+
+    public JSONObject deleteClass(String classId) {
+        PLSchool plSchool = new PLSchool();
+        plSchool.setClassManageDelete(classId);
+        return modSchool.classManageDelete(plSchool);
+    }
+
+    @Test(description = "新建班级", groups = {"class_test"})
+    public void test4() {
+        JSONObject object = creatClass();
+        SampleAssert.assertEquals("查询成功", object);
+        newClassId = object.getJSONObject("data").getString("classId");
+
+        object = getClassList();
+        assert object.getJSONObject("data").getJSONArray("list").stream().anyMatch(x -> {
+            JSONObject o = (JSONObject) x;
+            return newClassId.equals(o.getString("classId"));
+        }) : "新建班级在学校班级列表中没有查出";
+    }
+
+    @Test(dependsOnMethods = {"test4"}, groups = {"class_test"}, description = "更新班级")
+    public void updateClass() {
+        PLSchool plSchool = new PLSchool();
+        plSchool.setClassId(newClassId);
+        plSchool.setClassName(className + "new");
+        plSchool.setYears("2018");
+        plSchool.setDes("这是简介");
+
+        JSONObject object = modSchool.classManageUpdate(plSchool);
+        SampleAssert.assertEquals("查询成功", object);
+
+        object = getClassList();
+        List<Object> list = object.getJSONObject("data").getJSONArray("list").stream().filter(x -> {
+            JSONObject o = (JSONObject) x;
+            return newClassId.equals(o.getString("classId"));
+        }).collect(Collectors.toList());
+
+        assert list.size() > 0 : "未查询到 新建的班级";
+        object = (JSONObject) list.get(0);
+        assert object.getString("className").equals(className + "new");
+        assert object.getString("years").equals("2018");
+    }
+
+    @AfterGroups(groups = {"class_test"}, description = "删除班级")
+    public void after_creat_class_test() {
+        if (newClassId != null) {
+            JSONObject object = deleteClass(newClassId);
+            SampleAssert.assertEquals("查询成功", object);
+
+            object = getClassList();
+            assert object.getJSONObject("data").getJSONArray("list").stream().allMatch(x -> {
+                JSONObject o = (JSONObject) x;
+                return !newClassId.equals(o.getString("classId"));
+            }) : "删除后，还能在学校列表里查到";
+        }
+    }
+
+    @Test(description = "以删除的班级，不能加入学生")
+    public void test5() {
+        //新建班级
+        JSONObject object = creatClass();
+        String delete_classId = object.getJSONObject("data").getString("classId");
+        //删除班级
+        object = deleteClass(delete_classId);
+
+        //查询班级信息
+        object = getClassInfo(delete_classId);
+
+        //尝试加人班级
+        PLSchool plSchool = new PLSchool();
+        plSchool.setClassStudentJoin(delete_classId, childId);
+        object = modSchool.classStudentJoin(plSchool);
+        SampleAssert.assertEquals("班级不存在！", object);
     }
 
 

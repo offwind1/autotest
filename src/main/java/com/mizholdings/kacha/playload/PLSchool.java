@@ -108,7 +108,7 @@ public class PLSchool extends PLJavaBean {
     /**
      * 4.2.2 班级信息
      *
-     * @param schoolId    学校id
+     * @param schoolId   学校id
      * @param year       年
      * @param ownerPhone 电话号
      */
@@ -142,6 +142,13 @@ public class PLSchool extends PLJavaBean {
         this.className = className;
         this.pageNum = pageNum;
         this.pageSize = pageSize;
+    }
+
+    public void setClassList(String schoolId) {
+        this.schoolId = schoolId;
+//        this.className = className;
+        this.pageNum = "1";
+        this.pageSize = "9999";
     }
 
 
@@ -188,6 +195,15 @@ public class PLSchool extends PLJavaBean {
         this.years = years;
         this.adminId = adminId;
         this.des = des;
+    }
+
+    public void setClassManageCreat(String schoolId, String className) {
+        this.schoolId = schoolId;
+        this.className = className;
+        this.gradeId = "9";
+        this.years = "2019";
+//        this.adminId = adminId;
+//        this.des = des;
     }
 
     /**

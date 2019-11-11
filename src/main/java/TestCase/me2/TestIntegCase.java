@@ -26,7 +26,7 @@ import java.sql.Time;
 /**
  * 积分测试
  */
-@Epic("积分测试class")
+//@Epic("积分测试class")
 public class TestIntegCase {
 
     private Me2Student student;

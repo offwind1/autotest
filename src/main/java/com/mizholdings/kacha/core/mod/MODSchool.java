@@ -33,7 +33,8 @@ public class MODSchool extends MODBase<MODSchool> {
      */
     @Step("学生加入班级")
     public JSONObject classStudentJoin(PLSchool schoolModel) {
-        return Requests.getJson(schoolInterface.classStudentJoin(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+        return exec("classStudentJoin", schoolModel);
+//        return Requests.getJson(schoolInterface.classStudentJoin(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
     }
 
     /**
@@ -44,7 +45,8 @@ public class MODSchool extends MODBase<MODSchool> {
      */
     @Step("退出班级")
     public JSONObject classStudentExit(PLSchool schoolModel) {
-        return Requests.getJson(schoolInterface.classStudentExit(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+//        return Requests.getJson(schoolInterface.classStudentExit(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+        return exec("classStudentExit", schoolModel);
     }
 
     /**
@@ -55,7 +57,8 @@ public class MODSchool extends MODBase<MODSchool> {
      */
     @Step("成员列表")
     public JSONObject classMembers(PLSchool schoolModel) {
-        return Requests.getJson(schoolInterface.classMembers(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+//        return Requests.getJson(schoolInterface.classMembers(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+        return exec("classMembers", schoolModel);
     }
 
     /**
@@ -66,7 +69,8 @@ public class MODSchool extends MODBase<MODSchool> {
      */
     @Step("超级管理员页面学生数据")
     public JSONObject classMembersForSA(PLSchool schoolModel) {
-        return Requests.getJson(schoolInterface.classMembersForSA(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+//        return Requests.getJson(schoolInterface.classMembersForSA(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+        return exec("classMembersForSA", schoolModel);
     }
 
     /**
@@ -77,7 +81,8 @@ public class MODSchool extends MODBase<MODSchool> {
      */
     @Step("班级信息")
     public JSONObject classDetail(PLSchool schoolModel) {
-        return Requests.getJson(schoolInterface.classDetail(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+//        return Requests.getJson(schoolInterface.classDetail(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+        return exec("classDetail", schoolModel);
     }
 
     /**
@@ -88,7 +93,8 @@ public class MODSchool extends MODBase<MODSchool> {
      */
     @Step("班级信息返回")
     public JSONObject classInfo(PLSchool schoolModel) {
-        return Requests.getJson(schoolInterface.classInfo(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+//        return Requests.getJson(schoolInterface.classInfo(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+        return exec("classInfo", schoolModel);
     }
 
     /**
