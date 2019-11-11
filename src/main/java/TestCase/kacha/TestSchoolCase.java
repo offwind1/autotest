@@ -189,6 +189,8 @@ public class TestSchoolCase {
         plSchool.setClassStudentJoin(delete_classId, childId);
         object = modSchool.classStudentJoin(plSchool);
         SampleAssert.assertEquals("班级不存在！", object);
+
+
     }
 
 
