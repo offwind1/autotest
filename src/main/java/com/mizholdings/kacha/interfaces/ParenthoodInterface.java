@@ -4,94 +4,101 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 
+import java.util.Map;
+
 public interface ParenthoodInterface {
     String path = "parenthood";
     String url = path + "/";
+
 
     /**
      * 3.1.1 子女列表
      *
      * @param Authorization
-     * @param year
+     * @param map
      * @return
      */
-    @GET(url + "childs")
-    Call<ResponseBody> getChilds(@Header("Authorization") String Authorization,
-                                 @Query("year") String year);
+    @GET("parenthood/childs")
+    Call<ResponseBody> childs(@Header("Authorization") String Authorization,
+                              @QueryMap Map<String, String> map);
 
 
     /**
      * 3.1.2 添加子女
      *
      * @param Authorization
-     * @param name
+     * @param map
      * @return
      */
-    @POST(url + "addChild")
+    @POST("parenthood/addChild")
     @FormUrlEncoded
-    Call<ResponseBody> addChilds(@Header("Authorization") String Authorization,
-                                 @Field("name") String name);
+    Call<ResponseBody> addChild(@Header("Authorization") String Authorization,
+                                @FieldMap Map<String, String> map);
+
 
     /**
      * 3.1.3 修改子女姓名
      *
      * @param Authorization
-     * @param childId
-     * @param name
+     * @param map
      * @return
      */
-    @POST(url + "updateChild")
+    @POST("parenthood/updateChild")
     @FormUrlEncoded
     Call<ResponseBody> updateChild(@Header("Authorization") String Authorization,
-                                   @Field("childId") String childId,
-                                   @Field("name") String name);
+                                   @FieldMap Map<String, String> map);
+
 
     /**
      * 3.1.4 解除亲子关系
      *
      * @param Authorization
-     * @param childId
+     * @param map
      * @return
      */
-    @POST(url + "deleteChild")
+    @POST("parenthood/deleteChild")
     @FormUrlEncoded
     Call<ResponseBody> deleteChild(@Header("Authorization") String Authorization,
-                                   @Field("childId") String childId);
+                                   @FieldMap Map<String, String> map);
+
 
     /**
      * 3.2.1 亲子绑定码
      *
      * @param Authorization
-     * @param childId
+     * @param map
      * @return
      */
-    @GET(url + "bindCode")
+    @GET("parenthood/bindCode")
     Call<ResponseBody> bindCode(@Header("Authorization") String Authorization,
-                                @Query("childId") String childId);
+                                @QueryMap Map<String, String> map);
+
 
     /**
      * 3.2.2 亲子绑定
      *
      * @param Authorization
-     * @param code
+     * @param map
      * @return
      */
-    @POST(url + "bindChild")
+    @POST("parenthood/bindChild")
     @FormUrlEncoded
     Call<ResponseBody> bindChild(@Header("Authorization") String Authorization,
-                                 @Field("code") String code);
+                                 @FieldMap Map<String, String> map);
+
 
     /**
      * 3.3.1 当前子女
      *
      * @param Authorization
-     * @param childId
+     * @param map
      * @return
      */
-    @POST(url + "currentChild")
+    @POST("parenthood/currentChild")
     @FormUrlEncoded
-    Call<ResponseBody> setCurrentChild(@Header("Authorization") String Authorization,
-                                       @Field("childId") String childId);
+    Call<ResponseBody> currentChild(@Header("Authorization") String Authorization,
+                                    @FieldMap Map<String, String> map);
+
 
     /**
      * 3.3.2 获取当前子女
@@ -102,5 +109,14 @@ public interface ParenthoodInterface {
     @GET(url + "currentChild")
     Call<ResponseBody> getCurrentChild(@Header("Authorization") String Authorization);
 
+
+    /**
+     * 3.3.2 获取当前子女
+     *
+     * @param Authorization
+     * @return
+     */
+    @GET("parenthood/currentChild")
+    Call<ResponseBody> currentChild(@Header("Authorization") String Authorization);
 
 }

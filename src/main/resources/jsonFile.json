@@ -1,0 +1,16 @@
+{
+  "result": 0,
+  "msg": "查询成功",
+  "data": {
+    "classCode": 371341,
+    "classId": 669,
+    "ownerName": "培老师",
+    "ownerPhone": "19900000002",
+    "schoolId": 8790,
+    "schoolType": 0,
+    "className": "猫年狗班",
+    "ownerId": 4554282930243584,
+    "schoolName": "咔嚓接口测试学校",
+    "type": 4
+  }
+}

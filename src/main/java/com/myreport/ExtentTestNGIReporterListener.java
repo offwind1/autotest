@@ -160,7 +160,6 @@ public class ExtentTestNGIReporterListener implements IReporter {
                 } else {
                     name = result.getMethod().getMethodName();
                     Class subclass = result.getMethod().getRealClass();
-
                     try {
                         Method method = subclass.getMethod(result.getName());
                         Title title = method.getAnnotation(Title.class);
