@@ -12,10 +12,7 @@ import com.mizholdings.me2.playload.PLInteg;
 import com.mizholdings.me2.playload.PLPay;
 import com.mizholdings.util.SampleAssert;
 import com.myreport.Title;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Step;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -185,7 +182,6 @@ public class TestIntegCase {
 
     //课堂被点赞(只能三次)
     @Test(description = "学生课堂被点赞（小红花），积分增加（有效执行3次，每次间隔2秒）")
-    @Title("学生课堂被点赞（小红花），积分增加（有效执行3次，每次间隔2秒）")
     public void test9() throws InterruptedException {
         //获取当前学生的积分
         JSONObject studentUserInfo = student.userInfo();
@@ -220,6 +216,8 @@ public class TestIntegCase {
         System.out.println(temp);
         //之后的积分，比之前的积分大了3
         Assert.assertTrue((studentInteg + 3) == temp);
+
     }
+
 
 }

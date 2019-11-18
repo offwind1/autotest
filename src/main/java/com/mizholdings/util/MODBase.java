@@ -67,7 +67,7 @@ public class MODBase<T extends MODBase> {
     }
 
 
-    @Step("{funName}")
+    @Attachment("{funName} return")
     public JSONObject exec(String funName) {
         if (interfaced == null) {
             logger.error("interface is null");

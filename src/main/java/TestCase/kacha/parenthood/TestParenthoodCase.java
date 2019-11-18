@@ -194,8 +194,11 @@ public class TestParenthoodCase {
 
         object = parent2.bindCode(userId);
         String code = object.getJSONObject("data").getString("code");
-        parent1.bindChild(code);
+        object = parent1.bindChild(code);
 
+        if ("绑定成功".equals(object.getString("msg"))) {
+            throw new RuntimeException("可以通过绑定添加昵称重复的子女");
+        }
     }
 
     @AfterGroups(groups = {"3_2_2"})
@@ -241,7 +244,9 @@ public class TestParenthoodCase {
     @Test(description = "3_2_9 设置其他人的子女作为当前子女")
     public void test3_2_9() {
         JSONObject object = parent1.setCurrentChild(childId);
-        assert false : object.getString("msg");
+        if ("设置成功!".equals(object.getString("msg"))) {
+            throw new RuntimeException("设置其他人的子女，返回设置成功");
+        }
     }
 
 

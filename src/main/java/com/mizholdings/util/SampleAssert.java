@@ -10,7 +10,7 @@ public class SampleAssert {
     }
 
     public static void assertResult(String string, JSONObject object) {
-        assert string.equals(object.getString("result")) : "result: "+ object.getString("result") + " " + object.getString("msg");
+        assert string.equals(object.getString("result")) : "result: " + object.getString("result") + " " + object.getString("msg");
     }
 
 

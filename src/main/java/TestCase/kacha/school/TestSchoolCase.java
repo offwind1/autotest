@@ -142,8 +142,11 @@ public class TestSchoolCase {
         String userId = userInfo.getString("userId");
 
         object = modSchool.classManageUserExit(userId, classId2);
-        assert !"查询成功".equals(object.getString("msg")) : "删除非班级的用户，依旧返回查询成功";
         modSchool.classMembers(schoolId);
+        if ("查询成功".equals(object.getString("msg"))){
+            throw new RuntimeException("删除非班级的用户，依旧返回查询成功");
+        }
+
     }
 
     @Test(description = "4_1_4_1 获取年级列表 ")

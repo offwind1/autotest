@@ -8,7 +8,7 @@ import com.mizholdings.kacha.user.KCSuperAdmin;
 import com.mizholdings.kacha.user.KCTeacher;
 import com.mizholdings.util.SampleAssert;
 import io.qameta.allure.Allure;
-import org.testng.annotations.AfterSuite;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -80,10 +80,16 @@ public class TestSchoolCase2 {
         parent.deleteChild(userId);
 
         //查看班级列表
-        modSchool.classMembers(schoolId, classId);
-
+        JSONObject object1 = modSchool.classMembers(schoolId, classId);
         //删除学校
         modSchool.schoolManageDelete(schoolId);
+
+        if (object1.getJSONArray("data").stream().anyMatch(i -> {
+            JSONObject o = (JSONObject) i;
+            return userId.equals(o.getString("userId"));
+        })) {
+            throw new RuntimeException("班级中，依旧存在被解除绑定的子女");
+        }
     }
 
     @Test(description = "4_2_3 已删除的班级不能再加入学生")
@@ -183,9 +189,11 @@ public class TestSchoolCase2 {
             return userId.equals(o.getString("id"));
         }).collect(Collectors.toList());
 
-        assert list.size() > 0;
-        JSONObject userInfo = (JSONObject) list.get(0);
-        Allure.addAttachment("用户信息", userInfo.toJSONString());
+        if (list.size() > 0) {
+            JSONObject userInfo = (JSONObject) list.get(0);
+            Allure.addAttachment("用户信息", userInfo.toJSONString());
+            throw new RuntimeException("依旧留有删除的班级信息");
+        }
     }
 
 }
