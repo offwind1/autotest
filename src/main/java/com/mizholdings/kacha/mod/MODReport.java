@@ -1,11 +1,11 @@
-package com.mizholdings.kacha.core.mod;
+package com.mizholdings.kacha.mod;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.user.KCUserBase;
+import com.mizholdings.kacha.user.KCUserBase;
 import com.mizholdings.kacha.interfaces.ReportInterface;
-import com.mizholdings.kacha.interfaces.WpaInterface;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.PLJavaBean;
+import com.mizholdings.util.Parameter;
 import com.mizholdings.util.Requests;
 import io.qameta.allure.Step;
 
@@ -62,6 +62,18 @@ public class MODReport extends MODBase<MODReport> {
         return exec("dbQrdetail", javaBean);
     }
 
+    @Step("18.2.4 查询数据报告详情")
+    public JSONObject dbQrdetail(Parameter parameter) {
+        return exec("dbQrdetail", parameter);
+    }
+
+    @Step("18.2.4 查询数据报告详情")
+    public JSONObject dbQrdetail(String classId) {
+        return dbQrdetail(Parameter.creat()
+                .add("classId", classId).add("year", "2019")
+                .add("subjectId", "10"));
+    }
+
 
     /**
      * 18.2.9 查询报告学生统计
@@ -72,6 +84,18 @@ public class MODReport extends MODBase<MODReport> {
     @Step("18.2.9 查询报告学生统计")
     public JSONObject dbQrstudentcount(PLJavaBean javaBean) {
         return exec("dbQrstudentcount", javaBean);
+    }
+
+    @Step("18.2.9 查询报告学生统计")
+    public JSONObject dbQrstudentcount(Parameter parameter) {
+        return exec("dbQrstudentcount", parameter);
+    }
+
+    @Step("18.2.9 查询报告学生统计")
+    public JSONObject dbQrstudentcount(String classId) {
+        return dbQrstudentcount(Parameter.creat()
+                .add("classId", classId).add("subjectId", "10")
+                .add("year", "2019"));
     }
 
 
@@ -86,6 +110,16 @@ public class MODReport extends MODBase<MODReport> {
         return exec("dbSchooldatareport", javaBean);
     }
 
+    public JSONObject dbSchooldatareport(Parameter parameter) {
+        return exec("dbSchooldatareport", parameter);
+    }
+
+    public JSONObject dbSchooldatareport(String schoolId, String classId) {
+        return dbSchooldatareport(Parameter.creat()
+                .add("schoolId", schoolId).add("classId", classId)
+                .add("subjectId", "10").add("timeStamp", String.valueOf(System.currentTimeMillis())));
+    }
+
     /**
      * 18.2.12 查询班级报告
      *
@@ -95,6 +129,17 @@ public class MODReport extends MODBase<MODReport> {
     @Step("18.2.12 查询班级报告")
     public JSONObject dbClassdatareport(PLJavaBean javaBean) {
         return exec("dbClassdatareport", javaBean);
+    }
+
+    @Step("18.2.12 查询班级报告")
+    public JSONObject dbClassdatareport(Parameter parameter) {
+        return exec("dbClassdatareport", parameter);
+    }
+
+    @Step("18.2.12 查询班级报告")
+    public JSONObject dbClassdatareport(String classId) {
+        return dbClassdatareport(Parameter.creat().add("classId", classId)
+                .add("subjectId", "10").add("timeStamp", String.valueOf(System.currentTimeMillis())));
     }
 
 
@@ -121,6 +166,18 @@ public class MODReport extends MODBase<MODReport> {
         return exec("dbQueryqrdetailforgz", javaBean);
     }
 
+    @Step("18.2.14 查询学生提交情况")
+    public JSONObject dbQueryqrdetailforgz(Parameter parameter) {
+        return exec("dbQueryqrdetailforgz", parameter);
+    }
+
+    @Step("18.2.14 查询学生提交情况")
+    public JSONObject dbQueryqrdetailforgz(String classId) {
+        return dbQueryqrdetailforgz(Parameter.creat()
+                .add("classId", classId).add("subjectId", "10")
+                .add("mode", "0"));
+    }
+
 
     /**
      * 18.2.18 获取百度搜索链接
@@ -144,6 +201,18 @@ public class MODReport extends MODBase<MODReport> {
         return exec("dbKnowledgelist", javaBean);
     }
 
+    @Step("18.2.19 根据班级ID获取知识点列表")
+    public JSONObject dbKnowledgelist(Parameter parameter) {
+        return exec("dbKnowledgelist", parameter);
+    }
+
+    @Step("18.2.19 根据班级ID获取知识点列表")
+    public JSONObject dbKnowledgelist(String classId) {
+        return dbKnowledgelist(Parameter.creat()
+                .add("classId", classId).add("year", "2019")
+                .add("subjectId", "10").add("type", "1"));
+    }
+
 
     /**
      * 18.2.20 学生统计信息
@@ -156,6 +225,19 @@ public class MODReport extends MODBase<MODReport> {
         return exec("dbQueryqrstudentcountforgz", javaBean);
     }
 
+    @Step("18.2.20 学生统计信息")
+    public JSONObject dbQueryqrstudentcountforgz(Parameter parameter) {
+        return exec("dbQueryqrstudentcountforgz", parameter);
+    }
+
+
+    @Step("18.2.20 学生统计信息")
+    public JSONObject dbQueryqrstudentcountforgz(String classId) {
+        return dbQueryqrstudentcountforgz(Parameter.creat()
+                .add("classId", classId).add("subjectId", "10").add("mode", "0"));
+    }
+
+
     /**
      * 18.2.21 题目统计信息
      *
@@ -166,6 +248,18 @@ public class MODReport extends MODBase<MODReport> {
     public JSONObject dbQueryqrquestioncountforgz(PLJavaBean javaBean) {
         return exec("dbQueryqrquestioncountforgz", javaBean);
     }
+
+    @Step("18.2.21 题目统计信息")
+    public JSONObject dbQueryqrquestioncountforgz(Parameter parameter) {
+        return exec("dbQueryqrquestioncountforgz", parameter);
+    }
+
+    @Step("18.2.21 题目统计信息")
+    public JSONObject dbQueryqrquestioncountforgz(String classId) {
+        return dbQueryqrquestioncountforgz(Parameter.creat()
+                .add("classId", classId).add("subjectId", "10").add("mode", "0"));
+    }
+
 
     /**
      * 18.3.1 上传教学视频

@@ -416,7 +416,6 @@ public class PLSchool extends PLJavaBean {
      */
     public void setSchoolManageCreate(String schoolName) {
         this.schoolName = schoolName;
-
     }
 
     /**

@@ -3,8 +3,6 @@ package com.mizholdings.kacha.playload;
 import com.mizholdings.util.PLJavaBean;
 
 public class PLParenthood extends PLJavaBean {
-
-
     private String year;
     private String name;
     private String childId;
@@ -86,10 +84,10 @@ public class PLParenthood extends PLJavaBean {
      * @param cAccount:  子女账户
      * @param cPassword: 子女账户密码
      */
-    public void setBindchild(String cAccount, String cPassword) {
+    public void setBindchild(String cAccount, String cPassword, String name) {
         this.cAccount = cAccount;
         this.cPassword = cPassword;
-
+        this.name = name;
     }
 
 

@@ -1,12 +1,10 @@
-package com.mizholdings.kacha.core.mod;
+package com.mizholdings.kacha.mod;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.util.MODBase;
-import com.mizholdings.kacha.core.user.KCUserBase;
+import com.mizholdings.util.*;
+import com.mizholdings.kacha.user.KCUserBase;
 import com.mizholdings.kacha.interfaces.SchoolInterface;
 import com.mizholdings.kacha.playload.PLSchool;
-import com.mizholdings.util.Funcs;
-import com.mizholdings.util.Requests;
 import io.qameta.allure.Step;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -16,10 +14,10 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
-public class MODSchool extends MODBase<MODSchool> {
+public class MODSchool2 extends MODBase<MODSchool2> {
     public static SchoolInterface schoolInterface = Requests.getService(SchoolInterface.class);
 
-    public MODSchool(KCUserBase executor) {
+    public MODSchool2(KCUserBase executor) {
         super(executor);
         this.interfaced = schoolInterface;
     }
@@ -28,38 +26,44 @@ public class MODSchool extends MODBase<MODSchool> {
     /**
      * 4.1.1 学生加入班级
      *
-     * @param schoolModel
      * @return
      */
     @Step("学生加入班级")
-    public JSONObject classStudentJoin(PLSchool schoolModel) {
-        return exec("classStudentJoin", schoolModel);
-//        return Requests.getJson(schoolInterface.classStudentJoin(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+    public JSONObject classStudentJoin(String classId, String childId) {
+        Parameter parameter = Parameter.creat()
+                .add("classId", classId)
+                .add("childId", childId);
+        return exec("classStudentJoin", parameter);
     }
 
     /**
      * 4.1.2 退出班级
      *
-     * @param schoolModel
      * @return
      */
     @Step("退出班级")
-    public JSONObject classStudentExit(PLSchool schoolModel) {
-//        return Requests.getJson(schoolInterface.classStudentExit(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
-        return exec("classStudentExit", schoolModel);
+    public JSONObject classStudentExit(String classId, String childId) {
+        return exec("classStudentExit", Parameter.creat()
+                .add("classId", classId)
+                .add("childId", childId));
     }
 
     /**
      * 4.1.3 成员列表
      *
-     * @param schoolModel
      * @return
      */
     @Step("成员列表")
-    public JSONObject classMembers(PLSchool schoolModel) {
-//        return Requests.getJson(schoolInterface.classMembers(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
-        return exec("classMembers", schoolModel);
+    public JSONObject classMembers(String schoolId, String classId, String type) {
+        return exec("classMembers", Parameter.creat()
+                .add("schoolId", schoolId).add("classId", classId).add("type", type));
     }
+
+    @Step("学生成员列表")
+    public JSONObject classMembers(String schoolId, String classId) {
+        return classMembers(schoolId, classId, "3");
+    }
+
 
     /**
      * 4.1.4 超级管理员页面学生数据
@@ -69,7 +73,6 @@ public class MODSchool extends MODBase<MODSchool> {
      */
     @Step("超级管理员页面学生数据")
     public JSONObject classMembersForSA(PLSchool schoolModel) {
-//        return Requests.getJson(schoolInterface.classMembersForSA(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
         return exec("classMembersForSA", schoolModel);
     }
 
@@ -80,8 +83,7 @@ public class MODSchool extends MODBase<MODSchool> {
      * @return
      */
     @Step("班级信息")
-    public JSONObject classDetail(PLSchool schoolModel) {
-//        return Requests.getJson(schoolInterface.classDetail(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
+    public JSONObject classDetail(Parameter schoolModel) {
         return exec("classDetail", schoolModel);
     }
 
@@ -93,7 +95,6 @@ public class MODSchool extends MODBase<MODSchool> {
      */
     @Step("班级信息返回")
     public JSONObject classInfo(PLSchool schoolModel) {
-//        return Requests.getJson(schoolInterface.classInfo(executor.getToken(), Funcs.javabeanToMap(schoolModel)));
         return exec("classInfo", schoolModel);
     }
 
@@ -138,6 +139,10 @@ public class MODSchool extends MODBase<MODSchool> {
      */
     @Step("新建班级")
     public JSONObject classManageCreat(PLSchool schoolModel) {
+
+//        Parameter.creat().add()
+
+
         return exec("classManageCreat", schoolModel);
     }
 
@@ -318,7 +323,6 @@ public class MODSchool extends MODBase<MODSchool> {
     /**
      * 4.7.1 新建学校
      *
-     * @param schoolModel
      * @return
      */
     @Step("新建学校")

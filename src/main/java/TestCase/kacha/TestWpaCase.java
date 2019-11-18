@@ -1,10 +1,9 @@
 package TestCase.kacha;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.GlobalKC;
-import com.mizholdings.kacha.core.mod.MODVip;
-import com.mizholdings.kacha.core.mod.MODWpa;
-import com.mizholdings.kacha.core.user.KCParent;
+import com.mizholdings.kacha.GlobalKC;
+import com.mizholdings.kacha.mod.MODWpa;
+import com.mizholdings.kacha.user.KCParent;
 import com.mizholdings.kacha.playload.PLWpa;
 import com.mizholdings.util.SampleAssert;
 import org.testng.annotations.BeforeClass;

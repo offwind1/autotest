@@ -1,21 +1,16 @@
-package com.mizholdings.kacha.core.user;
+package com.mizholdings.kacha.user;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.mod.MODSchool;
-import com.mizholdings.kacha.playload.PLAuth;
+import com.mizholdings.kacha.mod.MODSchool2;
 import com.mizholdings.kacha.playload.PLSchool;
-import com.mizholdings.util.Funcs;
-import com.mizholdings.util.Requests;
-
-import java.util.Map;
 
 public class KCSchooler extends KCUserBase {
     //    public static SchoolInterface2 schoolInterface2 = Requests.getService(SchoolInterface2.class);
-    private MODSchool modSchool;
+    private MODSchool2 modSchool;
 
     public KCSchooler(String account, String password) {
         super("kcsj", account, password);
-        modSchool = new MODSchool(this);
+        modSchool = new MODSchool2(this);
     }
 
 
@@ -50,9 +45,7 @@ public class KCSchooler extends KCUserBase {
      * @return
      */
     public JSONObject classMembers(String schoolId, String classId) {
-        PLSchool plSchool = new PLSchool();
-        plSchool.setClassMembers(schoolId, classId, "3");
-        return modSchool.classMembers(plSchool);
+        return modSchool.classMembers(schoolId, classId, "3");
     }
 
 }

@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="基础测试集合">
-
-    <test name="子女模块">
+<suite name="咔嚓测试">
+    <test name="亲子中心">
         <classes>
-            <class name="TestCase.kacha.TestParenthoodCase">
-            </class>
+            <class name="TestCase.kacha.parenthood.NormalParenthoodCase"></class>
+            <class name="TestCase.kacha.parenthood.TestParenthoodCase"></class>
         </classes>
     </test>
     <test name="school模块">
         <classes>
-            <class name="TestCase.kacha.TestSchoolCase">
+            <class name="TestCase.kacha.school.TestSchoolCase"></class>
+            <class name="TestCase.kacha.school.TestSchoolCase2">
             </class>
+        </classes>
+    </test>
+    <test name="错题模块">
+        <classes>
+            <class name="TestCase.kacha.wrongbook.TestWrongBookCase"></class>
+        </classes>
+    </test>
+    <test name="导出模块">
+        <classes>
+            <class name="TestCase.kacha.export.TestExportCase"></class>
+        </classes>
+    </test>
+    <test name="析构">
+        <classes>
+            <class name="TestCase.kacha.Teardown"></class>
         </classes>
     </test>
 </suite>

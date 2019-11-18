@@ -1,21 +1,24 @@
-package com.mizholdings.kacha.core;
+package com.mizholdings.kacha;
 
-import com.mizholdings.kacha.core.user.KCParent;
-import com.mizholdings.kacha.core.user.KCSuperAdmin;
-import com.mizholdings.kacha.core.user.KCTeacher;
+import com.mizholdings.kacha.user.KCParent;
+import com.mizholdings.kacha.user.KCSuperAdmin;
+import com.mizholdings.kacha.user.KCTeacher;
 import com.mizholdings.util.Requests;
+import com.mizholdings.util.Warehouse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 import java.util.Properties;
 
 public class GlobalKC {
     private static GlobalKC global;
+    public static String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+
     public Properties properties;
     private final static Log logger = LogFactory.getLog(Requests.class);
-
     private KCSuperAdmin surpeAdmin;
     private KCTeacher teacher;
     private KCParent parent;
@@ -23,6 +26,8 @@ public class GlobalKC {
     private String schoolId;
     private String classId;
     private String childId;
+
+    private Warehouse warehouse;
 
     public static GlobalKC init() {
         if (global == null) {
@@ -40,10 +45,21 @@ public class GlobalKC {
             e.printStackTrace();
             logger.error(e);
         }
-
         schoolId = properties.getProperty("kacha.schoolId");
         classId = properties.getProperty("kacha.classId");
         childId = properties.getProperty("kacha.childId");
+
+        warehouse = new Warehouse(this);
+    }
+
+    public KCParent getNewParent() {
+        KCParent parent = new KCParent(warehouse.getParent(), "111111");
+        parent.deleteAllChilds();
+        return parent;
+    }
+
+    public String getNewSchool() {
+        return warehouse.getSchool();
     }
 
     public KCSuperAdmin getSuperAdmin() {
@@ -85,4 +101,13 @@ public class GlobalKC {
     public static String getChildId() {
         return init().childId;
     }
+
+    public static String getImageUrl() {
+        return init().properties.getProperty("kacha.page.url");
+    }
+
+    public void teardown() {
+        warehouse.teardown();
+    }
+
 }

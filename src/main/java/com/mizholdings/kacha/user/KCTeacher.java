@@ -1,4 +1,4 @@
-package com.mizholdings.kacha.core.user;
+package com.mizholdings.kacha.user;
 
 import com.mizholdings.util.Env;
 

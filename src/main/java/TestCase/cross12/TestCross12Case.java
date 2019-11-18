@@ -1,9 +1,9 @@
 package TestCase.cross12;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.GlobalKC;
-import com.mizholdings.kacha.core.user.KCSchooler;
-import com.mizholdings.kacha.core.user.KCSuperAdmin;
+import com.mizholdings.kacha.GlobalKC;
+import com.mizholdings.kacha.user.KCSchooler;
+import com.mizholdings.kacha.user.KCSuperAdmin;
 import com.mizholdings.me2.core.user.Me2Jigou;
 import com.myreport.Title;
 import io.qameta.allure.Epic;

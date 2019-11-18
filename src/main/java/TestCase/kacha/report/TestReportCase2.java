@@ -1,16 +1,16 @@
-package TestCase.kacha;
+package TestCase.kacha.report;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.GlobalKC;
-import com.mizholdings.kacha.core.mod.MODReport;
-import com.mizholdings.kacha.core.user.KCParent;
-import com.mizholdings.kacha.core.user.KCSuperAdmin;
+import com.mizholdings.kacha.GlobalKC;
+import com.mizholdings.kacha.mod.MODReport;
+import com.mizholdings.kacha.user.KCParent;
+import com.mizholdings.kacha.user.KCSuperAdmin;
 import com.mizholdings.kacha.playload.PLReport;
 import com.mizholdings.util.SampleAssert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class TestReportCase {
+public class TestReportCase2 {
 
     private KCParent parent;
     private KCSuperAdmin surpeAdmin;

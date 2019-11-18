@@ -17,7 +17,7 @@ public class Funcs {
 
     public final static Log logger = LogFactory.getLog(Funcs.class);
 
-    @Attachment("play load")
+    //    @Attachment("play load")
     public static Map<String, String> javabeanToMap(Object object) {
         Map<String, String> map = new HashMap<>();
 

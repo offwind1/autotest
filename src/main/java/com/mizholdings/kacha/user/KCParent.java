@@ -1,10 +1,10 @@
-package com.mizholdings.kacha.core.user;
+package com.mizholdings.kacha.user;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.mod.MODParenthood;
+import com.mizholdings.kacha.GlobalKC;
+import com.mizholdings.kacha.mod.MODParenthood;
 import com.mizholdings.kacha.playload.PLParenthood;
 import com.mizholdings.util.Env;
-import io.qameta.allure.Step;
 import org.testng.Assert;
 
 /**
@@ -94,7 +94,7 @@ public class KCParent extends KCUserBase {
      */
     public JSONObject getChilds() {
         PLParenthood plParenthood = getPl();
-        plParenthood.setChilds("2019");
+        plParenthood.setChilds(GlobalKC.year);
         return modParenthood.childs(plParenthood);
     }
 
@@ -120,6 +120,35 @@ public class KCParent extends KCUserBase {
         PLParenthood plParenthood = getPl();
         plParenthood.setBindchild(code);
         return modParenthood.bindChild(plParenthood);
+    }
+
+    /**
+     * 删除所有子女
+     *
+     * @param continue_child 想要排除的子女ID
+     */
+    public void deleteAllChilds(String continue_child) {
+        //6、查看子女列表查看是否解绑
+        JSONObject childs = getChilds();
+
+        for (Object object : childs.getJSONArray("data")) {
+            JSONObject child = (JSONObject) object;
+
+            if (continue_child == null || !continue_child.equals(child.getString("id"))) {
+                JSONObject deleteChild = deleteChild(child.getString("id"));
+                Assert.assertEquals("解除亲子关系", deleteChild.getString("msg"));
+            }
+        }
+    }
+
+    public void deleteAllChilds() {
+        deleteAllChilds(null);
+    }
+
+    public String getNewChildId() {
+        deleteAllChilds(GlobalKC.getChildId());
+        JSONObject object = addChild("newChild");
+        return object.getJSONObject("data").getString("userId");
     }
 
 

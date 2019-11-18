@@ -1,7 +1,6 @@
 package com.mizholdings.me2.core.mod;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.user.KCUserBase;
 import com.mizholdings.me2.core.user.Me2UserBase;
 import com.mizholdings.me2.interfaces.api.MobileInterface;
 import com.mizholdings.util.MODBase;

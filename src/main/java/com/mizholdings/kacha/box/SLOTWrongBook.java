@@ -1,10 +1,10 @@
-package com.mizholdings.kacha.core.slot;
+package com.mizholdings.kacha.box;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.GlobalKC;
-import com.mizholdings.kacha.core.mod.MODWrongBook;
-import com.mizholdings.kacha.core.user.KCParent;
+import com.mizholdings.kacha.GlobalKC;
+import com.mizholdings.kacha.mod.MODWrongBook;
+import com.mizholdings.kacha.user.KCParent;
 import com.mizholdings.kacha.playload.PLWrongbook;
 import com.mizholdings.util.SampleAssert;
 import lombok.Data;
@@ -33,18 +33,6 @@ public class SLOTWrongBook {
 
         JSONObject object = modWrongBook.page(plWrongbook);
         return object;
-    }
-
-    /**
-     * 提交错题，通过 上传页面返回的JsonObject
-     *
-     * @param object jsonObject
-     * @return
-     */
-    public JSONObject commitWrongQuestionByJsonObject(JSONObject object) {
-        //提交错题
-        String s = creat_wrongbook_data(object);
-        return modWrongBook.commit(s);
     }
 
     /**
@@ -127,72 +115,5 @@ public class SLOTWrongBook {
     }
 
 
-    public String creat_wrongbook_data(JSONObject object) {
-        String pageId = object.getJSONObject("data").getString("pageId");
-        JSONArray array = object.getJSONObject("data").getJSONArray("questions");
 
-        List<WrongQuestion> questions = new ArrayList<>();
-
-        for (int i = 0; i < array.size(); i++) {
-            JSONObject imagdata = array.getJSONObject(i)
-                    .getJSONArray("areas")
-                    .getJSONObject(0);
-
-            WrongQuestion question = new WrongQuestion();
-            question.setPage(pageId);
-            question.setNum(String.valueOf(i));
-            question.setX(imagdata.getString("x"));
-            question.setY(imagdata.getString("y"));
-            question.setY(imagdata.getString("y"));
-            question.setWidth(imagdata.getString("width"));
-            question.setHeight(imagdata.getString("height"));
-
-            List<String> list = new ArrayList<>();
-            list.add(imagdata.getString("imgUrl"));
-            question.setQuestionUrls(list);
-            question.setCollect("1");
-            questions.add(question);
-        }
-
-        PageQuestion pageQuestion = new PageQuestion();
-        pageQuestion.setPageId(pageId);
-        pageQuestion.setQuestions(questions);
-
-        List<PageQuestion> list = new ArrayList<>();
-        list.add(pageQuestion);
-
-        Commit commit = new Commit();
-        commit.setPages(list);
-        commit.setSubjectId("10");
-        commit.setChildId(executor.currentChild());
-
-        return JSONObject.toJSONString(commit);
-    }
-
-}
-
-
-@Data
-class Commit {
-    private List<PageQuestion> pages;
-    private String subjectId = "10";
-    private String childId;
-}
-
-@Data
-class PageQuestion {
-    private String pageId;
-    private List<WrongQuestion> questions;
-}
-
-@Data
-class WrongQuestion {
-    private String page;
-    private String num;
-    private String x;
-    private String y;
-    private String width;
-    private String height;
-    private List<String> questionUrls;
-    private String collect;
 }

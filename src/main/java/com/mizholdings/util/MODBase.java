@@ -1,7 +1,7 @@
 package com.mizholdings.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.user.KCUserBase;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import okhttp3.ResponseBody;
@@ -33,16 +33,26 @@ public class MODBase<T extends MODBase> {
         return (T) this;
     }
 
-    @Attachment("{funName} return")
+
     public JSONObject exec(String funName, PLJavaBean javaBean) {
+        return exec(funName, Funcs.javabeanToMap(javaBean));
+    }
+    public JSONObject exec(String funName, Parameter parameter) {
+        return exec(funName, parameter.getMap());
+    }
+
+    @Attachment("{funName} return")
+    public JSONObject exec(String funName, Map<String, String> map) {
         if (interfaced == null) {
             logger.error("interface is null");
             return null;
         }
 
+        Allure.addAttachment("parameters", map.toString());
+
         try {
             Method method = interfaced.getClass().getMethod(funName, String.class, Map.class);
-            Call<ResponseBody> bodyCall = (Call<ResponseBody>) method.invoke(interfaced, executor.getToken(), Funcs.javabeanToMap(javaBean));
+            Call<ResponseBody> bodyCall = (Call<ResponseBody>) method.invoke(interfaced, executor.getToken(), map);
             return Requests.getJson(bodyCall);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
@@ -55,6 +65,7 @@ public class MODBase<T extends MODBase> {
         }
         return null;
     }
+
 
     @Step("{funName}")
     public JSONObject exec(String funName) {

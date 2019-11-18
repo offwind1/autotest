@@ -1,18 +1,15 @@
-package TestCase.kacha;
+package TestCase.kacha.wrongbook;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.GlobalKC;
-import com.mizholdings.kacha.core.mod.MODWrongBook;
-import com.mizholdings.kacha.core.slot.SLOTWrongBook;
-import com.mizholdings.kacha.core.user.KCParent;
-import com.mizholdings.kacha.playload.PLWrongbook;
+import com.mizholdings.kacha.GlobalKC;
+import com.mizholdings.kacha.box.SLOTWrongBook;
+import com.mizholdings.kacha.user.KCParent;
 import com.mizholdings.util.SampleAssert;
-import com.myreport.Title;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class TestWrongBookCase {
+public class TestWrongBookCase2 {
 
     private KCParent parent;
     private SLOTWrongBook slotWrongBook;
@@ -31,8 +28,8 @@ public class TestWrongBookCase {
         SampleAssert.assertEquals("上传成功!", object);
 
         //提交错题
-        JSONObject jsonObject = slotWrongBook.commitWrongQuestionByJsonObject(object);
-        SampleAssert.assertEquals("上传成功!", jsonObject);
+//        JSONObject jsonObject = slotWrongBook.commitWrongQuestionByJsonObject(object);
+//        SampleAssert.assertEquals("上传成功!", jsonObject);
     }
 
 

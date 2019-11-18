@@ -1,4 +1,4 @@
-package com.mizholdings.kacha.core.user;
+package com.mizholdings.kacha.user;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.kacha.interfaces.AuthInterface;

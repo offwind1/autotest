@@ -7,8 +7,4 @@ public class Env {
         public final static String BLUE_PIG = "kcct";
         public final static String TEACHER = "kcsj";
     }
-
-
-
-
 }

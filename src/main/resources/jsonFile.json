@@ -1,16 +1,86 @@
 {
   "result": 0,
-  "msg": "查询成功",
-  "data": {
-    "classCode": 371341,
-    "classId": 669,
-    "ownerName": "培老师",
-    "ownerPhone": "19900000002",
-    "schoolId": 8790,
-    "schoolType": 0,
-    "className": "猫年狗班",
-    "ownerId": 4554282930243584,
-    "schoolName": "咔嚓接口测试学校",
-    "type": 4
-  }
+  "msg": "查询成功!",
+  "data": [
+    {
+      "questionUrl": "https://homework.mizholdings.com/kacha/xcx/page/4458115425880064.4192965692622848.1561445920374.jpg?imageMogr2/auto-orient/gravity/NorthWest/rotate/-0.0/crop/!959.0x737.0a212.0a231.0",
+      "uqId": 206602,
+      "modelId": 206602,
+      "width": 276,
+      "allNum": 1,
+      "height": 212
+    },
+    {
+      "questionUrl": "https://homework.mizholdings.com/kacha/xcx/page/4458115425880064.4192965692622848.1561445920374.jpg?imageMogr2/auto-orient/gravity/NorthWest/rotate/0.0/crop/!959.0x2366.0a212.0a968.0",
+      "uqId": 206603,
+      "modelId": 206603,
+      "width": 276,
+      "allNum": 1,
+      "height": 681
+    },
+    {
+      "questionUrl": "https://homework.mizholdings.com/kacha/xcx/page/4458115425880064.4192965692622848.1561445920374.jpg?imageMogr2/auto-orient/gravity/NorthWest/rotate/-0.0/crop/!1086.999755859375x999.9998779296875a1251.9998779296875a184.0",
+      "uqId": 206604,
+      "modelId": 206604,
+      "width": 312,
+      "allNum": 1,
+      "height": 287
+    },
+    {
+      "questionUrl": "https://homework.mizholdings.com/kacha/xcx/page/4458115425880064.4192965692622848.1561445920374.jpg?imageMogr2/auto-orient/gravity/NorthWest/rotate/0.0/crop/!1086.999755859375x2150.0001220703125a1251.9998779296875a1183.9998779296875",
+      "uqId": 206605,
+      "modelId": 206605,
+      "width": 312,
+      "allNum": 1,
+      "height": 619
+    },
+    {
+      "questionUrl": "https://homework.mizholdings.com/kacha/xcx/page/4458115425880064.4192965692622848.1561445920374.jpg?imageMogr2/auto-orient/gravity/NorthWest/rotate/-0.0/crop/!1112.9427944591935x354.888671875a208.375a234.421875",
+      "uqId": 207971,
+      "modelId": 207971,
+      "width": 320,
+      "allNum": 1,
+      "height": 101
+    },
+    {
+      "questionUrl": "https://homework.mizholdings.com/kacha/xcx/page/4458115425880064.4192965692622848.1561445920374.jpg?imageMogr2/auto-orient/gravity/NorthWest/rotate/0.0/crop/!1112.9427944591935x358.14453125a192.095703125a993.037109375",
+      "uqId": 207973,
+      "modelId": 207973,
+      "width": 320,
+      "allNum": 1,
+      "height": 103
+    },
+    {
+      "questionUrl": "https://homework.mizholdings.com/kacha/xcx/page/4458115425880064.4192965692622848.1561445920374.jpg?imageMogr2/auto-orient/gravity/NorthWest/rotate/-0.0/crop/!1112.9427944591935x491.634765625a182.328125a1351.181640625",
+      "uqId": 207974,
+      "modelId": 207974,
+      "width": 320,
+      "allNum": 1,
+      "height": 141
+    },
+    {
+      "questionUrl": "https://homework.mizholdings.com/kacha/xcx/page/4458115425880064.4192965692622848.1561445920374.jpg?imageMogr2/auto-orient/gravity/NorthWest/rotate/0.0/crop/!1112.9427944591935x546.984375a166.048828125a2148.8671875",
+      "uqId": 207975,
+      "modelId": 207975,
+      "width": 320,
+      "allNum": 1,
+      "height": 157
+    },
+    {
+      "questionUrl": "https://homework.mizholdings.com/kacha/xcx/page/4458115425880064.4192965692622848.1561445920374.jpg?imageMogr2/auto-orient/gravity/NorthWest/rotate/0/crop/!1112.9427944591935x501.40234375a166.048828125a2695.8515625",
+      "uqId": 207976,
+      "modelId": 207976,
+      "width": 320,
+      "allNum": 1,
+      "height": 144
+    },
+    {
+      "questionUrl": "https://homework.mizholdings.com/kacha/xcx/page/4458115425880064.4192965692622848.1561445920374.jpg?imageMogr2/auto-orient/gravity/NorthWest/rotate/-0.0/crop/!1193.4601325535086x514.5185030658283a1237.2265625a700.009765625",
+      "uqId": 207978,
+      "modelId": 207978,
+      "width": 343,
+      "allNum": 1,
+      "height": 148
+    }
+  ]
 }

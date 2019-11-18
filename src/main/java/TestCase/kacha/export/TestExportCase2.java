@@ -1,15 +1,13 @@
-package TestCase.kacha;
+package TestCase.kacha.export;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.GlobalKC;
-import com.mizholdings.kacha.core.mod.MODExport;
-import com.mizholdings.kacha.core.slot.SLOTWrongBook;
-import com.mizholdings.kacha.core.user.KCParent;
+import com.mizholdings.kacha.GlobalKC;
+import com.mizholdings.kacha.mod.MODExport;
+import com.mizholdings.kacha.box.SLOTWrongBook;
+import com.mizholdings.kacha.user.KCParent;
 import com.mizholdings.kacha.playload.PLExport;
 import com.mizholdings.util.SampleAssert;
-import com.myreport.Title;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -17,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Feature("错题本测试")
-public class TestExportCase {
+public class TestExportCase2 {
     private KCParent parent;
     private SLOTWrongBook slotWrongBook;
     private MODExport modExport;

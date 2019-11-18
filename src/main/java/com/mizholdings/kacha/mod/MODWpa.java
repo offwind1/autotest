@@ -1,8 +1,7 @@
-package com.mizholdings.kacha.core.mod;
+package com.mizholdings.kacha.mod;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.user.KCUserBase;
-import com.mizholdings.kacha.interfaces.VipInterface;
+import com.mizholdings.kacha.user.KCUserBase;
 import com.mizholdings.kacha.interfaces.WpaInterface;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.PLJavaBean;

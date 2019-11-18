@@ -1,6 +1,7 @@
 package com.mizholdings.util;
 
 import com.alibaba.fastjson.JSONObject;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -37,13 +38,8 @@ public class Requests {
             }
         }
 
-        String packageName = tClass.getPackageName();
-//        String[] strings = packageName.split("\\.interfaces");
-//        String[] split = packageName.split("\\.");
+        String packageName = tClass.getPackage().getName();
 
-//        System.out.println(String.join(".", split));
-//        System.out.println(packageName);
-//        System.out.println(String.join(".", ));
         logger.debug(packageName);
         String host = properties.getProperty(packageName);
 
@@ -55,7 +51,7 @@ public class Requests {
     }
 
     @Attachment("url")
-    public static String showUrl(Call<ResponseBody> bodyCall){
+    public static String showUrl(Call<ResponseBody> bodyCall) {
         return bodyCall.request().url().toString();
     }
 
@@ -63,7 +59,7 @@ public class Requests {
         logger.debug("URL: " + showUrl(bodyCall));
         logger.debug("Method: " + bodyCall.request().method());
         try {
-            logger.debug("Headers: " + bodyCall.request().headers());
+//            logger.debug("Headers: " + bodyCall.request().headers());
             logger.debug("Headers: " + bodyCall.request().headers().toMultimap());
             logger.debug("Request Body: " + bodyToString(bodyCall.request().body()));
         } catch (IOException e) {
@@ -74,9 +70,14 @@ public class Requests {
         try {
             Response<ResponseBody> response = bodyCall.execute();
             logger.debug("Response: " + response.toString());
+            if (response.errorBody() != null) {
+                logger.debug("Response errorBody: " + response.errorBody().string());
+                Allure.addAttachment("errorBody", response.errorBody().string());
+            }
             JSONObject object = JSONObject.parseObject(response.body().string());
-            logger.debug("Json: " + object.toJSONString());
+            logger.debug("Json: " + object.toJSONString() + "\n");
             return object;
+
         } catch (IOException e) {
             e.printStackTrace();
             logger.error(e);

@@ -1,8 +1,8 @@
-package com.mizholdings.kacha.core.mod;
+package com.mizholdings.kacha.mod;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.util.MODBase;
-import com.mizholdings.kacha.core.user.KCUserBase;
+import com.mizholdings.kacha.user.KCUserBase;
 import com.mizholdings.kacha.interfaces.ParenthoodInterface;
 import com.mizholdings.kacha.playload.PLParenthood;
 import com.mizholdings.util.Requests;

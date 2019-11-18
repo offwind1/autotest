@@ -1,8 +1,8 @@
 package TestCase.kacha;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.GlobalKC;
-import com.mizholdings.kacha.core.user.KCTeacher;
+import com.mizholdings.kacha.GlobalKC;
+import com.mizholdings.kacha.user.KCTeacher;
 import com.mizholdings.kacha.playload.PLUser;
 import com.myreport.Title;
 import org.testng.Assert;

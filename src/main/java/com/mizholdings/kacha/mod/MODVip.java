@@ -1,14 +1,12 @@
-package com.mizholdings.kacha.core.mod;
+package com.mizholdings.kacha.mod;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.kacha.core.user.KCUserBase;
-import com.mizholdings.kacha.interfaces.SchoolInterface;
+import com.mizholdings.kacha.user.KCUserBase;
 import com.mizholdings.kacha.interfaces.VipInterface;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.PLJavaBean;
 import com.mizholdings.util.Requests;
 import io.qameta.allure.Step;
-import io.qameta.allure.Story;
 
 public class MODVip extends MODBase<MODVip> {
 
