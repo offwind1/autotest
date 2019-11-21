@@ -2,18 +2,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="TestAll">
 
-    <suite-files>
-        <suite-file path="kachaTest.xml"/>
-    </suite-files>
-    <suite-files>
-        <suite-file path="12crossTest.xml"/>
-    </suite-files>
+<!--    <suite-files>-->
+<!--        <suite-file path="kachaTest.xml"/>-->
+<!--    </suite-files>-->
+<!--    <suite-files>-->
+<!--        <suite-file path="12crossTest.xml"/>-->
+<!--    </suite-files>-->
     <suite-files>
         <suite-file path="me2Test.xml"/>
     </suite-files>
-
-<!--    <listeners>-->
-<!--        <listener class-name="com.myreport.ExtentTestNGIReporterListener"></listener>-->
-<!--    </listeners>-->
-
 </suite>
