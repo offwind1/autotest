@@ -73,5 +73,14 @@ public class TestReportCase {
         SampleAssert.assertEquals("查询成功!", object);
     }
 
+    @Test(description = "")
+    public void test() {
+        JSONObject object = modReport.dbQueryqrquestioncountforgz(GlobalKC.getClassId());
+        SampleAssert.assertEquals("查询成功!", object);
+
+
+
+    }
+
 
 }

@@ -13,7 +13,6 @@ public class SampleAssert {
         assert string.equals(object.getString("result")) : "result: " + object.getString("result") + " " + object.getString("msg");
     }
 
-
     public static void assertTrue(Boolean bool, String msg) {
         assert bool : msg;
     }
@@ -21,6 +20,15 @@ public class SampleAssert {
     public static void assertFalse(Boolean bool, String msg) {
         assert !bool : msg;
     }
+
+    public static void assertCode200(JSONObject object) {
+        assert "200".equals(object.getString("code")) : "code:" + object.getString("code");
+    }
+
+    public static void assertResult0(JSONObject object) {
+        assert "0".equals(object.getString("result")) : "result:" + object.getString("result");
+    }
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.mizholdings.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.mizholdings.me2.user.Me2UserBase;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
@@ -33,22 +34,31 @@ public class MODBase<T extends MODBase> {
         return (T) this;
     }
 
+    public T setInterfaced(Class interfaced) {
+        this.interfaced = Requests.getService(interfaced);
+        return (T) this;
+    }
+
 
     public JSONObject exec(String funName, PLJavaBean javaBean) {
         return exec(funName, Funcs.javabeanToMap(javaBean));
     }
+
     public JSONObject exec(String funName, Parameter parameter) {
+        if (executor instanceof Me2UserBase){
+            parameter.add("orgId", ((Me2UserBase) executor).getOrgId());
+        }
         return exec(funName, parameter.getMap());
     }
 
-    @Attachment("{funName} return")
+//    @Attachment("{funName} return")
     public JSONObject exec(String funName, Map<String, String> map) {
         if (interfaced == null) {
             logger.error("interface is null");
             return null;
         }
-
         Allure.addAttachment("parameters", map.toString());
+
 
         try {
             Method method = interfaced.getClass().getMethod(funName, String.class, Map.class);
@@ -88,6 +98,4 @@ public class MODBase<T extends MODBase> {
         }
         return null;
     }
-
-
 }

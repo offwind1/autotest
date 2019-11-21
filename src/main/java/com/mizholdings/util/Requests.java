@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okio.Buffer;
@@ -17,14 +18,13 @@ import retrofit2.Retrofit;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class Requests {
     public static Properties properties = null;
     private final static Log logger = LogFactory.getLog(Requests.class);
     private static Retrofit retrofit;
-//    = new Retrofit.Builder()
-//            .baseUrl(Env.host)
-//            .build();
+
 
     public static <T> T getService(Class<T> tClass) {
         if (properties == null) {
@@ -43,9 +43,16 @@ public class Requests {
         logger.debug(packageName);
         String host = properties.getProperty(packageName);
 
+        OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
+        OkHttpClient client = httpBuilder.readTimeout(3, TimeUnit.MINUTES)
+                .connectTimeout(3, TimeUnit.MINUTES)
+                .writeTimeout(3, TimeUnit.MINUTES) //设置超时
+                .build();
+
         logger.debug("HOST: " + host);
         retrofit = new Retrofit.Builder()
                 .baseUrl(host)
+                .client(client)
                 .build();
         return retrofit.create(tClass);
     }
@@ -55,6 +62,7 @@ public class Requests {
         return bodyCall.request().url().toString();
     }
 
+    @Attachment("return")
     public static JSONObject getJson(Call<ResponseBody> bodyCall) {
         logger.debug("URL: " + showUrl(bodyCall));
         logger.debug("Method: " + bodyCall.request().method());
@@ -76,6 +84,7 @@ public class Requests {
             }
             JSONObject object = JSONObject.parseObject(response.body().string());
             logger.debug("Json: " + object.toJSONString() + "\n");
+//            Allure.addAttachment("return", response.errorBody().string());
             return object;
 
         } catch (IOException e) {

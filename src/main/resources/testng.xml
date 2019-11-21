@@ -8,9 +8,9 @@
     <suite-files>
         <suite-file path="12crossTest.xml"/>
     </suite-files>
-<!--    <suite-files>-->
-<!--        <suite-file path="me2Test.xml"/>-->
-<!--    </suite-files>-->
+    <suite-files>
+        <suite-file path="me2Test.xml"/>
+    </suite-files>
 
 <!--    <listeners>-->
 <!--        <listener class-name="com.myreport.ExtentTestNGIReporterListener"></listener>-->

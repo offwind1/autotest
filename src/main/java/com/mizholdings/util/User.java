@@ -1,5 +1,69 @@
 package com.mizholdings.util;
 
+import com.mizholdings.me2.user.Me2UserBase;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+
 public abstract class User {
-    public abstract String getToken();
+
+    protected String orgId = "0";
+    protected String userId = "0";
+    protected String token;
+
+    protected Object getAgent(String agentName) {
+        try {
+            Field field = getField(this.getClass(), agentName);
+            field.setAccessible(true);
+            Object value = field.get(this);
+            if (value == null) {
+                Constructor constructor = field.getType().getDeclaredConstructor(User.class);
+                value = constructor.newInstance(this);
+                field.set(this, value);
+            }
+            return value;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
+    private Field getField(Class cls, String fieldName) throws NoSuchFieldException {
+        try {
+            return cls.getDeclaredField(fieldName);
+        } catch (NoSuchFieldException e) {
+            if (cls.getSuperclass() != null) {
+                return getField(cls.getSuperclass(), fieldName);
+            }
+            throw e;
+        }
+    }
+
+    public String getOrgId() {
+        return orgId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setOrgId(String orgId) {
+        this.orgId = orgId;
+    }
+
 }
