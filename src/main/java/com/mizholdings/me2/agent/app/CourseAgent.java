@@ -2,6 +2,7 @@ package com.mizholdings.me2.agent.app;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.interfaces.api.CourseApiInterface;
+import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 

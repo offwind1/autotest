@@ -151,7 +151,7 @@ public interface OrginfoInterface {
      * @param map
      * @return
      */
-    @POST("mizhu/web/orgInfo/replyOrgMessage")
+    @POST("mizhumanage/web/orgInfo/replyOrgMessage")
     @FormUrlEncoded
     Call<ResponseBody> replyOrgMessage(@Field("token") String token,
                                        @FieldMap Map<String, String> map);

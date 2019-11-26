@@ -156,5 +156,17 @@ public interface TopInterface {
     Call<ResponseBody> getSearchCem(@Field("token") String token,
                                     @FieldMap Map<String, String> map);
 
+    /**
+     * 机构新闻更多
+     *
+     * @param token
+     * @param map
+     * @return
+     */
+    @POST("mizhu/api/top/v2OrgMsgList")
+    @FormUrlEncoded
+    Call<ResponseBody> v2OrgMsgList(@Field("token") String token,
+                                    @FieldMap Map<String, String> map);
+
 
 }

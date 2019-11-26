@@ -6,11 +6,12 @@ import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.PLJavaBean;
 import com.mizholdings.util.Requests;
+import com.mizholdings.util.User;
 
 public class VoteAgent extends MODBase<VoteAgent> {
     public static VoteInterface voteInterface = Requests.getService(VoteInterface.class);
 
-    public VoteAgent(Me2UserBase executor) {
+    public VoteAgent(User executor) {
         super(executor);
         interfaced = voteInterface;
     }

@@ -75,13 +75,11 @@ public interface PayInterface {
      * 查询用户充值记录
      *
      * @param token
-     * @param map
      * @return
      */
     @POST("mizhu/api/pay/userTrans")
     @FormUrlEncoded
-    Call<ResponseBody> userTrans(@Field("token") String token,
-                                 @FieldMap Map<String, String> map);
+    Call<ResponseBody> userTrans(@Field("token") String token);
 
     /**
      * 获取提现账号

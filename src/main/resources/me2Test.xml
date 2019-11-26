@@ -8,4 +8,31 @@
             </class>
         </classes>
     </test>
+    <test name="学习模块测试">
+        <classes>
+            <class name="TestCase.me2.XueXiPageTest">
+            </class>
+        </classes>
+    </test>
+    <test name="积分相关测试">
+        <classes>
+            <class name="TestCase.me2.TestIntegCase">
+            </class>
+        </classes>
+    </test>
+    <test name="知识点相关测试">
+        <classes>
+            <class name="TestCase.me2.TestKnowledgeCase">
+            </class>
+        </classes>
+    </test>
+    <test name="bugclose">
+        <classes>
+            <class name="TestCase.me2.bugTest.TestFullschCase">
+            </class>
+        </classes>
+    </test>
+
+
+
 </suite>

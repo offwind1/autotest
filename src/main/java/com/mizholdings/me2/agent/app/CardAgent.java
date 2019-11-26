@@ -6,11 +6,12 @@ import com.mizholdings.me2.interfaces.api.CardInterface;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.PLJavaBean;
 import com.mizholdings.util.Requests;
+import com.mizholdings.util.User;
 
 public class CardAgent extends MODBase<CardAgent> {
     public static CardInterface cardInterface = Requests.getService(CardInterface.class);
 
-    public CardAgent(Me2UserBase executor) {
+    public CardAgent(User executor) {
         super(executor);
         interfaced = cardInterface;
     }

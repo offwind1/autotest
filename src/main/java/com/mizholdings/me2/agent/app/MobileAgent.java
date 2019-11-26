@@ -149,11 +149,12 @@ public class MobileAgent extends MODBase<MobileAgent> {
     /**
      * 机构用户管理的教师列表
      *
-     * @param javaBean orgUserList
+     * @param userId 机构id
      * @return
      */
-    public JSONObject orgUserList(PLJavaBean javaBean) {
-        return exec("orgUserList", javaBean);
+    public JSONObject orgUserList(String userId) {
+        return exec("orgUserList", Parameter.creat()
+                .add("userId", userId));
     }
 
     /**

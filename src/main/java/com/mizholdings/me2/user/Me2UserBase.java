@@ -1,17 +1,11 @@
 package com.mizholdings.me2.user;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.agent.app.*;
 import com.mizholdings.me2.interfaces.web.UsrInterface;
 import com.mizholdings.me2.interfaces.api.MobileInterface;
-import com.mizholdings.me2.playload.PLMobile;
+import com.mizholdings.me2.user.serve.App;
 import com.mizholdings.util.*;
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 
 public class Me2UserBase extends User {
     public static MobileInterface mobileInterface = Requests.getService(MobileInterface.class);
@@ -20,13 +14,10 @@ public class Me2UserBase extends User {
     protected JSONObject object;
     protected String account;
     protected String password;
+    protected String cloudUsrAccount = "";
 
-    private LessonInfoAgent lessonInfoAgent;
-    private CourseAgent courseAgent;
-    private MobileAgent mobileAgent;
-    private VoteAgent voteAgent;
-    private FullschAgent fullschAgent;
-    private CardAgent cardAgent;
+
+    protected App app;
 
     public Me2UserBase(String account, String password, String TAG) {
         this.account = account;
@@ -37,32 +28,13 @@ public class Me2UserBase extends User {
         } else if (TAG.equals("web")) {
             webInit(webLogin());
         }
+
+        app = new App(this);
     }
 
-    public LessonInfoAgent lessonInfoAgent() {
-        return (LessonInfoAgent) getAgent("lessonInfoAgent");
+    public App getApp() {
+        return app;
     }
-
-    public CourseAgent courseAgent() {
-        return (CourseAgent) getAgent("courseAgent");
-    }
-
-    public FullschAgent fullschAgent() {
-        return (FullschAgent) getAgent("fullschAgent");
-    }
-
-    public VoteAgent voteAgent() {
-        return (VoteAgent) getAgent("voteAgent");
-    }
-
-    public MobileAgent mobileAgent() {
-        return (MobileAgent) getAgent("mobileAgent");
-    }
-
-    public CardAgent cardAgent() {
-        return (CardAgent) getAgent("cardAgent");
-    }
-
 
     public static JSONObject Login(String account, String password) {
         return Requests.getJson(mobileInterface.login(Parameter.creat()
@@ -83,6 +55,8 @@ public class Me2UserBase extends User {
         this.object = object;
         token = object.getJSONObject("data").getString("token");
         userId = object.getJSONObject("data").getString("userId");
+        cloudUsrAccount = object.getJSONObject("data").getString("cloudUsrAccount");
+        bookToken = object.getJSONObject("data").getString("booktoken");
     }
 
     private void webInit(JSONObject object) {
@@ -90,6 +64,7 @@ public class Me2UserBase extends User {
         this.object = object;
         token = object.getString("token");
         userId = object.getJSONObject("data").getString("userId");
+        bookToken = object.getJSONObject("data").getString("booktoken");
     }
 
     @Step("用户登陆(手机/邮箱/用户名) app")
@@ -128,5 +103,9 @@ public class Me2UserBase extends User {
 
     public String getAccount() {
         return account;
+    }
+
+    public String getCloudUsrAccount() {
+        return cloudUsrAccount;
     }
 }

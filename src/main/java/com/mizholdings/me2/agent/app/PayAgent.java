@@ -1,16 +1,15 @@
-package com.mizholdings.me2.mod;
+package com.mizholdings.me2.agent.app;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.me2.interfaces.PayInterface;
-import com.mizholdings.util.MODBase;
-import com.mizholdings.util.PLJavaBean;
-import com.mizholdings.util.Requests;
+import com.mizholdings.util.*;
+import io.qameta.allure.Step;
 
-public class MODPay extends MODBase<MODPay> {
+public class PayAgent extends MODBase<PayAgent> {
     public static PayInterface payInterface = Requests.getService(PayInterface.class);
 
-    public MODPay(Me2UserBase executor) {
+    public PayAgent(User executor) {
         super(executor);
         interfaced = payInterface;
     }
@@ -22,6 +21,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean rateList
      * @return
      */
+    @Step("获得充值图标")
     public JSONObject rateList(PLJavaBean javaBean) {
         return exec("rateList", javaBean);
     }
@@ -32,6 +32,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean usrRecharge
      * @return
      */
+    @Step("用户充值")
     public JSONObject usrRecharge(PLJavaBean javaBean) {
         return exec("usrRecharge", javaBean);
     }
@@ -42,6 +43,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean buyLesson
      * @return
      */
+    @Step("用户购买课程")
     public JSONObject buyLesson(PLJavaBean javaBean) {
         return exec("buyLesson", javaBean);
     }
@@ -52,6 +54,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean buyCourseware
      * @return
      */
+    @Step("购买资源")
     public JSONObject buyCourseware(PLJavaBean javaBean) {
         return exec("buyCourseware", javaBean);
     }
@@ -59,21 +62,39 @@ public class MODPay extends MODBase<MODPay> {
     /**
      * 获取Ping++支付凭证
      *
-     * @param javaBean getPingxx
+     * @param rateId   充值标识（来源界面1=充值图标ID，购买课程=课程ID，购买资源=资源ID）
+     * @param rateType 支付渠道 alipay,wx
+     * @param channel  充值来源界面，1充值界面充值，2课程界面充值，3课件资源界面充值,11购买课程，12购买课件
      * @return
      */
-    public JSONObject getPingxx(PLJavaBean javaBean) {
-        return exec("getPingxx", javaBean);
+    @Step("获取Ping++支付凭证")
+    public JSONObject getPingxx(String rateId, String rateType, String channel) {
+        return exec("getPingxx", Parameter.creat()
+                .add("rateId", rateId)
+                .add("rateType", rateType)
+                .add("channel", channel));
     }
+
+    /**
+     * 购买免费课程
+     *
+     * @param rateId 购买课程=课程ID
+     * @return
+     */
+    @Step("购买免费课程")
+    public JSONObject getPingxx(String rateId) {
+        return getPingxx(rateId, "11", "");
+    }
+
 
     /**
      * 查询用户充值记录
      *
-     * @param javaBean userTrans
      * @return
      */
-    public JSONObject userTrans(PLJavaBean javaBean) {
-        return exec("userTrans", javaBean);
+    @Step("查询用户充值记录")
+    public JSONObject userTrans() {
+        return exec("userTrans");
     }
 
     /**
@@ -82,6 +103,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean drawAccount(删除，新接口查看“钱包”分组)
      * @return
      */
+    @Step("获取提现账号")
     public JSONObject drawAccount(PLJavaBean javaBean) {
         return exec("drawAccount(删除，新接口查看“钱包”分组)", javaBean);
     }
@@ -92,6 +114,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean drawApply(删除，新接口查看“钱包”分组)
      * @return
      */
+    @Step("提现申请")
     public JSONObject drawApply(PLJavaBean javaBean) {
         return exec("drawApply(删除，新接口查看“钱包”分组)", javaBean);
     }
@@ -102,6 +125,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean getPingxxScan
      * @return
      */
+    @Step("扫码支付（支付宝或微信）")
     public JSONObject getPingxxScan(PLJavaBean javaBean) {
         return exec("getPingxxScan", javaBean);
     }
@@ -112,6 +136,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean applePayReturn
      * @return
      */
+    @Step("苹果支付成功后调用")
     public JSONObject applePayReturn(PLJavaBean javaBean) {
         return exec("applePayReturn", javaBean);
     }
@@ -122,6 +147,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean rateListForWeb
      * @return
      */
+    @Step("获取充值图标")
     public JSONObject rateListForWeb(PLJavaBean javaBean) {
         return exec("rateListForWeb", javaBean);
     }
@@ -132,6 +158,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean webUsrRecharge
      * @return
      */
+    @Step("web微信充值")
     public JSONObject webUsrRecharge(PLJavaBean javaBean) {
         return exec("webUsrRecharge", javaBean);
     }
@@ -142,6 +169,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean getNative
      * @return
      */
+    @Step("获取微信、支付宝二维码")
     public JSONObject getNative(PLJavaBean javaBean) {
         return exec("getNative", javaBean);
     }
@@ -152,6 +180,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean rateForApple
      * @return
      */
+    @Step("获得充值图标(IOS端)")
     public JSONObject rateForApple(PLJavaBean javaBean) {
         return exec("rateForApple", javaBean);
     }
@@ -162,6 +191,7 @@ public class MODPay extends MODBase<MODPay> {
      * @param javaBean convertAmout
      * @return
      */
+    @Step("转换橙币，和橙时光(IOS)")
     public JSONObject convertAmout(PLJavaBean javaBean) {
         return exec("convertAmout", javaBean);
     }

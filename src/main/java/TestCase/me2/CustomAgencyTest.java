@@ -4,51 +4,36 @@ package TestCase.me2;
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.GlobalMe2;
 import com.mizholdings.me2.agent.app.FullschAgent;
+import com.mizholdings.me2.agent.web.LessonAgent;
 import com.mizholdings.me2.user.Me2Jigou;
 import com.mizholdings.me2.user.Me2SuperAdmin;
 import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.me2.agent.web.OrgInfoAgent;
+import com.mizholdings.me2.user.serve.ServeBase;
+import com.mizholdings.util.Common;
 import com.mizholdings.util.Parameter;
 import com.mizholdings.util.SampleAssert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeGroups;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Test(description = "定制机构相关测试")
 public class CustomAgencyTest {
-
-    private String orgId;
-//    private String appname;
-
     private Me2Jigou jigou;
     private Me2SuperAdmin superAdmin;
     private Me2UserBase student;
     private Me2UserBase no_in_jigou_student;
     private Me2UserBase in_jigou_student;
 
-    //    private OrgInfoAgent orgInfoAgent;
-//    private String account = "robot0211";
-//    private String name = "机器人0221";
-//    private String password = "111111";
-    private String userId = "4486400733531136";
-//    private String jigou_userId = "4599212035689472";
-
-
     @BeforeClass
     public void beforeClass() {
-        orgId = GlobalMe2.getFengBiOrgId();
-//        appname = GlobalMe2.getFengBiAppname();
-
         jigou = GlobalMe2.init().getFengBiJigou();
         superAdmin = GlobalMe2.init().getSuperAdmin();
-        student = GlobalMe2.init().getUserBase();//GlobalMe2.init().getUser();
-//        orgInfoAgent = new OrgInfoAgent(jigou);
+        student = GlobalMe2.init().getUserBase();
 
         no_in_jigou_student = GlobalMe2.init().getUserBase();
         in_jigou_student = GlobalMe2.init().getUserBase();
@@ -62,11 +47,11 @@ public class CustomAgencyTest {
     }
 
     public JSONObject studentJoinJigou(Me2UserBase student) {
-        return jigou.orgInfoAgent().addStudentToOrg(student.getAccount());
+        return jigou.getWeb().orgInfoAgent().addStudentToOrg(student.getAccount());
     }
 
     public JSONObject studentQuitJigou(Me2UserBase student) {
-        return jigou.webUsrAgent().orgDelTeacher(student.getUserId());
+        return jigou.getWeb().webUsrAgent().orgDelTeacher(student.getUserId());
     }
 
 
@@ -138,13 +123,13 @@ public class CustomAgencyTest {
      * @return
      */
     public JSONObject studentSearchLesson(Me2UserBase student, String lessonName) {
-        JSONObject object = student.fullschAgent().searchAll2(lessonName, FullschAgent.TYPE.LESSON, FullschAgent.GRADEID.ONE);
+        JSONObject object = student.getApp().fullschAgent().searchAll2(lessonName, FullschAgent.TYPE.LESSON, ServeBase.GRADEID.ONE);
         SampleAssert.assertResult0(object);
         return object;
     }
 
     public JSONObject studentSearchCourse(Me2UserBase student, String lessonName) {
-        JSONObject object = student.fullschAgent().searchAll2(lessonName, FullschAgent.TYPE.COURSE, FullschAgent.GRADEID.ONE);
+        JSONObject object = student.getApp().fullschAgent().searchAll2(lessonName, FullschAgent.TYPE.COURSE, ServeBase.GRADEID.ONE);
         SampleAssert.assertResult0(object);
         return object;
     }
@@ -161,21 +146,20 @@ public class CustomAgencyTest {
      * @return
      */
     public String newLessonAndApply() {
-
-        String lessonId = jigou.lessonAgent().newLessonAndGetLessonId();
-        jigou.lessonAgent().apply(lessonId);
-        superAdmin.lessonAgent().passLesson(lessonId);
+        String lessonId = jigou.newLessonAndGetLessonId(LessonAgent.FreeType.NO_FREE);
+        jigou.getWeb().lessonAgent().apply(lessonId);
+        superAdmin.getWeb().lessonAgent().passLesson(lessonId);
         return lessonId;
     }
 
     public void newCourseAndApply() {
-        JSONObject object = jigou.courseAgent().uploadFile();
+        JSONObject object = jigou.getApp().courseAgent().uploadFile();
         coursewareName = UUID.randomUUID().toString().replace("-", "").substring(0, 4);
         coursewareId = object.getJSONObject("data").getString("coursewareId");
 
-        object = jigou.webCourseAgent().editCourseware(coursewareId, coursewareName);
+        object = jigou.getWeb().webCourseAgent().editCourseware(coursewareId, coursewareName);
         SampleAssert.assertCode200(object);
-        object = jigou.webCourseAgent().applyCourse(coursewareId);
+        object = jigou.getWeb().webCourseAgent().applyCourse(coursewareId);
         SampleAssert.assertCode200(object);
     }
 
@@ -183,44 +167,44 @@ public class CustomAgencyTest {
     public void beforeGroup_new_lesson() throws InterruptedException {
         // 生成课程
         lessonId = newLessonAndApply();
-        JSONObject object = student.lessonInfoAgent().lessonInfo(lessonId);
+        JSONObject object = student.getApp().lessonInfoAgent().lessonInfo(lessonId);
         lessonName = object.getJSONObject("data").getString("lessonName");
         //等待5秒
         Thread.sleep(5000);
     }
 
-    @Test(description = "1_2_3_1 非机构用户首页搜索课程", groups = {"new_lesson"})
-    public void test1_2_3_1() {
+    @Test(description = "1_3_1_1 非机构用户首页搜索课程", groups = {"new_lesson"})
+    public void test1_3_1_1() {
         //搜索课程，orgid=0
         JSONObject object = studentSearchLesson(no_in_jigou_student, lessonName);
 
         //效验
-        if (object.getJSONObject("data").getJSONArray("reusltList").stream().anyMatch(i -> {
+        if (object.getJSONObject("data").getJSONArray("resultList").stream().anyMatch(i -> {
             JSONObject o = (JSONObject) i;
             return lessonId.equals(o.getString("lessonId"));
         })) {
-            throw new RuntimeException("全封闭的课程依旧可以在开放app中搜索到");
+            throw new RuntimeException("全封闭的课程依旧可以在开放app中搜索到" + lessonName + ":" + lessonId);
         }
     }
 
-    @Test(description = "1_2_3_2 机构用户首页搜索课程", groups = {"new_lesson"})
-    public void test1_2_3_2() {
+    @Test(description = "1_3_1_2 机构用户首页搜索课程", groups = {"new_lesson"})
+    public void test1_3_1_2() {
         //设置机构Id
         in_jigou_student.setOrgId(jigou.getOrgId());
         //搜索课程
         JSONObject object = studentSearchLesson(in_jigou_student, lessonName);
         //效验
-        if (object.getJSONObject("data").getJSONArray("reusltList").stream().allMatch(i -> {
+        if (object.getJSONObject("data").getJSONArray("resultList").stream().allMatch(i -> {
             JSONObject o = (JSONObject) i;
             return !lessonId.equals(o.getString("lessonId"));
         })) {
-            throw new RuntimeException("机构用户首页没有搜索到该课程");
+            throw new RuntimeException("机构用户首页没有搜索到该课程 " + lessonName + ":" + lessonId);
         }
     }
 
-    @Test(description = "1_2_3_3 非机构用户查询机构课程详情", groups = {"new_lesson"})
-    public void test1_2_3_3() {
-        JSONObject object = no_in_jigou_student.lessonInfoAgent().usrLesson(jigou.getUserId());
+    @Test(description = "1_3_1_3 非机构用户查询机构课程详情", groups = {"new_lesson"})
+    public void test1_3_1_3() {
+        JSONObject object = no_in_jigou_student.getApp().lessonInfoAgent().usrLesson(jigou.getUserId());
 
         if (object.getJSONArray("data").stream().anyMatch(i -> {
             JSONObject o = (JSONObject) i;
@@ -230,10 +214,10 @@ public class CustomAgencyTest {
         }
     }
 
-    @Test(description = "1_2_3_4 机构用户查询机构课程详情", groups = {"new_lesson"})
-    public void test1_2_3_4() {
+    @Test(description = "1_3_1_4 机构用户查询机构课程详情", groups = {"new_lesson"})
+    public void test1_3_1_4() {
         in_jigou_student.setOrgId(jigou.getOrgId());
-        JSONObject object = in_jigou_student.lessonInfoAgent().usrLesson(jigou.getUserId());
+        JSONObject object = in_jigou_student.getApp().lessonInfoAgent().usrLesson(jigou.getUserId());
 
         if (object.getJSONArray("data").stream().allMatch(i -> {
             JSONObject o = (JSONObject) i;
@@ -250,11 +234,11 @@ public class CustomAgencyTest {
     }
 
 
-    @Test(description = "1_2_4_5 非机构用户，首页搜索课件", groups = {"new_course"})
-    public void test1_2_4_5() {
+    @Test(description = "1_3_2_1 非机构用户，首页搜索课件", groups = {"new_course"})
+    public void test1_3_2_1() {
         JSONObject object = studentSearchCourse(no_in_jigou_student, coursewareName);
 
-        if (object.getJSONObject("data").getJSONArray("reusltList").stream().anyMatch(i -> {
+        if (object.getJSONObject("data").getJSONArray("resultList").stream().anyMatch(i -> {
             JSONObject o = (JSONObject) i;
             return coursewareId.equals(o.getString("coursewareId"));
         })) {
@@ -262,12 +246,12 @@ public class CustomAgencyTest {
         }
     }
 
-    @Test(description = "1_2_4_6 机构用户，首页搜索课件", groups = {"new_course"})
-    public void test1_2_4_6() {
+    @Test(description = "1_3_2_2 机构用户，首页搜索课件", groups = {"new_course"})
+    public void test1_3_2_2() {
         in_jigou_student.setOrgId(jigou.getOrgId());
         JSONObject object = studentSearchCourse(in_jigou_student, coursewareName);
 
-        if (object.getJSONObject("data").getJSONArray("reusltList").stream().allMatch(i -> {
+        if (object.getJSONObject("data").getJSONArray("resultList").stream().allMatch(i -> {
             JSONObject o = (JSONObject) i;
             return !coursewareId.equals(o.getString("coursewareId"));
         })) {
@@ -276,9 +260,9 @@ public class CustomAgencyTest {
     }
 
 
-    @Test(description = "1_2_4_7 非机构用户查看机构课件详情", groups = {"new_course"})
-    public void test1_2_4_7() {
-        JSONObject object = no_in_jigou_student.mobileAgent().orgCourseList(jigou.getUserId());
+    @Test(description = "1_3_2_3 非机构用户查看机构课件详情", groups = {"new_course"})
+    public void test1_3_2_3() {
+        JSONObject object = no_in_jigou_student.getApp().mobileAgent().orgCourseList(jigou.getUserId());
 
         if (object.getJSONArray("data").stream().anyMatch(i -> {
             JSONObject o = (JSONObject) i;
@@ -288,10 +272,10 @@ public class CustomAgencyTest {
         }
     }
 
-    @Test(description = "1_2_4_8 机构用户查看机构课件详情", groups = {"new_course"})
-    public void test1_2_4_8() {
+    @Test(description = "1_3_2_4 机构用户查看机构课件详情", groups = {"new_course"})
+    public void test1_3_2_4() {
         in_jigou_student.setOrgId(jigou.getOrgId());
-        JSONObject object = in_jigou_student.mobileAgent().orgCourseList(jigou.getUserId());
+        JSONObject object = in_jigou_student.getApp().mobileAgent().orgCourseList(jigou.getUserId());
 
         if (object.getJSONArray("data").stream().allMatch(i -> {
             JSONObject o = (JSONObject) i;
@@ -299,6 +283,84 @@ public class CustomAgencyTest {
         })) {
             throw new RuntimeException("机构用户没有在机构课件详情列表中，查看到相关课件");
         }
+    }
+
+    /**
+     * 创建 新闻并审核通过
+     *
+     * @return
+     */
+    private String messageId;
+
+    @BeforeGroups(groups = "new_message")
+    public void creatMessageAndApply() {
+        messageId = jigou.creatMessage();
+        jigou.getWeb().orgInfoAgent().applyMessage(messageId);
+        superAdmin.getWeb().orgInfoAgent().replyOrgMessage(messageId);
+    }
+
+    @Test(description = "1_3_3_1 非机构用户，搜索新闻", groups = {"new_message"})
+    public void test1_3_3_1() {
+        JSONObject object = no_in_jigou_student.getApp().topAgent().v2OrgMsgList();
+        if (object.getJSONObject("data").getJSONArray("orgMsgList").stream().anyMatch(i -> {
+            JSONObject o = (JSONObject) i;
+            return messageId.equals(o.getString("messageId"));
+        })) {
+
+            throw new RuntimeException("非机构用户可以搜索到新闻");
+        }
+    }
+
+    @Test(description = "1_3_3_2 非机构用户，搜索新闻", groups = {"new_message"})
+    public void test1_3_3_2() {
+        in_jigou_student.setOrgId(jigou.getOrgId());
+        JSONObject object = in_jigou_student.getApp().topAgent().v2OrgMsgList();
+        if (object.getJSONObject("data").getJSONArray("orgMsgList").stream().allMatch(i -> {
+            JSONObject o = (JSONObject) i;
+            return !messageId.equals(o.getString("messageId"));
+        })) {
+
+            throw new RuntimeException("机构用户搜索新闻，未搜索到");
+        }
+    }
+
+    private String teacher_userId;
+
+    @BeforeGroups(groups = "new_teacher")
+    public void beforeGroups_new_teacher() {
+        teacher_userId = jigou.addTeacher("18766700055");
+    }
+
+    @Test(description = "1_4_1 机构教师显示在机构教师列表中", groups = "new_teacher")
+    public void test1_4_1() {
+
+        JSONObject object = no_in_jigou_student.getApp().mobileAgent().orgUserList(jigou.getUserId());
+
+        if (object.getJSONArray("data").stream().allMatch(i -> {
+            JSONObject o = (JSONObject) i;
+            return !teacher_userId.equals(o.getString("userId"));
+        })) {
+            throw new RuntimeException("机构教师没有显示在机构列表里");
+        }
+    }
+
+    @AfterGroups(groups = "new_teacher")
+    public void afterGroups_new_teacher() {
+        jigou.delTeacher(teacher_userId);
+    }
+
+    @Test(description = "1_4_2 机构学生，不显示在机构教师列表中")
+    public void test1_4_2() {
+        JSONObject object = no_in_jigou_student.getApp().mobileAgent().orgUserList(jigou.getUserId());
+
+        if (object.getJSONArray("data").stream().anyMatch(i -> {
+            JSONObject o = (JSONObject) i;
+            return in_jigou_student.getUserId().equals(o.getString("userId"));
+        })) {
+
+            throw new RuntimeException("机构用户管理的教师列表, 返回了学生的数据");
+        }
+
     }
 
 

@@ -18,21 +18,38 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
     /**
      * 我的课程
      *
-     * @param javaBean
+     * @param lessonName 课程名称
+     * @param lessonTerm 课程类型 0查询所有，1课程，2微课
      * @return
      */
-    public JSONObject myLesson(PLJavaBean javaBean) {
-        return exec("myLesson", javaBean);
+    @Step("我的课程")
+    public JSONObject myLesson(String lessonName, LessonTerm lessonTerm) {
+        return exec("myLesson", Parameter.creat()
+                .add("page", "1")
+                .add("lessonName", "")
+                .add("lessonTerm", lessonTerm.value));
     }
+
+    /**
+     * 我的课程 不进行名称搜索
+     *
+     * @param lessonTerm
+     * @return
+     */
+    public JSONObject myLesson(LessonTerm lessonTerm) {
+        return myLesson("", lessonTerm);
+    }
+
 
     /**
      * 点赞课程
      *
-     * @param javaBean
+     * @param lessonId 课程id
      * @return
      */
-    public JSONObject likedLesson(PLJavaBean javaBean) {
-        return exec("likedLesson", javaBean);
+    @Step("点赞课程")
+    public JSONObject likedLesson(String lessonId) {
+        return exec("likedLesson", Parameter.creat().add("lessonId", lessonId));
     }
 
 
@@ -42,6 +59,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean relatedList
      * @return
      */
+    @Step("相关推荐")
     public JSONObject relatedList(PLJavaBean javaBean) {
         return exec("relatedList", javaBean);
     }
@@ -52,6 +70,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean screen
      * @return
      */
+    @Step("选课中心筛选条件")
     public JSONObject screen(PLJavaBean javaBean) {
         return exec("screen", javaBean);
     }
@@ -62,6 +81,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean list
      * @return
      */
+    @Step("课程列表")
     public JSONObject list(PLJavaBean javaBean) {
         return exec("list", javaBean);
     }
@@ -84,6 +104,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean score
      * @return
      */
+    @Step("课程评论")
     public JSONObject score(PLJavaBean javaBean) {
         return exec("score", javaBean);
     }
@@ -105,6 +126,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean studyLesson
      * @return
      */
+    @Step("我要听课，我要上课的日历列表")
     public JSONObject studyLesson(PLJavaBean javaBean) {
         return exec("studyLesson", javaBean);
     }
@@ -116,6 +138,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean rmlikedLesson
      * @return
      */
+    @Step("取消点赞")
     public JSONObject rmlikedLesson(PLJavaBean javaBean) {
         return exec("rmlikedLesson", javaBean);
     }
@@ -126,6 +149,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean keepLesson
      * @return
      */
+    @Step("收藏课程")
     public JSONObject keepLesson(PLJavaBean javaBean) {
         return exec("keepLesson", javaBean);
     }
@@ -136,6 +160,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean rmkeepLesson
      * @return
      */
+    @Step("取消收藏")
     public JSONObject rmkeepLesson(PLJavaBean javaBean) {
         return exec("rmkeepLesson", javaBean);
     }
@@ -146,6 +171,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean lessonScore
      * @return
      */
+    @Step("查询课程评论")
     public JSONObject lessonScore(PLJavaBean javaBean) {
         return exec("lessonScore", javaBean);
     }
@@ -156,6 +182,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean retreat
      * @return
      */
+    @Step("获取退课款项")
     public JSONObject retreat(PLJavaBean javaBean) {
         return exec("retreat", javaBean);
     }
@@ -166,6 +193,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean refundApply
      * @return
      */
+    @Step("退课申请")
     public JSONObject refundApply(PLJavaBean javaBean) {
         return exec("refundApply", javaBean);
     }
@@ -176,6 +204,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean refundStatus
      * @return
      */
+    @Step("查询退课状态")
     public JSONObject refundStatus(PLJavaBean javaBean) {
         return exec("refundStatus", javaBean);
     }
@@ -186,6 +215,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean myCreateLesson
      * @return
      */
+    @Step("我创建的课程")
     public JSONObject myCreateLesson(PLJavaBean javaBean) {
         return exec("myCreateLesson", javaBean);
     }
@@ -196,6 +226,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean delLesson
      * @return
      */
+    @Step("删除私课")
     public JSONObject delLesson(PLJavaBean javaBean) {
         return exec("delLesson", javaBean);
     }
@@ -206,6 +237,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean setVideoRecord
      * @return
      */
+    @Step("新增视频回放记录")
     public JSONObject setVideoRecord(PLJavaBean javaBean) {
         return exec("setVideoRecord", javaBean);
     }
@@ -216,6 +248,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean getTotalPlays
      * @return
      */
+    @Step("根据视频id查询播放量")
     public JSONObject getTotalPlays(PLJavaBean javaBean) {
         return exec("getTotalPlays", javaBean);
     }
@@ -226,6 +259,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean freeList
      * @return
      */
+    @Step("免费课程列表")
     public JSONObject freeList(PLJavaBean javaBean) {
         return exec("freeList", javaBean);
     }
@@ -236,6 +270,7 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean myLessonPC
      * @return
      */
+    @Step("我的课程(我购买的)PC")
     public JSONObject myLessonPC(PLJavaBean javaBean) {
         return exec("myLessonPC", javaBean);
     }
@@ -246,8 +281,23 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
      * @param javaBean updateVideoTime
      * @return
      */
+    @Step("更新视频回放，观看时长")
     public JSONObject updateVideoTime(PLJavaBean javaBean) {
         return exec("updateVideoTime", javaBean);
     }
+
+    /**
+     * 课程分类
+     */
+    public enum LessonTerm {
+        ALL("0"), LESSON("1"), QUICK("2");
+
+        public String value;
+
+        private LessonTerm(String value) {
+            this.value = value;
+        }
+    }
+
 
 }

@@ -2,6 +2,7 @@ package com.mizholdings.me2.agent.web;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.interfaces.web.UsrInterface;
+import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.Parameter;
 import com.mizholdings.util.Requests;
@@ -23,6 +24,11 @@ public class WebUsrAgent extends MODBase<WebUsrAgent> {
         return exec("orgDelTeacher", Parameter.creat()
                 .add("teacherId", teacherId)
                 .add("orgId", jigou_userId));
+    }
+
+    @Step("检验老师是否注册")
+    public JSONObject checkTeacher(String phone) {
+        return exec("checkTeacher", Parameter.creat().add("phone", phone));
     }
 
     public JSONObject orgDelTeacher(String teacherId) {
