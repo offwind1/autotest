@@ -13,6 +13,8 @@ public class Web extends ServeBase {
     private Me2tikuAgent me2tikuAgent;
     private ClassroomAgent classroomAgent;
     private ItemAgent itemAgent;
+    private ChanGroupAgent chanGroupAgent;
+    private ChanAgent chanAgent;
 
     public Web(User user) {
         super(user);
@@ -44,6 +46,14 @@ public class Web extends ServeBase {
 
     public ItemAgent itemAgent() {
         return (ItemAgent) getAgent("itemAgent");
+    }
+
+    public ChanGroupAgent chanGroupAgent() {
+        return (ChanGroupAgent) getAgent("chanGroupAgent");
+    }
+
+    public ChanAgent chanAgent() {
+        return (ChanAgent) getAgent("chanAgent");
     }
 
 

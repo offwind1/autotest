@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="接口基础测试">
+
+    <test name="收款项目测试">
+        <classes>
+            <class name="TestCase.me2.normalTest.itemTestCase">
+            </class>
+        </classes>
+    </test>
+    <test name="知识点测试">
+        <classes>
+            <class name="TestCase.me2.normalTest.knowledgeTestCase">
+            </class>
+        </classes>
+    </test>
+    <test name="渠道测试">
+        <classes>
+            <class name="TestCase.me2.normalTest.chanTestCase">
+            </class>
+        </classes>
+    </test>
+
+</suite>

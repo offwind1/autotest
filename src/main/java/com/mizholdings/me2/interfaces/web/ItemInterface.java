@@ -14,28 +14,28 @@ public interface ItemInterface {
     /**
      * 查询收费列表
      */
-    @POST("/mizhu/web/item/list")
+    @POST("mizhu/web/item/list")
     @FormUrlEncoded
-    Call<ResponseBody> list(@Field("token") String token, @FieldMap Map<String, String> map);
+    Call<ResponseBody> list(@Field("token") String token);
 
     /**
      * 添加收款项目
      */
-    @POST("/mizhu/web/item/add")
+    @POST("mizhu/web/item/add")
     @FormUrlEncoded
     Call<ResponseBody> add(@Field("token") String token, @FieldMap Map<String, String> map);
 
     /**
      * 修改收款项目
      */
-    @POST("/mizhu/web/item/update")
+    @POST("mizhu/web/item/update")
     @FormUrlEncoded
     Call<ResponseBody> update(@Field("token") String token, @FieldMap Map<String, String> map);
 
     /**
      * 查询收款项目信息item/getById
      */
-    @POST("/mizhu/web/item/getById")
+    @POST("mizhu/web/item/getById")
     @FormUrlEncoded
     Call<ResponseBody> getById(@Field("token") String token, @FieldMap Map<String, String> map);
 

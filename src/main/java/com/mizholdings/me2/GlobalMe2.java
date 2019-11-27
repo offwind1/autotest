@@ -95,4 +95,8 @@ public class GlobalMe2 {
         return superAdmin;
     }
 
+    public static String getImageUrl() {
+        return init().properties.getProperty("me2.imageUrl");
+    }
+
 }

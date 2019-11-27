@@ -4,15 +4,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Common {
+    private static Random random = new Random();
     private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
 
     public static String getNowTime() {
         return format.format(new Date());
@@ -34,9 +31,23 @@ public class Common {
             return key.equals(o.getString(tag));
         }).collect(Collectors.toList());
 
-        assert list.size() > 0;
-        return (JSONObject) list.get(0);
+        if (list.size() > 0) {
+            return (JSONObject) list.get(0);
+        }
+        return null;
     }
 
+    public static String randomJoinFromList(String format, List<String> list) {
+        Collections.shuffle(list);
+        return String.join(format, list.subList(0, list.size() / 3));
+    }
+
+    public static JSONObject random(JSONArray array) {
+        return array.getJSONObject(random.nextInt(array.size()));
+    }
+
+    public static int range(int a, int b) {
+        return a + random.nextInt(b - a);
+    }
 
 }

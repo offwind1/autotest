@@ -1,4 +1,4 @@
-package TestCase.me2;
+package TestCase.me2.professionalTest;
 
 
 import com.alibaba.fastjson.JSONObject;

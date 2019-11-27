@@ -1,152 +1,32 @@
 {
-  "result": 0,
-  "msg": "查询成功!",
+  "msg": "",
+  "code": "200",
   "data": {
-    "hitNum": 49,
-    "totalPage": 3,
-    "pageSize": 20,
-    "page": 1,
-    "resultList": [
-      {
-        "faceImg": "http://images.mizholdings.com/bh4nopY6Mea.png",
-        "classroomCount": "2",
-        "price": "20.00",
-        "typeName": "语文",
-        "lessonId": "64e7d307fb40411cbebfbc6ad6236ee3",
-        "startTime": "2019-11-20 16:21:01.0",
-        "grades": "一年级",
-        "lessonName": "13601667-434f-498b-a8d3-b535e7e9460e"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/bh4nopY6Mea.png",
-        "classroomCount": "2",
-        "price": "20.00",
-        "typeName": "语文",
-        "lessonId": "ce99d11cfdec46eeb5f9ede5b92110f3",
-        "startTime": "2019-11-20 16:23:45.0",
-        "grades": "一年级",
-        "lessonName": "539f650b39264582b240b83281fc0923"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/bh4nopY6Mea.png",
-        "classroomCount": "2",
-        "price": "20.00",
-        "typeName": "语文",
-        "lessonId": "229f839c3029460eaa5a92ca8a01c2eb",
-        "startTime": "2019-11-25 18:48:06.0",
-        "grades": "一年级",
-        "lessonName": "b747"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/bh4nopY6Mea.png",
-        "classroomCount": "2",
-        "price": "20.00",
-        "typeName": "语文",
-        "lessonId": "f8c9b13262ea496fa6756cf6d697ef74",
-        "startTime": "2019-11-21 10:08:36.0",
-        "grades": "一年级",
-        "lessonName": "8b58"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/bh4nopY6Mea.png",
-        "classroomCount": "2",
-        "price": "20.00",
-        "typeName": "语文",
-        "lessonId": "a353193cc7c34c2098b32e96e149f63e",
-        "startTime": "2019-11-20 16:36:38.0",
-        "grades": "一年级",
-        "lessonName": "f9b2"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/bh4nopY6Mea.png",
-        "classroomCount": "2",
-        "price": "20.00",
-        "typeName": "语文",
-        "lessonId": "48075dcdf67d4f5191df995ce36b0722",
-        "startTime": "2019-11-21 09:53:38.0",
-        "grades": "一年级",
-        "lessonName": "4b1c"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/bh4nopY6Mea.png",
-        "classroomCount": "2",
-        "price": "20.00",
-        "typeName": "语文",
-        "lessonId": "104d773ae5c04cd69f7bc8ca2e93262e",
-        "startTime": "2019-11-20 16:03:29.0",
-        "grades": "一年级",
-        "lessonName": "2019-11-20 16:03:29"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/bh4nopY6Mea.png",
-        "classroomCount": "2",
-        "price": "20.00",
-        "typeName": "语文",
-        "lessonId": "346d8a1147844ba79291b342318aa75b",
-        "startTime": "2019-11-20 16:40:45.0",
-        "grades": "一年级",
-        "lessonName": "7e29"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "62c44bde41e8446896f9c4b44d4b3aff",
-        "lessonName": "2019-11-22 18:48:03"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "f17916584fb243f0adcf1d0e8a7e763f",
-        "lessonName": "2019-11-21 16:24:03"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "bf56d1375c924506b0e682154e1b2a92",
-        "lessonName": "2019-11-19 15:03:59"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "0923cf54a21e4c48820d14d4363a73d6",
-        "lessonName": "2019-11-21 18:48:07"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "0e043d7b6d3f4b999fd88b4abb1429fe",
-        "lessonName": "2019-11-23 18:48:02"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "121fccd0856f4c299857867d4c6195a9",
-        "lessonName": "2019-11-21 15:46:34"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "164f07a6277a498486b5f54242a99599",
-        "lessonName": "2019-11-22 08:51:42"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "1b75c27504e24e1ebb3b0b319f7d2b1b",
-        "lessonName": "2019-11-21 16:24:00"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "246dd602b737494696eaa733a10d1e6b",
-        "lessonName": "2019-11-21 15:44:58"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "2728aba4248542918fa5489cb3be8a53",
-        "lessonName": "2019-11-21 16:40:46"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "2f5974e0d2ca494c82c823a556e41227",
-        "lessonName": "2019-11-21 14:55:30"
-      },
-      {
-        "faceImg": "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png",
-        "lessonId": "326e1351aa9e46c98225ac61c98a92c5",
-        "lessonName": "2019-11-21 16:49:31"
-      }
-    ]
-  }
+    "chan": {
+      "chnId": "106",
+      "faceUrl": "http://images.mizholdings.com/rc-upload-1574823822923-5sss.jpg",
+      "createTime": "2019-11-27 14:59:06",
+      "peopleCount": 0,
+      "chnName": "59b4",
+      "groupList": [
+        {
+          "chnId": "106",
+          "grpId": "90",
+          "codeUrl": "http://images.mizholdings.com/rc-upload-1574823822923-5sss.jpg",
+          "relId": "170",
+          "grpType": "分类",
+          "createTime": "2019-11-27 14:59:06",
+          "grpCount": 0,
+          "codeTime": "2019-11-27 14:59:05",
+          "grpName": "1e55",
+          "status": 0
+        }
+      ],
+      "remark": "1",
+      "chnAir": "chnAir",
+      "linkMan": "linkMan",
+      "status": 0
+    }
+  },
+  "token": "F2172EE4-AA22-4D6D-A67F-A50BF9E48251"
 }

@@ -1,4 +1,4 @@
-package TestCase.me2;
+package TestCase.me2.normalTest;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class TestKnowledgeCase {
+public class knowledgeTestCase {
 
     private Me2Teacher teacher;
     private Me2SuperAdmin superAdmin;

@@ -16,9 +16,9 @@ import retrofit2.http.POST;
 import java.util.Map;
 
 public class Me2SuperAdmin extends User {
-//    private LessonAgent lessonAgent;
+    //    private LessonAgent lessonAgent;
     public static UsrInterface usrInterface = Requests.getService(UsrInterface.class);
-//    protected String token;
+    //    protected String token;
     protected Web web;
 
     public Me2SuperAdmin(String account, String password) {
@@ -45,5 +45,23 @@ public class Me2SuperAdmin extends User {
                 )
         );
     }
+
+    public String newChanGroup() {
+        String grpName = Common.creatRandomString();
+        web.chanGroupAgent().add(grpName);
+        JSONObject object = web.chanGroupAgent().list();
+        object = Common.filder(object.getJSONObject("data").getJSONArray("list"), grpName, "grpName");
+        return object.getString("grpId");
+    }
+
+    public String newChan() {
+        String chnName = Common.creatRandomString();
+        web.chanAgent().add(chnName);
+
+        JSONObject object = web.chanAgent().list();
+        object = Common.filder(object.getJSONObject("data").getJSONArray("list"), chnName, "chnName");
+        return object.getString("chnId");
+    }
+
 
 }

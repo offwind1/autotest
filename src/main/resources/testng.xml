@@ -9,6 +9,11 @@
 <!--        <suite-file path="12crossTest.xml"/>-->
 <!--    </suite-files>-->
     <suite-files>
-        <suite-file path="me2Test.xml"/>
+        <suite-file path="me2Test/me2Test.xml"/>
     </suite-files>
+    <suite-files>
+        <suite-file path="me2Test/me2businessTest.xml"/>
+    </suite-files>
+
+
 </suite>
