@@ -23,7 +23,7 @@ public class creditTestCase {
         student = GlobalMe2.init().getUserBase();
 
         JSONObject object = teacher.getWeb().creditAgent().getCreditByUserId();
-        creditId = object.getJSONObject("data").getString("creditId");
+        creditId = object.getJSONObject("data").getJSONObject("info").getString("creditId");
     }
 
     @Test(description = "7_1 未创建学分的情况下，查询学分")
@@ -76,7 +76,6 @@ public class creditTestCase {
     //TODO 是否可以反复调用
     //TODO 是否可以对未设置学分的资源，调用该接口。接口返回是否正常
     //TODO 学生调用该接口（通过资源获取学分）后，是否可以通过 /credit/creditList 接口。查询到该学生的积分获取记录
-
 
 
 }
