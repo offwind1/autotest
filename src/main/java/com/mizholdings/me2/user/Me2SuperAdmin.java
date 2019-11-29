@@ -3,6 +3,7 @@ package com.mizholdings.me2.user;
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.agent.web.LessonAgent;
 import com.mizholdings.me2.interfaces.web.UsrInterface;
+import com.mizholdings.me2.user.serve.Manage;
 import com.mizholdings.me2.user.serve.Web;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
@@ -20,14 +21,20 @@ public class Me2SuperAdmin extends User {
     public static UsrInterface usrInterface = Requests.getService(UsrInterface.class);
     //    protected String token;
     protected Web web;
+    protected Manage manage;
 
     public Me2SuperAdmin(String account, String password) {
         webInit(webLogin(account, password));
         web = new Web(this);
+        manage = new Manage(this);
     }
 
     public Web getWeb() {
         return web;
+    }
+
+    public Manage getManage() {
+        return manage;
     }
 
     private void webInit(JSONObject object) {

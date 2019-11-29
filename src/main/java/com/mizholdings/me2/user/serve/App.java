@@ -19,11 +19,12 @@ public class App extends ServeBase {
     private PayAgent payAgent;
     private ClassInfoAgent classInfoAgent;
     private IntegAgent integAgent;
+    private CreditAgent creditAgent;
+    private ClassChartAgent classChartAgent;
 
     public App(User user) {
         super(user);
     }
-
 
     public LessonInfoAgent lessonInfoAgent() {
         return (LessonInfoAgent) getAgent("lessonInfoAgent");
@@ -63,6 +64,14 @@ public class App extends ServeBase {
 
     public IntegAgent integAgent() {
         return (IntegAgent) getAgent("integAgent");
+    }
+
+    public CreditAgent creditAgent() {
+        return (CreditAgent) getAgent("creditAgent");
+    }
+
+    public ClassChartAgent classChartAgent() {
+        return (ClassChartAgent) getAgent("classChartAgent");
     }
 
 

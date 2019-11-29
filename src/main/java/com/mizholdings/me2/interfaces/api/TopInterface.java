@@ -169,4 +169,17 @@ public interface TopInterface {
                                     @FieldMap Map<String, String> map);
 
 
+    /**
+     * 首页列表
+     *
+     * @param token
+     * @param map
+     * @return
+     */
+    @POST("mizhu/api/top/v2topList")
+    @FormUrlEncoded
+    Call<ResponseBody> v2topList(@Field("token") String token,
+                                 @FieldMap Map<String, String> map);
+
+
 }

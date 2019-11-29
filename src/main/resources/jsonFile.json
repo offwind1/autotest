@@ -2,31 +2,20 @@
   "msg": "",
   "code": "200",
   "data": {
-    "chan": {
-      "chnId": "106",
-      "faceUrl": "http://images.mizholdings.com/rc-upload-1574823822923-5sss.jpg",
-      "createTime": "2019-11-27 14:59:06",
-      "peopleCount": 0,
-      "chnName": "59b4",
-      "groupList": [
-        {
-          "chnId": "106",
-          "grpId": "90",
-          "codeUrl": "http://images.mizholdings.com/rc-upload-1574823822923-5sss.jpg",
-          "relId": "170",
-          "grpType": "分类",
-          "createTime": "2019-11-27 14:59:06",
-          "grpCount": 0,
-          "codeTime": "2019-11-27 14:59:05",
-          "grpName": "1e55",
-          "status": 0
-        }
-      ],
-      "remark": "1",
-      "chnAir": "chnAir",
-      "linkMan": "linkMan",
+    "advert": {
+      "menagerUserId": "11",
+      "advertOrdery": 1,
+      "advertSrc": "https://www.baidu.com",
+      "remark": "ff52",
+      "advertType": 1,
+      "userName": "超级管理员",
+      "advertId": "0b102cc2d16e41fbabd70f1768cd88ee",
+      "srcType": 0,
+      "advertImg": "http://images.mizholdings.com/rc-upload-1574823822923-5sss.jpg",
+      "startTime": "2019-11-29 16:20:14",
+      "endTime": "2019-11-30 16:20:14",
       "status": 0
     }
   },
-  "token": "F2172EE4-AA22-4D6D-A67F-A50BF9E48251"
+  "token": "86026CDB-69D0-48E8-933D-BB3D206C5B17"
 }

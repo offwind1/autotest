@@ -15,6 +15,7 @@ public class Web extends ServeBase {
     private ItemAgent itemAgent;
     private ChanGroupAgent chanGroupAgent;
     private ChanAgent chanAgent;
+    private CreditAgent creditAgent;
 
     public Web(User user) {
         super(user);
@@ -54,6 +55,10 @@ public class Web extends ServeBase {
 
     public ChanAgent chanAgent() {
         return (ChanAgent) getAgent("chanAgent");
+    }
+
+    public CreditAgent creditAgent() {
+        return (CreditAgent) getAgent("creditAgent");
     }
 
 

@@ -41,6 +41,19 @@ public class WebCourseAgent extends MODBase<OrgInfoAgent> {
                 .add("coursewareName", coursewareName));
     }
 
+    @Step("编辑课件, 带学分")
+    public JSONObject editCourseware(String coursewareId, String coursewareName, String privateType, String creditNum) {
+        return exec("editCourseware", Parameter.creat()
+                .add("coursewareId", coursewareId)
+                .add("lessonTypeId", "0")
+                .add("price", "0")
+                .add("creditNum", creditNum)
+                .add("privateType", privateType)
+                .add("gradeIds", "1")
+                .add("faceImg", "http://images.mizholdings.com/sHJzAeLrWC0.png")
+                .add("coursewareName", coursewareName));
+    }
+
     @Step("编辑课件 带知识点")
     public JSONObject editCourseware(String coursewareId, String coursewareName, String privateType, String knowledgeIds, String knowledgeName) {
         return exec("editCourseware", Parameter.creat()
@@ -54,7 +67,6 @@ public class WebCourseAgent extends MODBase<OrgInfoAgent> {
                 .add("faceImg", "http://images.mizholdings.com/sHJzAeLrWC0.png")
                 .add("coursewareName", coursewareName));
     }
-
 
     public JSONObject editCourseware(String coursewareId, String coursewareName) {
         return editCourseware(coursewareId, coursewareName, "0");

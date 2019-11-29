@@ -1,16 +1,15 @@
-package com.mizholdings.me2.mod;
+package com.mizholdings.me2.agent.app;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.me2.interfaces.api.ClassChartInterface;
-import com.mizholdings.util.MODBase;
-import com.mizholdings.util.PLJavaBean;
-import com.mizholdings.util.Requests;
+import com.mizholdings.util.*;
+import io.qameta.allure.Step;
 
-public class MODClasschart extends MODBase<MODClasschart> {
+public class ClassChartAgent extends MODBase<ClassChartAgent> {
     public static ClassChartInterface classChartInterface = Requests.getService(ClassChartInterface.class);
 
-    public MODClasschart(Me2UserBase executor) {
+    public ClassChartAgent(User executor) {
         super(executor);
         interfaced = classChartInterface;
     }
@@ -29,11 +28,13 @@ public class MODClasschart extends MODBase<MODClasschart> {
     /**
      * 到课统计
      *
-     * @param javaBean arrive
+     * @param classroomId 课堂ID
      * @return
      */
-    public JSONObject arrive(PLJavaBean javaBean) {
-        return exec("arrive", javaBean);
+    @Step("到课统计")
+    public JSONObject arrive(String classroomId) {
+        return exec("arrive", Parameter.creat()
+                .add("classroomId", classroomId));
     }
 
     /**

@@ -24,8 +24,6 @@ public interface AdvertInterface {
                                       @FieldMap Map<String, String> map);
 
 
-
-
     /**
      * 广告列表
      *
@@ -33,7 +31,7 @@ public interface AdvertInterface {
      * @param map
      * @return
      */
-    @POST("mizhu/web/advert/list")
+    @POST("mizhumanage/web/advert/list")
     @FormUrlEncoded
     Call<ResponseBody> list(@Field("token") String token,
                             @FieldMap Map<String, String> map);
@@ -45,7 +43,7 @@ public interface AdvertInterface {
      * @param map
      * @return
      */
-    @POST("mizhu/web/advert/add")
+    @POST("mizhumanage/web/advert/add")
     @FormUrlEncoded
     Call<ResponseBody> add(@Field("token") String token,
                            @FieldMap Map<String, String> map);
@@ -57,7 +55,7 @@ public interface AdvertInterface {
      * @param map
      * @return
      */
-    @POST("mizhu/web/advert/getAdvertById")
+    @POST("mizhumanage/web/advert/getAdvertById")
     @FormUrlEncoded
     Call<ResponseBody> getAdvertById(@Field("token") String token,
                                      @FieldMap Map<String, String> map);
@@ -69,7 +67,7 @@ public interface AdvertInterface {
      * @param map
      * @return
      */
-    @POST("mizhu/web/advert/edit")
+    @POST("mizhumanage/web/advert/edit")
     @FormUrlEncoded
     Call<ResponseBody> edit(@Field("token") String token,
                             @FieldMap Map<String, String> map);
@@ -81,7 +79,7 @@ public interface AdvertInterface {
      * @param map
      * @return
      */
-    @POST("mizhu/web/advert/del")
+    @POST("mizhumanage/web/advert/del")
     @FormUrlEncoded
     Call<ResponseBody> del(@Field("token") String token,
                            @FieldMap Map<String, String> map);

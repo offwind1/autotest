@@ -35,5 +35,10 @@ public class WebUsrAgent extends MODBase<WebUsrAgent> {
         return orgDelTeacher(executor.getUserId(), teacherId);
     }
 
+    @Step("获取用户学分")
+    public JSONObject getUserCreditId() {
+        return exec("getUserCreditId");
+    }
+
 
 }

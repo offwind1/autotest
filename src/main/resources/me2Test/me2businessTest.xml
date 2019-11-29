@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="云课业务测试">
+
     <test name="机构权限测试">
         <classes>
             <class name="TestCase.me2.professionalTest.CustomAgencyTest">
+            </class>
+            <class name="TestCase.me2.professionalTest.advertTestCase">
             </class>
         </classes>
     </test>
@@ -19,7 +22,12 @@
             </class>
         </classes>
     </test>
-
+    <test name="学分管理">
+        <classes>
+            <class name="TestCase.me2.professionalTest.creditTestCase">
+            </class>
+        </classes>
+    </test>
     <test name="通用测试">
         <classes>
             <class name="TestCase.me2.bugTest.TestFullschCase">
@@ -27,4 +35,6 @@
             <class name="TestCase.me2.professionalTest.chanTestCase"></class>
         </classes>
     </test>
+
+
 </suite>

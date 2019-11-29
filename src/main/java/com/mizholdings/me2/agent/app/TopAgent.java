@@ -1,8 +1,10 @@
 package com.mizholdings.me2.agent.app;
 
 import com.alibaba.fastjson.JSONObject;
+import com.mizholdings.me2.agent.web.AdvertAgent;
 import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.me2.interfaces.api.TopInterface;
+import com.mizholdings.me2.user.serve.ServeBase;
 import com.mizholdings.util.*;
 
 public class TopAgent extends MODBase<TopAgent> {
@@ -17,11 +19,12 @@ public class TopAgent extends MODBase<TopAgent> {
     /**
      * 主页轮播广告
      *
-     * @param javaBean advertList
+     * @param src_type it 链接类型 0链接 1推荐 2机构用户3名师4课程5课件资源6课堂
      * @return
      */
-    public JSONObject advertList(PLJavaBean javaBean) {
-        return exec("advertList", javaBean);
+    public JSONObject advertList(AdvertAgent.SRC_TYPE src_type) {
+        return exec("advertList", Parameter.creat().add("type", src_type.value)
+        );
     }
 
     /**
@@ -143,4 +146,30 @@ public class TopAgent extends MODBase<TopAgent> {
         return exec("v2OrgMsgList", Parameter.creat()
                 .add("page", "1"));
     }
+
+    public JSONObject v2topList(ServeBase.GRADEID gradeid, MADE_TYPE made_type) {
+        return exec("v2topList", Parameter.creat()
+                .add("gradeId", gradeid.value)
+                .add("madeType", made_type.value));
+    }
+
+    public JSONObject v2topList(ServeBase.GRADEID gradeid) {
+        return v2topList(gradeid, MADE_TYPE.NO_IN_JIGOU);
+    }
+
+
+    public enum MADE_TYPE {
+        NO_IN_JIGOU("1", "非定制"),
+        IN_JIGOU("2", "机构定制"),
+        ;
+        public String value;
+        public String name;
+
+        private MADE_TYPE(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+    }
+
+
 }

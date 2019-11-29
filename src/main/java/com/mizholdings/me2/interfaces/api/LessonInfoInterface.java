@@ -287,6 +287,17 @@ public interface LessonInfoInterface {
     @FormUrlEncoded
     Call<ResponseBody> updateVideoTime(@Field("token") String token,
                                        @FieldMap Map<String, String> map);
+    /**
+     * 获取视频回放记录
+     *
+     * @param token
+     * @param map
+     * @return
+     */
+    @POST("mizhu/api/lessonInfo/getVideoRecord")
+    @FormUrlEncoded
+    Call<ResponseBody> getVideoRecord(@Field("token") String token,
+                                       @FieldMap Map<String, String> map);
 
 
 }

@@ -20,5 +20,17 @@
             </class>
         </classes>
     </test>
+    <test name="学分管理">
+        <classes>
+            <class name="TestCase.me2.normalTest.creditTestCase">
+            </class>
+        </classes>
+    </test>
+    <test name="广告模块">
+        <classes>
+            <class name="TestCase.me2.normalTest.advertTestCase">
+            </class>
+        </classes>
+    </test>
 
 </suite>

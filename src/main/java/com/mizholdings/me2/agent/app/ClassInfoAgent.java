@@ -89,23 +89,27 @@ public class ClassInfoAgent extends MODBase<ClassInfoAgent> {
     /**
      * 拿到课堂附加资源列表
      *
-     * @param javaBean optionList
+     * @param classroomId 课节id
      * @return
      */
     @Step("拿到课堂附加资源列表")
-    public JSONObject optionList(PLJavaBean javaBean) {
-        return exec("optionList", javaBean);
+    public JSONObject optionList(String classroomId) {
+        return exec("optionList", Parameter.creat().add("classroomId", classroomId));
     }
 
     /**
      * 申请开课，添加视频表信息
      *
-     * @param javaBean classroomStart
      * @return
      */
     @Step("申请开课，添加视频表信息")
-    public JSONObject classroomStart(PLJavaBean javaBean) {
-        return exec("classroomStart", javaBean);
+    public JSONObject classroomStart(String classroomId) {
+        return exec("classroomStart", Parameter.creat()
+                .add("classroomId", classroomId)
+                .add("classroomChannel", "1")
+                .add("isopenHeat", "1")
+                .add("appId", "dkzp6zxxh")
+                .add("recorded", "2"));
     }
 
 

@@ -103,7 +103,7 @@ public interface LessonInterface {
      * @param map
      * @return
      */
-    @POST("mizhu/web//lesson/lessonReply")
+    @POST("mizhumanage/web//lesson/lessonReply")
     @FormUrlEncoded
     Call<ResponseBody> lessonReply(@Field("token") String token,
                                    @FieldMap Map<String, String> map);

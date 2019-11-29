@@ -51,12 +51,14 @@ public class PayAgent extends MODBase<PayAgent> {
     /**
      * 购买资源
      *
-     * @param javaBean buyCourseware
+     * @param coursewareId 资源id
+     * @param userId    用户id
      * @return
      */
     @Step("购买资源")
-    public JSONObject buyCourseware(PLJavaBean javaBean) {
-        return exec("buyCourseware", javaBean);
+    public JSONObject buyCourseware(String coursewareId, String userId) {
+        return exec("buyCourseware", Parameter.creat()
+                .add("coursewareId", coursewareId).add("userId", userId));
     }
 
     /**

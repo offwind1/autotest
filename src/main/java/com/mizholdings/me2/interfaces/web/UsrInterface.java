@@ -516,13 +516,11 @@ public interface UsrInterface {
      * 获取用户学分id
      *
      * @param token
-     * @param map
      * @return
      */
     @POST("mizhu/web/usr/getUserCreditId")
     @FormUrlEncoded
-    Call<ResponseBody> getUserCreditId(@Field("token") String token,
-                                       @FieldMap Map<String, String> map);
+    Call<ResponseBody> getUserCreditId(@Field("token") String token);
 
     /**
      * 米猪币账户管理

@@ -7,6 +7,7 @@ import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
+import javax.print.DocFlavor;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -177,6 +178,8 @@ public class LessonAgent extends MODBase<LessonAgent> {
             array.add(object);
         }
 
+        System.out.println(array);
+
         Parameter P = Parameter.creat()
                 .add("gradeIds", "1")
                 .add("gradeNames", "一年级")
@@ -215,6 +218,27 @@ public class LessonAgent extends MODBase<LessonAgent> {
     public JSONObject getLessonInfoById(String lessonId) {
         return exec("getLessonInfoById", Parameter.creat().add("lessonId", lessonId));
     }
+
+    @Step("新增视频回放记录")
+    public JSONObject setVideoRecord(String lessonId, String classroomId, String classroomVideoId) {
+        return exec("setVideoRecord", Parameter.creat()
+                .add("lessonId", lessonId)
+                .add("classroomId", classroomId)
+                .add("classroomVideoId", classroomVideoId));
+    }
+
+    @Step("老师添加学生")
+    public JSONObject addTeacherStudent(String ids, String lessonId, String stuId) {
+        return exec("addTeacherStudent", Parameter.creat()
+                .add("ids", ids)
+                .add("lessonId", lessonId)
+                .add("stuId", stuId));
+    }
+
+    public JSONObject addTeacherStudent(String ids, String lessonId) {
+        return addTeacherStudent(ids, lessonId, "");
+    }
+
 
     public enum FreeType {
         FREE("0"), NO_FREE("1");

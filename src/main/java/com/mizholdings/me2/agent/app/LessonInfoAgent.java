@@ -278,13 +278,28 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
     /**
      * 更新视频回放，观看时长
      *
-     * @param javaBean updateVideoTime
+     * @param timeLong         long,观看时长（秒）
+     * @param lessonId         string,课程ID
+     * @param classroomId      string,课堂ID
+     * @param classroomVideoId string,课堂视频ID
      * @return
      */
     @Step("更新视频回放，观看时长")
-    public JSONObject updateVideoTime(PLJavaBean javaBean) {
-        return exec("updateVideoTime", javaBean);
+    public JSONObject updateVideoTime(String timeLong, String lessonId, String classroomId, String classroomVideoId) {
+        return exec("updateVideoTime", Parameter.creat()
+                .add("timeLong", timeLong)
+                .add("lessonId", lessonId)
+                .add("classroomId", classroomId)
+                .add("classroomVideoId", classroomVideoId));
     }
+
+
+    public JSONObject getVideoRecord(String classroomId, String classroomVideoId) {
+        return exec("getVideoRecord", Parameter.creat()
+                .add("classroomId", classroomId)
+                .add("classroomVideoId", classroomVideoId));
+    }
+
 
     /**
      * 课程分类

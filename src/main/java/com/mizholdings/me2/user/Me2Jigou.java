@@ -127,4 +127,13 @@ public class Me2Jigou extends Me2Teacher {
         SampleAssert.assertCode200(object);
     }
 
+
+    public JSONObject studentJoinJigou(Me2UserBase student) {
+        return web.orgInfoAgent().addStudentToOrg(student.getAccount());
+    }
+
+    public JSONObject studentQuitJigou(Me2UserBase student) {
+        return web.webUsrAgent().orgDelTeacher(student.getUserId());
+    }
+
 }

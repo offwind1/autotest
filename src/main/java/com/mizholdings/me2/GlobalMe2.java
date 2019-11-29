@@ -8,10 +8,8 @@ import com.mizholdings.util.Requests;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
 
 public class GlobalMe2 {
     private static GlobalMe2 global;
@@ -40,6 +38,24 @@ public class GlobalMe2 {
             logger.error(e);
         }
     }
+
+    public static List<String> getUserIds(int num) {
+        InputStream stream = Requests.class.getClassLoader().getResourceAsStream("userIds");
+        Reader reader = new InputStreamReader(stream);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        List<String> strings = new ArrayList<>();
+        String line = null;
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+                strings.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Collections.shuffle(strings);
+        return strings.subList(0, num < strings.size() ? num : strings.size());
+    }
+
 
     public Me2Teacher getTeacher() {
         if (teacher == null) {
@@ -78,13 +94,22 @@ public class GlobalMe2 {
         return userBase;
     }
 
-    public Me2UserBase getUserBase() {
-        String format = properties.getProperty("me2.student.account.format");
-        String account = String.format(format, new Random().nextInt(1000));
-        String password = properties.getProperty("me2.student.password.format");
-        return new Me2UserBase(account, password, "app");
+    public String getAccount() {
+        return String.format(properties.getProperty("me2.student.account.format"),
+                new Random().nextInt(1000));
     }
 
+    public String getPassword() {
+        return properties.getProperty("me2.student.password.format");
+    }
+
+    public Me2UserBase getUserBase() {
+        return new Me2UserBase(getAccount(), getPassword(), "app");
+    }
+
+    public Me2Teacher getRandomTeacher() {
+        return new Me2Teacher(getAccount(), getPassword());
+    }
 
     public Me2SuperAdmin getSuperAdmin() {
         if (superAdmin == null) {

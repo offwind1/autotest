@@ -1,4 +1,4 @@
-package com.mizholdings.me2.interfaces;
+package com.mizholdings.me2.interfaces.web;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -10,43 +10,6 @@ import retrofit2.http.POST;
 import java.util.Map;
 
 public interface CreditInterface {
-
-    /**
-     * 学生学习资源，获取学分
-     *
-     * @param token
-     * @param map
-     * @return
-     */
-    @POST("mizhu/api/credit/addByCourse")
-    @FormUrlEncoded
-    Call<ResponseBody> addByCourse(@Field("token") String token,
-                                   @FieldMap Map<String, String> map);
-
-    /**
-     * 学生学习课堂，老师指定学分
-     *
-     * @param token
-     * @param map
-     * @return
-     */
-    @POST("mizhu/api/credit/addByClassroom")
-    @FormUrlEncoded
-    Call<ResponseBody> addByClassroom(@Field("token") String token,
-                                      @FieldMap Map<String, String> map);
-
-    /**
-     * 用户查询自己的学分
-     *
-     * @param token
-     * @param map
-     * @return
-     */
-    @POST("mizhu/api/credit/getCreditList")
-    @FormUrlEncoded
-    Call<ResponseBody> getCreditList(@Field("token") String token,
-                                     @FieldMap Map<String, String> map);
-
 
     /**
      * 添加学分信息
@@ -88,13 +51,11 @@ public interface CreditInterface {
      * 获取用户学分信息
      *
      * @param token
-     * @param map
      * @return
      */
     @POST("mizhu/web/credit/getCreditByUserId")
     @FormUrlEncoded
-    Call<ResponseBody> getCreditByUserId(@Field("token") String token,
-                                         @FieldMap Map<String, String> map);
+    Call<ResponseBody> getCreditByUserId(@Field("token") String token);
 
     /**
      * 修改学分信息

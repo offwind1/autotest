@@ -31,6 +31,10 @@ public class Me2Teacher extends Me2UserBase {
         return newLessonAndGetLessonId(free, 0, 2);
     }
 
+    public String newLessonAndGetLessonId(int classRoomCount) {
+        return newLessonAndGetLessonId(LessonAgent.FreeType.FREE, 0, classRoomCount);
+    }
+
     public String newLessonAndGetLessonId(LessonAgent.FreeType free, int startDay, int classRoomCount) {
         String name = Common.creatRandomString();
         JSONObject object = web.lessonAgent().addLesson(name, classRoomCount, free, startDay);
@@ -50,6 +54,28 @@ public class Me2Teacher extends Me2UserBase {
     public String newCourseAndApply() {
         JSONObject object = app.courseAgent().uploadFile();
         return object.getJSONObject("data").getString("coursewareId");
+    }
+
+    public String newCourseAndApply(String courseName) {
+        String coursewareId = newCourseAndApply();
+
+        object = web.webCourseAgent().editCourseware(coursewareId, courseName);
+        SampleAssert.assertCode200(object);
+        object = web.webCourseAgent().applyCourse(coursewareId);
+        SampleAssert.assertCode200(object);
+
+        return coursewareId;
+    }
+
+    public String newCourseAndApply(String courseName, String creditNum) {
+        String coursewareId = newCourseAndApply();
+
+        object = web.webCourseAgent().editCourseware(coursewareId, courseName, "0", creditNum);
+        SampleAssert.assertCode200(object);
+        object = web.webCourseAgent().applyCourse(coursewareId);
+        SampleAssert.assertCode200(object);
+
+        return coursewareId;
     }
 
 
