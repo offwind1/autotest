@@ -70,7 +70,7 @@ public class advertTestCase {
         }
     }
 
-    @Test(description = "删除广告advert/del", dependsOnMethods = {"test_advert_advertList"})
+    @Test(description = "删除广告advert/del", dependsOnMethods = {"test_top_advertList"})
     public void test_advert_del() {
         JSONObject object = superAdmin.getManage().advertAgent().del(advertId);
         SampleAssert.assertCode200(object);
