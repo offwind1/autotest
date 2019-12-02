@@ -39,7 +39,6 @@ public class advertTestCase {
     private String remark;
     private String advertId;
 
-
     @Test(description = "添加机构广告， 机构用户查看", groups = {"test"})
     public void test() {
         String remark = Common.creatRandomString();
@@ -60,5 +59,45 @@ public class advertTestCase {
         superAdmin.getManage().advertAgent().del(advertId);
     }
 
+
+    //根据ID拿到广告详情advert/getAdvertById
+    //TODO 被删除的广告，是否还可以通过接口读取信息
+    @Test
+    public void test1() {
+        String remark = Common.creatRandomString();
+        superAdmin.getManage().advertAgent().add(remark);
+
+        JSONObject object = superAdmin.getManage().advertAgent().list();
+        object = Common.filder(object.getJSONObject("data").getJSONArray("list"), remark, "remark");
+        advertId = object.getString("advertId");
+        object = superAdmin.getManage().advertAgent().getAdvertById(advertId);
+
+        if (object.getJSONObject("data") == null) {
+            throw new RuntimeException("未查询到数据");
+        }
+
+        superAdmin.getManage().advertAgent().del(advertId);
+        object = superAdmin.getManage().advertAgent().getAdvertById(advertId);
+        if (object.getJSONObject("data") != null) {
+            throw new RuntimeException("删除的广告，依旧能查到数据");
+        }
+
+    }
+
+
+    //删除广告advert/del
+    //TODO 重复删除广告
+    @Test
+    public void test2() {
+        String remark = Common.creatRandomString();
+        superAdmin.getManage().advertAgent().add(remark);
+
+        JSONObject object = superAdmin.getManage().advertAgent().list();
+        object = Common.filder(object.getJSONObject("data").getJSONArray("list"), remark, "remark");
+        advertId = object.getString("advertId");
+        superAdmin.getManage().advertAgent().del(advertId);
+        superAdmin.getManage().advertAgent().del(advertId);
+
+    }
 
 }

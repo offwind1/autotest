@@ -96,12 +96,16 @@ public class WebCourseAgent extends MODBase<OrgInfoAgent> {
                 .add("beforeId", beforeId).add("authen", "2"));
     }
 
+    @Step("资源库列表")
+    public JSONObject list() {
+        return exec("list", Parameter.creat());
+    }
+
     /**
      * 资源类型
      */
     public enum COURSEWARE_TYPE {
         ALL("0");
-
         public String value;
 
         private COURSEWARE_TYPE(String value) {
