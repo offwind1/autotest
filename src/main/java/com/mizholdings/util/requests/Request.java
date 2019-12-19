@@ -67,6 +67,7 @@ public class Request {
     }
 
     public static String readFile(String path) {
+        System.out.println(path);
         InputStream inputStream = Requests.class.getClassLoader().getResourceAsStream(path);
         return IoUtil.read(inputStream).toString();
     }
