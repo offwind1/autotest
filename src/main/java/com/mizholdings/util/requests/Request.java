@@ -67,7 +67,8 @@ public class Request {
     }
 
     public static String readFile(String path) {
-        System.out.println(Thread.currentThread().getContextClassLoader().getResource(path).getFile());
+//        System.out.println(Thread.currentThread().getContextClassLoader().getResource(path).getFile());
+        System.out.println(FileUtil.readString(path, "UTF-8"));;
 
         InputStream inputStream = Requests.class.getClassLoader().getResourceAsStream(path);
         return IoUtil.read(inputStream).toString();
