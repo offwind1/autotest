@@ -17,6 +17,7 @@ import com.mizholdings.me2.GlobalMe2;
 import com.mizholdings.util.Parameter;
 import com.mizholdings.util.Requests;
 import com.mizholdings.util.XmlTool.ElementMine;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -53,12 +54,19 @@ public class Request {
         logger.info("interfaces_value:" + interfaces_value + " # interface_url:" + interface_url);
         Response response = doRequest(url, method, map, interfaces_name, interfaceName);
         logger.info("response:" + response.text);
+        Allure.addAttachment("response", response.text);
+
         String schema_path = "schema\\" + serve + "\\" + interfaces_value + "\\" + interface_value + ".json";
         if (response.state && FileUtil.isFile(schema_path)) {
-            JsonSchema(schema_path, response, map);
+            try {
+                JsonSchema(schema_path, response, map);
+            } catch (com.mizholdings.util.requests.SchemaCheckException e) {
+                throw new RuntimeException(e);
+            }
         }
         return response;
     }
+
 
     public static void JsonSchema(String schema_path, Response response, Map<String, Object> map) {
         String schema_string = readFile(schema_path);
@@ -67,10 +75,6 @@ public class Request {
     }
 
     public static String readFile(String path) {
-//        System.out.println(Thread.currentThread().getContextClassLoader().getResource(path).getFile());
-//        System.out.println();;
-//        InputStream inputStream = Requests.class.getClassLoader().getResourceAsStream(path);
-//        return IoUtil.read(inputStream).toString();
         return FileUtil.readString(path, "UTF-8");
     }
 

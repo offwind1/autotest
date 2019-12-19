@@ -33,12 +33,12 @@ public class answerTest {
 
     @BeforeClass
     public void beforeClass() {
-        teacher = new Me2Teacher("mzkg123", "654321");
+//        teacher = new Me2Teacher("mzkg123", "654321");
         teacher = GlobalMe2.init().getTeacher();
-//        superAdmin = GlobalMe2.init().getSuperAdmin();
-//        student = GlobalMe2.init().getUserBase();
+        superAdmin = GlobalMe2.init().getSuperAdmin();
+        student = GlobalMe2.init().getUserBase();
 //        student = new Me2UserBase("robot0333", "111111", "app");
-//        init(1);
+        init(1);
     }
 
     public void init(int classRoomCount) {
@@ -57,9 +57,9 @@ public class answerTest {
 
     @Test(description = "创建答题卡")
     public void answer_addAnswerCard_test() {
-//        JSONObject object = teacher.getWeb().answerAgent().addAnswerCard(lessonId, classroomIds.get(0), k_count, z_count, "自动创建的答题卡");
-        JSONObject object = teacher.getWeb().answerAgent().addAnswerCard("483191cf718440f6888babce20a02fae",
-                "94e4a8a0987247b0b97dc715b5381735 ", k_count, z_count, "自动创建的答题卡");
+        JSONObject object = teacher.getWeb().answerAgent().addAnswerCard(lessonId, classroomIds.get(0), k_count, z_count, "自动创建的答题卡");
+//        JSONObject object = teacher.getWeb().answerAgent().addAnswerCard("483191cf718440f6888babce20a02fae",
+//                "94e4a8a0987247b0b97dc715b5381735 ", k_count, z_count, "自动创建的答题卡");
         answerCardId = Common.get(object.getJSONObject("data").getJSONObject("la"), "answerCardId");
     }
 

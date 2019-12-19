@@ -340,7 +340,16 @@ public class CustomAgencyTest {
 
     @BeforeGroups(groups = "new_teacher")
     public void beforeGroups_new_teacher() {
-        teacher_userId = jigou.addTeacher("18766700055");
+        try {
+            teacher_userId = jigou.addTeacher("18766700055");
+        } catch (Exception e) {
+            jigou.delTeacher(teacher_userId);
+            try {
+                teacher_userId = jigou.addTeacher("18766700055");
+            } catch (Exception a) {
+                throw new RuntimeException(a);
+            }
+        }
     }
 
     @Test(description = "1_4_1 机构教师显示在机构教师列表中", groups = "new_teacher")

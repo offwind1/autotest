@@ -31,7 +31,7 @@ public class TestIntegCase {
         teacher = GlobalMe2.init().getTeacher();
 
         JSONObject object = teacher.quickStart();
-        SampleAssert.assertEquals("开课成功！", object);
+        SampleAssert.assertEquals("开课成功", object);
 
         classroomId = object.getJSONObject("data").getJSONObject("classroomInfo").getString("classroomId");
         classroomVideoId = object.getJSONObject("data").getString("classroomVideoId");

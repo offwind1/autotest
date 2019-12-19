@@ -6,10 +6,14 @@ import com.mizholdings.util.Parameter;
 import com.mizholdings.util.requests.Request;
 import org.testng.annotations.Test;
 
+import java.io.File;
+
 public class jsonSchema {
     @Test
     public void sss(){
+        //        System.out.println(FileUtil.readString(new File(path), "UTF-8"));;
         System.out.println(FileUtil.isFile("schema/web/answer/addAnswerCard.json"));
+        System.out.println(FileUtil.readString("schema/web/answer/addAnswerCard.json", "UTF-8"));;
     }
 
 
