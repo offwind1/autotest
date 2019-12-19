@@ -68,10 +68,10 @@ public class Request {
 
     public static String readFile(String path) {
 //        System.out.println(Thread.currentThread().getContextClassLoader().getResource(path).getFile());
-        System.out.println(FileUtil.readString(path, "UTF-8"));;
-
-        InputStream inputStream = Requests.class.getClassLoader().getResourceAsStream(path);
-        return IoUtil.read(inputStream).toString();
+//        System.out.println();;
+//        InputStream inputStream = Requests.class.getClassLoader().getResourceAsStream(path);
+//        return IoUtil.read(inputStream).toString();
+        return FileUtil.readString(path, "UTF-8");
     }
 
     public static String formatString(String str, Map<String, Object> map) {
