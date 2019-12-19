@@ -39,7 +39,7 @@ public class XueXiPageTest {
     public String newLessonAndApply(int startDay, int classRoomCount) {
         String lessonId = teacher.newLessonAndGetLessonId(LessonAgent.FreeType.FREE, startDay, classRoomCount);
         teacher.getWeb().lessonAgent().apply(lessonId);
-        superAdmin.getWeb().lessonAgent().passLesson(lessonId);
+        superAdmin.getManage().lessonAgent().passLesson(lessonId);
         return lessonId;
     }
 

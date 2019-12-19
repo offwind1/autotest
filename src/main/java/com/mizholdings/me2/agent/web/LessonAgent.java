@@ -2,19 +2,10 @@ package com.mizholdings.me2.agent.web;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.interfaces.web.LessonInterface;
-import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
-import javax.print.DocFlavor;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
 public class LessonAgent extends MODBase<LessonAgent> {
-
-    public static LessonInterface lessonInterface = Requests.getService(LessonInterface.class);
 
     public enum PubType {
         PASS("9"), NOPASS("3");
@@ -29,26 +20,19 @@ public class LessonAgent extends MODBase<LessonAgent> {
         }
     }
 
+    public LessonAgent() {
+        super();
+    }
 
     public LessonAgent(User executor) {
         super(executor);
-        interfaced = lessonInterface;
     }
 
-
-    /**
-     * userListByAccount
-     *
-     * @param javaBean
-     * @return
-     */
-    public JSONObject userListByAccount(PLJavaBean javaBean) {
-        return exec("userListByAccount", javaBean);
+    public static void main(String... args) throws ClassNotFoundException {
+        System.out.println(LessonAgent.class.getName());
+        Class.forName("com.mizholdings.me2.agent.web.LessonAgent");
     }
 
-    public JSONObject joinClassByUserId(PLJavaBean javaBean) {
-        return exec("joinClassByUserId", javaBean);
-    }
 
     /**
      * 审核通过课程
@@ -219,6 +203,11 @@ public class LessonAgent extends MODBase<LessonAgent> {
         return exec("getLessonInfoById", Parameter.creat().add("lessonId", lessonId));
     }
 
+    @Step("根据课程id拿到课堂视频")
+    public JSONObject getVideo(String lessonId) {
+        return exec("getVideo", Parameter.creat().add("lessonId", lessonId));
+    }
+
     @Step("新增视频回放记录")
     public JSONObject setVideoRecord(String lessonId, String classroomId, String classroomVideoId) {
         return exec("setVideoRecord", Parameter.creat()
@@ -240,6 +229,12 @@ public class LessonAgent extends MODBase<LessonAgent> {
     }
 
 
+    @Step("根据班级ID添加学生")
+    public JSONObject studentByClassId(String lessonId, String stuId) {
+        return exec("studentByClassId", Parameter.creat()
+                .add("lessonId", lessonId).add("stuId", stuId));
+    }
+
     public enum FreeType {
         FREE("0"), NO_FREE("1");
         public String value;
@@ -252,4 +247,290 @@ public class LessonAgent extends MODBase<LessonAgent> {
             return this.value;
         }
     }
+
+
+
+    /**
+     * 课程绑定知识点
+     *
+     * @return json
+     */
+    @Step("课程绑定知识点")
+    public JSONObject bangdingKnowledge(Parameter parameter) {
+        return exec("bangdingKnowledge", parameter);
+    }
+
+    /**
+     * 课程分页列表
+     *
+     * @return json
+     */
+    @Step("课程分页列表")
+    public JSONObject list(Parameter parameter) {
+        return exec("list", parameter);
+    }
+
+    /**
+     * 课程新增
+     *
+     * @return json
+     */
+    @Step("课程新增")
+    public JSONObject add(Parameter parameter) {
+        return exec("add", parameter);
+    }
+
+    /**
+     * 根据ID获得课程信息
+     *
+     * @return json
+     */
+    @Step("根据ID获得课程信息")
+    public JSONObject getLessonInfoById(Parameter parameter) {
+        return exec("getLessonInfoById", parameter);
+    }
+
+    /**
+     * 根据课程ID拿到评论（一级）
+     *
+     * @return json
+     */
+    @Step("根据课程ID拿到评论（一级）")
+    public JSONObject getLessonScoreById(Parameter parameter) {
+        return exec("getLessonScoreById", parameter);
+    }
+
+    /**
+     * 编辑课程
+     *
+     * @return json
+     */
+    @Step("编辑课程")
+    public JSONObject edit(Parameter parameter) {
+        return exec("edit", parameter);
+    }
+
+    /**
+     * 根据课程ID，删除课程
+     *
+     * @return json
+     */
+    @Step("根据课程ID，删除课程")
+    public JSONObject delLessonInfoById(Parameter parameter) {
+        return exec("delLessonInfoById", parameter);
+    }
+
+    /**
+     * 老师回复评论
+     *
+     * @return json
+     */
+    @Step("老师回复评论")
+    public JSONObject teacherScore(Parameter parameter) {
+        return exec("teacherScore", parameter);
+    }
+
+    /**
+     * 老师删除评论
+     *
+     * @return json
+     */
+    @Step("老师删除评论")
+    public JSONObject delScore(Parameter parameter) {
+        return exec("delScore", parameter);
+    }
+
+    /**
+     * 根据课程id拿到课堂视频
+     *
+     * @return json
+     */
+    @Step("根据课程id拿到课堂视频")
+    public JSONObject getVideo(Parameter parameter) {
+        return exec("getVideo", parameter);
+    }
+
+    /**
+     * 下架课程
+     *
+     * @return json
+     */
+    @Step("下架课程")
+    public JSONObject banLesson(Parameter parameter) {
+        return exec("banLesson", parameter);
+    }
+
+    /**
+     * 冻结课程
+     *
+     * @return json
+     */
+    @Step("冻结课程")
+    public JSONObject freezeLesson(Parameter parameter) {
+        return exec("freezeLesson", parameter);
+    }
+
+    /**
+     * 课程提交审批
+     *
+     * @return json
+     */
+    @Step("课程提交审批")
+    public JSONObject apply(Parameter parameter) {
+        return exec("apply", parameter);
+    }
+
+    /**
+     * 课程评论列表
+     *
+     * @return json
+     */
+    @Step("课程评论列表")
+    public JSONObject scoreList(Parameter parameter) {
+        return exec("scoreList", parameter);
+    }
+
+    /**
+     * 审核评论
+     *
+     * @return json
+     */
+    @Step("审核评论")
+    public JSONObject replyScore(Parameter parameter) {
+        return exec("replyScore", parameter);
+    }
+
+    /**
+     * 推荐课程
+     *
+     * @return json
+     */
+    @Step("推荐课程")
+    public JSONObject recommendLesson(Parameter parameter) {
+        return exec("recommendLesson", parameter);
+    }
+
+    /**
+     * 关闭课程
+     *
+     * @return json
+     */
+    @Step("关闭课程")
+    public JSONObject lessonClose(Parameter parameter) {
+        return exec("lessonClose", parameter);
+    }
+
+    /**
+     * 老师添加学生
+     *
+     * @return json
+     */
+    @Step("老师添加学生")
+    public JSONObject addTeacherStudent(Parameter parameter) {
+        return exec("addTeacherStudent", parameter);
+    }
+
+    /**
+     * 添加cc课程
+     *
+     * @return json
+     */
+    @Step("添加cc课程")
+    public JSONObject addCCLesson(Parameter parameter) {
+        return exec("addCCLesson", parameter);
+    }
+
+    /**
+     * 我购买的课程
+     *
+     * @return json
+     */
+    @Step("我购买的课程")
+    public JSONObject myLesson(Parameter parameter) {
+        return exec("myLesson", parameter);
+    }
+
+    /**
+     * 新增视频回放记录
+     *
+     * @return json
+     */
+    @Step("新增视频回放记录")
+    public JSONObject setVideoRecord(Parameter parameter) {
+        return exec("setVideoRecord", parameter);
+    }
+
+    /**
+     * 根据视频id查询播放量
+     *
+     * @return json
+     */
+    @Step("根据视频id查询播放量")
+    public JSONObject getTotalPlays(Parameter parameter) {
+        return exec("getTotalPlays", parameter);
+    }
+
+    /**
+     * 上传导入学生1
+     *
+     * @return json
+     */
+    @Step("上传导入学生1")
+    public JSONObject uploadFile(Parameter parameter) {
+        return exec("uploadFile", parameter);
+    }
+
+    /**
+     * 加入班级，根据导入文件
+     *
+     * @return json
+     */
+    @Step("加入班级，根据导入文件")
+    public JSONObject joinClassByFile(Parameter parameter) {
+        return exec("joinClassByFile", parameter);
+    }
+
+    /**
+     * 加入班级，根据用户ID
+     *
+     * @return json
+     */
+    @Step("加入班级，根据用户ID")
+    public JSONObject joinClassByUserId(Parameter parameter) {
+        return exec("joinClassByUserId", parameter);
+    }
+
+    /**
+     * 根据班级ID添加学生
+     *
+     * @return json
+     */
+    @Step("根据班级ID添加学生")
+    public JSONObject studentByClassId(Parameter parameter) {
+        return exec("studentByClassId", parameter);
+    }
+
+    /**
+     * 根据账号，查询用户
+     *
+     * @return json
+     */
+    @Step("根据账号，查询用户")
+    public JSONObject userListByAccount(Parameter parameter) {
+        return exec("userListByAccount", parameter);
+    }
+
+    /**
+     * 返回课程中的班级
+     *
+     * @return json
+     */
+    @Step("返回课程中的班级")
+    public JSONObject groupByClass(Parameter parameter) {
+        return exec("groupByClass", parameter);
+    }
+
+
+
+
 }

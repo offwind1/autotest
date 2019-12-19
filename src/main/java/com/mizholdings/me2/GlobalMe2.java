@@ -5,6 +5,8 @@ import com.mizholdings.me2.user.Me2SuperAdmin;
 import com.mizholdings.me2.user.Me2Teacher;
 import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.Requests;
+import com.mizholdings.util.XmlTool.ElementMine;
+import com.mizholdings.util.XmlTool.XmlTool;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -19,13 +21,26 @@ public class GlobalMe2 {
     private Me2Teacher teacher;
     private Me2SuperAdmin superAdmin;
     private Me2Jigou fb_me2Jigou;
+    private Me2Jigou op_me2Jigou;
     private Me2UserBase userBase;
+
+    private static Map<String, ElementMine> map = new HashMap<>();
 
     public static GlobalMe2 init() {
         if (global == null) {
             global = new GlobalMe2();
         }
         return global;
+    }
+
+    public static ElementMine getServe(String serve) {
+        if (map.containsKey(serve)) {
+            return map.get(serve);
+        } else {
+            ElementMine elementMine = XmlTool.readXML(String.format("serve/%s.xml", serve));
+            map.put(serve, elementMine);
+            return elementMine;
+        }
     }
 
     private GlobalMe2() {
@@ -38,6 +53,11 @@ public class GlobalMe2 {
             logger.error(e);
         }
     }
+
+    public static String getProperties(String key) {
+        return init().properties.getProperty(key);
+    }
+
 
     public static List<String> getUserIds(int num) {
         InputStream stream = Requests.class.getClassLoader().getResourceAsStream("userIds");
@@ -85,6 +105,16 @@ public class GlobalMe2 {
         return fb_me2Jigou;
     }
 
+    public Me2Jigou getOpenBiJigou() {
+        if (op_me2Jigou == null) {
+            String account = properties.getProperty("me2.jigou.open.jigou.account");
+            String password = properties.getProperty("me2.jigou.open.jigou.password");
+            op_me2Jigou = new Me2Jigou(account, password);
+        }
+        return op_me2Jigou;
+    }
+
+
     public Me2UserBase getUser() {
         if (userBase == null) {
             String account = properties.getProperty("me2.student.account");
@@ -96,7 +126,7 @@ public class GlobalMe2 {
 
     public String getAccount() {
         return String.format(properties.getProperty("me2.student.account.format"),
-                new Random().nextInt(1000));
+                new Random().nextInt(200) + 1);
     }
 
     public String getPassword() {
@@ -122,6 +152,10 @@ public class GlobalMe2 {
 
     public static String getImageUrl() {
         return init().properties.getProperty("me2.imageUrl");
+    }
+
+    public static String getVideoPath() {
+        return init().properties.getProperty("me2.videoPath");
     }
 
 }

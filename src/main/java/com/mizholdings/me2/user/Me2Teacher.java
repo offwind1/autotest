@@ -1,30 +1,33 @@
 package com.mizholdings.me2.user;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.GlobalMe2;
-import com.mizholdings.me2.agent.app.CourseAgent;
 import com.mizholdings.me2.agent.web.LessonAgent;
-import com.mizholdings.me2.agent.web.WebCourseAgent;
-import com.mizholdings.me2.agent.web.WebUsrAgent;
+import com.mizholdings.me2.user.serve.Me2tiku;
 import com.mizholdings.me2.user.serve.Web;
+import com.mizholdings.me2.user.serveInterface.tikuInterface;
+import com.mizholdings.me2.user.serveInterface.webInterface;
 import com.mizholdings.util.Common;
 import com.mizholdings.util.SampleAssert;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class Me2Teacher extends Me2UserBase {
+public class Me2Teacher extends Me2UserBase implements webInterface, tikuInterface {
     protected Web web;
-
+    protected Me2tiku tiku;
 
     public Me2Teacher(String account, String password) {
         super(account, password, "web");
         web = new Web(this);
+        tiku = new Me2tiku(this);
     }
 
     public Web getWeb() {
         return web;
+    }
+
+    public Me2tiku getTiku() {
+        return tiku;
     }
 
     public String newLessonAndGetLessonId(LessonAgent.FreeType free) {
@@ -59,9 +62,9 @@ public class Me2Teacher extends Me2UserBase {
     public String newCourseAndApply(String courseName) {
         String coursewareId = newCourseAndApply();
 
-        object = web.webCourseAgent().editCourseware(coursewareId, courseName);
+        object = web.courseAgent().editCourseware(coursewareId, courseName);
         SampleAssert.assertCode200(object);
-        object = web.webCourseAgent().applyCourse(coursewareId);
+        object = web.courseAgent().applyCourse(coursewareId);
         SampleAssert.assertCode200(object);
 
         return coursewareId;
@@ -70,9 +73,9 @@ public class Me2Teacher extends Me2UserBase {
     public String newCourseAndApply(String courseName, String creditNum) {
         String coursewareId = newCourseAndApply();
 
-        object = web.webCourseAgent().editCourseware(coursewareId, courseName, "0", creditNum);
+        object = web.courseAgent().editCourseware(coursewareId, courseName, "0", creditNum);
         SampleAssert.assertCode200(object);
-        object = web.webCourseAgent().applyCourse(coursewareId);
+        object = web.courseAgent().applyCourse(coursewareId);
         SampleAssert.assertCode200(object);
 
         return coursewareId;

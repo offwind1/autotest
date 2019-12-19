@@ -3,7 +3,6 @@ package TestCase.me2.professionalTest;
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.GlobalMe2;
 import com.mizholdings.me2.user.Me2Teacher;
-import com.mizholdings.me2.playload.PLInteg;
 import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.SampleAssert;
 import io.qameta.allure.*;

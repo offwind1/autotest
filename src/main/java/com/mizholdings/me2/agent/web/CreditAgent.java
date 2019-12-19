@@ -1,17 +1,13 @@
 package com.mizholdings.me2.agent.web;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.interfaces.web.CreditInterface;
-import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
 public class CreditAgent extends MODBase<CreditAgent> {
-    public static CreditInterface creditInterface = Requests.getService(CreditInterface.class);
 
     public CreditAgent(User executor) {
         super(executor);
-        interfaced = creditInterface;
     }
 
     @Step("添加学分信息")
@@ -82,4 +78,79 @@ public class CreditAgent extends MODBase<CreditAgent> {
                 .add("currentPage", "1")
                 .add("pageSize", "10"));
     }
+
+
+
+    /**
+     * 添加学分信息
+     *
+     * @return json
+     */
+    @Step("添加学分信息")
+    public JSONObject addCreditInfo(Parameter parameter) {
+        return exec("addCreditInfo", parameter);
+    }
+
+
+    /**
+     * 用户积分记录
+     *
+     * @return json
+     */
+    @Step("用户积分记录")
+    public JSONObject userCredit(Parameter parameter) {
+        return exec("userCredit", parameter);
+    }
+
+    /**
+     * 获取用户学分信息
+     *
+     * @return json
+     */
+    @Step("获取用户学分信息")
+    public JSONObject getCreditByUserId(Parameter parameter) {
+        return exec("getCreditByUserId", parameter);
+    }
+
+    /**
+     * 修改学分信息
+     *
+     * @return json
+     */
+    @Step("修改学分信息")
+    public JSONObject editCreditInfo(Parameter parameter) {
+        return exec("editCreditInfo", parameter);
+    }
+
+    /**
+     * 修改积分
+     *
+     * @return json
+     */
+    @Step("修改积分")
+    public JSONObject editUserCredit(Parameter parameter) {
+        return exec("editUserCredit", parameter);
+    }
+
+    /**
+     * 查询课程列表
+     *
+     * @return json
+     */
+    @Step("查询课程列表")
+    public JSONObject creditLessonList(Parameter parameter) {
+        return exec("creditLessonList", parameter);
+    }
+
+    /**
+     * 学分资源列表
+     *
+     * @return json
+     */
+    @Step("学分资源列表")
+    public JSONObject creditCourseList(Parameter parameter) {
+        return exec("creditCourseList", parameter);
+    }
+
+
 }

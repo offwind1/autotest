@@ -1,18 +1,16 @@
 package com.mizholdings.me2.agent.app;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.interfaces.api.LessonInfoInterface;
-import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
 public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
 
-    public static LessonInfoInterface lessonInfoInterface = Requests.getService(LessonInfoInterface.class);
+//    public static LessonInfoInterface lessonInfoInterface = Requests.getService(LessonInfoInterface.class);
 
     public LessonInfoAgent(User executor) {
         super(executor);
-        interfaced = lessonInfoInterface;
+//        interfaced = lessonInfoInterface;
     }
 
     /**
@@ -54,39 +52,6 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
 
 
     /**
-     * 相关推荐
-     *
-     * @param javaBean relatedList
-     * @return
-     */
-    @Step("相关推荐")
-    public JSONObject relatedList(PLJavaBean javaBean) {
-        return exec("relatedList", javaBean);
-    }
-
-    /**
-     * 选课中心筛选条件
-     *
-     * @param javaBean screen
-     * @return
-     */
-    @Step("选课中心筛选条件")
-    public JSONObject screen(PLJavaBean javaBean) {
-        return exec("screen", javaBean);
-    }
-
-    /**
-     * 课程列表
-     *
-     * @param javaBean list
-     * @return
-     */
-    @Step("课程列表")
-    public JSONObject list(PLJavaBean javaBean) {
-        return exec("list", javaBean);
-    }
-
-    /**
      * 课程详情
      *
      * @param lessonId 课程id
@@ -95,18 +60,6 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
     @Step("课程详情")
     public JSONObject lessonInfo(String lessonId) {
         return exec("lessonInfo", Parameter.creat().add("lessonId", lessonId));
-    }
-
-
-    /**
-     * 课程评论
-     *
-     * @param javaBean score
-     * @return
-     */
-    @Step("课程评论")
-    public JSONObject score(PLJavaBean javaBean) {
-        return exec("score", javaBean);
     }
 
     /**
@@ -118,161 +71,6 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
     @Step("查询用户课程列表")
     public JSONObject usrLesson(String userId) {
         return exec("usrLesson", Parameter.creat().add("userId", userId).add("page", "1"));
-    }
-
-    /**
-     * 我要听课，我要上课的日历列表
-     *
-     * @param javaBean studyLesson
-     * @return
-     */
-    @Step("我要听课，我要上课的日历列表")
-    public JSONObject studyLesson(PLJavaBean javaBean) {
-        return exec("studyLesson", javaBean);
-    }
-
-
-    /**
-     * 取消点赞
-     *
-     * @param javaBean rmlikedLesson
-     * @return
-     */
-    @Step("取消点赞")
-    public JSONObject rmlikedLesson(PLJavaBean javaBean) {
-        return exec("rmlikedLesson", javaBean);
-    }
-
-    /**
-     * 收藏课程
-     *
-     * @param javaBean keepLesson
-     * @return
-     */
-    @Step("收藏课程")
-    public JSONObject keepLesson(PLJavaBean javaBean) {
-        return exec("keepLesson", javaBean);
-    }
-
-    /**
-     * 取消收藏
-     *
-     * @param javaBean rmkeepLesson
-     * @return
-     */
-    @Step("取消收藏")
-    public JSONObject rmkeepLesson(PLJavaBean javaBean) {
-        return exec("rmkeepLesson", javaBean);
-    }
-
-    /**
-     * 查询课程评论
-     *
-     * @param javaBean lessonScore
-     * @return
-     */
-    @Step("查询课程评论")
-    public JSONObject lessonScore(PLJavaBean javaBean) {
-        return exec("lessonScore", javaBean);
-    }
-
-    /**
-     * 获取退课款项
-     *
-     * @param javaBean retreat
-     * @return
-     */
-    @Step("获取退课款项")
-    public JSONObject retreat(PLJavaBean javaBean) {
-        return exec("retreat", javaBean);
-    }
-
-    /**
-     * 退课申请
-     *
-     * @param javaBean refundApply
-     * @return
-     */
-    @Step("退课申请")
-    public JSONObject refundApply(PLJavaBean javaBean) {
-        return exec("refundApply", javaBean);
-    }
-
-    /**
-     * 查询退课状态
-     *
-     * @param javaBean refundStatus
-     * @return
-     */
-    @Step("查询退课状态")
-    public JSONObject refundStatus(PLJavaBean javaBean) {
-        return exec("refundStatus", javaBean);
-    }
-
-    /**
-     * 我创建的课程
-     *
-     * @param javaBean myCreateLesson
-     * @return
-     */
-    @Step("我创建的课程")
-    public JSONObject myCreateLesson(PLJavaBean javaBean) {
-        return exec("myCreateLesson", javaBean);
-    }
-
-    /**
-     * 删除私课
-     *
-     * @param javaBean delLesson
-     * @return
-     */
-    @Step("删除私课")
-    public JSONObject delLesson(PLJavaBean javaBean) {
-        return exec("delLesson", javaBean);
-    }
-
-    /**
-     * 新增视频回放记录
-     *
-     * @param javaBean setVideoRecord
-     * @return
-     */
-    @Step("新增视频回放记录")
-    public JSONObject setVideoRecord(PLJavaBean javaBean) {
-        return exec("setVideoRecord", javaBean);
-    }
-
-    /**
-     * 根据视频id查询播放量
-     *
-     * @param javaBean getTotalPlays
-     * @return
-     */
-    @Step("根据视频id查询播放量")
-    public JSONObject getTotalPlays(PLJavaBean javaBean) {
-        return exec("getTotalPlays", javaBean);
-    }
-
-    /**
-     * 免费课程列表
-     *
-     * @param javaBean freeList
-     * @return
-     */
-    @Step("免费课程列表")
-    public JSONObject freeList(PLJavaBean javaBean) {
-        return exec("freeList", javaBean);
-    }
-
-    /**
-     * 我的课程(我购买的)PC
-     *
-     * @param javaBean myLessonPC
-     * @return
-     */
-    @Step("我的课程(我购买的)PC")
-    public JSONObject myLessonPC(PLJavaBean javaBean) {
-        return exec("myLessonPC", javaBean);
     }
 
     /**
@@ -312,6 +110,249 @@ public class LessonInfoAgent extends MODBase<LessonInfoAgent> {
         private LessonTerm(String value) {
             this.value = value;
         }
+    }
+
+
+
+
+    /**
+     * 查询用户时候拥有该课程
+     *
+     * @return json
+     */
+    @Step("查询用户时候拥有该课程")
+    public JSONObject existPays(Parameter parameter) {
+        return exec("existPays", parameter);
+    }
+
+    /**
+     * 相关推荐
+     *
+     * @return json
+     */
+    @Step("相关推荐")
+    public JSONObject relatedList(Parameter parameter) {
+        return exec("relatedList", parameter);
+    }
+
+    /**
+     * 选课中心筛选条件
+     *
+     * @return json
+     */
+    @Step("选课中心筛选条件")
+    public JSONObject screen(Parameter parameter) {
+        return exec("screen", parameter);
+    }
+
+    /**
+     * 课程列表
+     *
+     * @return json
+     */
+    @Step("课程列表")
+    public JSONObject list(Parameter parameter) {
+        return exec("list", parameter);
+    }
+
+    /**
+     * 课程详情
+     *
+     * @return json
+     */
+    @Step("课程详情")
+    public JSONObject lessonInfo(Parameter parameter) {
+        return exec("lessonInfo", parameter);
+    }
+
+    /**
+     * 课程评论
+     *
+     * @return json
+     */
+    @Step("课程评论")
+    public JSONObject score(Parameter parameter) {
+        return exec("score", parameter);
+    }
+
+    /**
+     * 查询用户课程列表
+     *
+     * @return json
+     */
+    @Step("查询用户课程列表")
+    public JSONObject usrLesson(Parameter parameter) {
+        return exec("usrLesson", parameter);
+    }
+
+    /**
+     * 我要听课，我要上课的日历列表
+     *
+     * @return json
+     */
+    @Step("我要听课，我要上课的日历列表")
+    public JSONObject studyLesson(Parameter parameter) {
+        return exec("studyLesson", parameter);
+    }
+
+    /**
+     * 点赞课程
+     *
+     * @return json
+     */
+    @Step("点赞课程")
+    public JSONObject likedLesson(Parameter parameter) {
+        return exec("likedLesson", parameter);
+    }
+
+    /**
+     * 取消点赞
+     *
+     * @return json
+     */
+    @Step("取消点赞")
+    public JSONObject rmlikedLesson(Parameter parameter) {
+        return exec("rmlikedLesson", parameter);
+    }
+
+    /**
+     * 收藏课程
+     *
+     * @return json
+     */
+    @Step("收藏课程")
+    public JSONObject keepLesson(Parameter parameter) {
+        return exec("keepLesson", parameter);
+    }
+
+    /**
+     * 取消收藏
+     *
+     * @return json
+     */
+    @Step("取消收藏")
+    public JSONObject rmkeepLesson(Parameter parameter) {
+        return exec("rmkeepLesson", parameter);
+    }
+
+    /**
+     * 查询课程评论
+     *
+     * @return json
+     */
+    @Step("查询课程评论")
+    public JSONObject lessonScore(Parameter parameter) {
+        return exec("lessonScore", parameter);
+    }
+
+    /**
+     * 我的课程
+     *
+     * @return json
+     */
+    @Step("我的课程")
+    public JSONObject myLesson(Parameter parameter) {
+        return exec("myLesson", parameter);
+    }
+
+    /**
+     * 获取退课款项
+     *
+     * @return json
+     */
+    @Step("获取退课款项")
+    public JSONObject retreat(Parameter parameter) {
+        return exec("retreat", parameter);
+    }
+
+    /**
+     * 退课申请
+     *
+     * @return json
+     */
+    @Step("退课申请")
+    public JSONObject refundApply(Parameter parameter) {
+        return exec("refundApply", parameter);
+    }
+
+    /**
+     * 查询退课状态
+     *
+     * @return json
+     */
+    @Step("查询退课状态")
+    public JSONObject refundStatus(Parameter parameter) {
+        return exec("refundStatus", parameter);
+    }
+
+    /**
+     * 我创建的课程
+     *
+     * @return json
+     */
+    @Step("我创建的课程")
+    public JSONObject myCreateLesson(Parameter parameter) {
+        return exec("myCreateLesson", parameter);
+    }
+
+    /**
+     * 删除私课
+     *
+     * @return json
+     */
+    @Step("删除私课")
+    public JSONObject delLesson(Parameter parameter) {
+        return exec("delLesson", parameter);
+    }
+
+    /**
+     * 获取视频回放记录
+     *
+     * @return json
+     */
+    @Step("获取视频回放记录")
+    public JSONObject getVideoRecord(Parameter parameter) {
+        return exec("getVideoRecord", parameter);
+    }
+
+    /**
+     * 根据视频id查询播放量
+     *
+     * @return json
+     */
+    @Step("根据视频id查询播放量")
+    public JSONObject getTotalPlays(Parameter parameter) {
+        return exec("getTotalPlays", parameter);
+    }
+
+    /**
+     * 免费课程列表
+     *
+     * @return json
+     */
+    @Step("免费课程列表")
+    public JSONObject freeList(Parameter parameter) {
+        return exec("freeList", parameter);
+    }
+
+    /**
+     * 我的课程(我购买的)PC
+     *
+     * @return json
+     */
+    @Step("我的课程(我购买的)PC")
+    public JSONObject myLessonPC(Parameter parameter) {
+        return exec("myLessonPC", parameter);
+    }
+
+    /**
+     * 更新视频回放，观看时长
+     *
+     * @return json
+     */
+    @Step("更新视频回放，观看时长")
+    public JSONObject updateVideoTime(Parameter parameter) {
+        return exec("updateVideoTime", parameter);
     }
 
 

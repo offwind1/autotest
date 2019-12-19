@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<main host="https://api.mizholdings.com/t/mizhu/api">
+    <interfaces name="　乐步教学模块" value="Lebu">
+        <interface method="POST" name="url免密登陆通用接口" url="/Lebu/autoLogin" value="autoLogin"/>
+    </interfaces>
+    <interfaces name="　检索管理" value="fullsch">
+        <interface method="POST" name="全文检索" url="/fullsch/searchAll" value="searchAll"/>
+        <interface method="POST" name="首页搜索2" url="/fullsch/searchAll2" value="searchAll2"/>
+    </interfaces>
+    <interfaces name="　试听卡管理" value="card">
+        <interface method="POST" name="试听卡兑换" url="/card/exchange" value="exchange"/>
+    </interfaces>
+    <interfaces name="　电子答题卡" value="answer">
+        <interface method="POST" name="查看学生答题卡" url="/answer/getStudentAnswerCard" value="getStudentAnswerCard"/>
+        <interface method="POST" name="保存答题卡" url="/answer/saveAnswerCard" value="saveAnswerCard"/>
+        <interface method="POST" name="提交答题卡" url="/answer/submitAnswerCard" value="submitAnswerCard"/>
+        <interface method="POST" name="拍照上传" url="/answer/photographUploading" value="photographUploading"/>
+        <interface method="POST" name="获取上传图片" url="/answer/getPhotographUploading" value="getPhotographUploading"/>
+    </interfaces>
+    <interfaces name="　投票管理" value="vote">
+        <interface method="POST" name="老师发起投票" url="/vote/insert" value="insert"/>
+        <interface method="POST" name="查询课堂中所有投票" url="/vote/getList" value="getList"/>
+        <interface method="POST" name="提交投票结果" url="/vote/subOption" value="subOption"/>
+        <interface method="POST" name="获得投票用户列表" url="/vote/getOptionUser" value="getOptionUser"/>
+        <interface method="POST" name="结束投票" url="/vote/voteEnd" value="voteEnd"/>
+    </interfaces>
+    <interfaces name="　课堂统计" value="classChart">
+        <interface method="POST" name="课堂互动列表" url="/classChart/interact" value="interact"/>
+        <interface method="POST" name="到课统计" url="/classChart/arrive" value="arrive"/>
+        <interface method="POST" name="作业统计" url="/classChart/homework" value="homework"/>
+        <interface method="POST" name="答题进度" url="/classChart/answer" value="answer"/>
+        <interface method="POST" name="课堂统计导出XLS" url="/classChart/export" value="export"/>
+        <interface method="POST" name="导出XLS考勤概述" url="/classChart/summary" value="summary"/>
+        <interface method="POST" name="根据班级导出XLS" url="/classChart/exportByStuId" value="exportByStuId"/>
+        <interface method="POST" name="根据时间班级查询考勤信息" url="/classChart/getAttendanceByStuId"
+                   value="getAttendanceByStuId"/>
+        <interface method="POST" name="根据时间班级查询考勤详细信息(学生考勤)" url="/classChart/getAttendanceInfoByStuId"
+                   value="getAttendanceInfoByStuId"/>
+        <interface method="POST" name="学科考勤（总表）" url="/classChart/getLessonTypeDili" value="getLessonTypeDili"/>
+        <interface method="POST" name="学科考勤（班级表）" url="/classChart/getLessonTypeDiliClass"
+                   value="getLessonTypeDiliClass"/>
+        <interface method="POST" name="学科考勤XLS文件导出" url="/classChart/exportByLesType" value="exportByLesType"/>
+        <interface method="POST" name="回放记录-班级（总表）" url="/classChart/getVideoList" value="getVideoList"/>
+        <interface method="POST" name="回放记录-班级（详情表）" url="/classChart/getVideoListClass" value="getVideoListClass"/>
+        <interface method="POST" name="视频回看统计导出" url="/classChart/exportByVideo" value="exportByVideo"/>
+        <interface method="POST" name="回放记录-学科（列表）" url="/classChart/getVideoLesType" value="getVideoLesType"/>
+        <interface method="POST" name="回放记录-学科（详情表）" url="/classChart/getVideoLesTypeClass"
+                   value="getVideoLesTypeClass"/>
+        <interface method="POST" name="回放记录-学科-导出" url="/classChart/exportByVideoType" value="exportByVideoType"/>
+        <interface method="POST" name="课堂考勤-教师（列表）" url="/classChart/getClassChartByTeacher"
+                   value="getClassChartByTeacher"/>
+        <interface method="POST" name="回放记录-教师（列表）" url="/classChart/getVideoListByTeacher"
+                   value="getVideoListByTeacher"/>
+        <interface method="POST" name="回放记录-教师（列表详情）" url="/classChart/getVideoListByTeacherDetail"
+                   value="getVideoListByTeacherDetail"/>
+        <interface method="POST" name="导出回访记录-个人用户（教师）" url="/classChart/exportByVideoTeacher"
+                   value="exportByVideoTeacher"/>
+        <interface method="POST" name="WEB端考勤，课程下拉框" url="/classChart/getUserLessonList" value="getUserLessonList"/>
+    </interfaces>
+    <interfaces name="　学分管理" value="credit">
+        <interface method="POST" name="学生学习资源，获取学分" url="/credit/addByCourse" value="addByCourse"/>
+        <interface method="POST" name="学生学习课堂，老师指定学分" url="/credit/addByClassroom" value="addByClassroom"/>
+        <interface method="POST" name="用户查询自己的学分" url="/credit/getCreditList" value="getCreditList"/>
+    </interfaces>
+    <interfaces name="　钱包" value="bank">
+        <interface method="POST" name="银行列表" url="/bank/list" value="list"/>
+        <interface method="POST" name="获取提现账号" url="/bank/drawAccount" value="drawAccount"/>
+        <interface method="POST" name="设置支付密码" url="/bank/paypwd" value="paypwd"/>
+        <interface method="POST" name="申请提现" url="/bank/drawApply" value="drawApply"/>
+        <interface method="POST" name="绑定银行卡" url="/bank/binding" value="binding"/>
+        <interface method="POST" name="解除银行卡绑定" url="/bank/rmBinding" value="rmBinding"/>
+        <interface method="POST" name="用户钱包主界面" url="/bank/userWallet" value="userWallet"/>
+        <interface method="POST" name="用户直播界面数据" url="/bank/userDirect" value="userDirect"/>
+    </interfaces>
+    <interfaces name="　积分" value="integ">
+        <interface method="POST" name="积分增加(课堂举手，老师同意时调用)" url="/integ/execute" value="execute"/>
+        <interface method="POST" name="课堂中第一次文字、图片互动" url="/integ/words" value="words"/>
+    </interfaces>
+    <interfaces name="　排行榜" value="rank">
+        <interface method="POST" name="名师，前三名" url="/rank/teacherTop" value="teacherTop"/>
+        <interface method="POST" name="名师排行" url="/rank/teacherList" value="teacherList"/>
+        <interface method="POST" name="课程，排行" url="/rank/lessonList" value="lessonList"/>
+        <interface method="POST" name="机构，排行" url="/rank/orgList" value="orgList"/>
+        <interface method="POST" name="查询明星老师的预约课" url="/rank/bespeak" value="bespeak"/>
+        <interface method="POST" name="学习之星" url="/rank/studyStar" value="studyStar"/>
+    </interfaces>
+    <interfaces name="　目录" value="catalog">
+        <interface method="POST" name="查询用户的试题" url="/catalog/list" value="list"/>
+        <interface method="POST" name="根据试题ID查询题目" url="/catalog/quesByCatalogId" value="quesByCatalogId"/>
+    </interfaces>
+    <interfaces name="　一期题库" value="ques">
+        <interface method="POST" name="题目类型查询" url="/ques/getQuestionType" value="getQuestionType"/>
+        <interface method="POST" name="题库查询" url="/ques/list" value="list"/>
+        <interface method="POST" name="根据ID查询题目" url="/ques/getQuestionById" value="getQuestionById"/>
+        <interface method="POST" name="学生答题" url="/ques/studentAnswer" value="studentAnswer"/>
+        <interface method="POST" name="根据题目ID，获取用户答案列表" url="/ques/questionAnswerList" value="questionAnswerList"/>
+        <interface method="POST" name="老师评语和批改" url="/ques/teacherComment" value="teacherComment"/>
+        <interface method="POST" name="课堂答题统计" url="/ques/questionAnswerStatistics" value="questionAnswerStatistics"/>
+        <interface method="POST" name="根据题目ID集合拿到题目" url="/ques/getQuestionByIds" value="getQuestionByIds"/>
+        <interface method="POST" name="老师在课堂中添加试题使用，为了统计本堂课一共有多少试题" url="/ques/joinQuestions" value="joinQuestions"/>
+    </interfaces>
+    <interfaces name="　资源管理" value="course">
+        <interface method="POST" name="资源列表" url="/course/list" value="list"/>
+        <interface method="POST" name="资源详情" url="/course/coursewareInfo" value="coursewareInfo"/>
+        <interface method="POST" name="资源筛选条件" url="/course/screen" value="screen"/>
+        <interface method="POST" name="获得资源评论列表" url="/course/courseScore" value="courseScore"/>
+        <interface method="POST" name="资源评论" url="/course/score" value="score"/>
+        <interface method="POST" name="点赞资源" url="/course/likedCourse" value="likedCourse"/>
+        <interface method="POST" name="取消点赞" url="/course/rmlikedCourse" value="rmlikedCourse"/>
+        <interface method="POST" name="收藏资源" url="/course/keepCourse" value="keepCourse"/>
+        <interface method="POST" name="取消收藏" url="/course/rmkeepCourse" value="rmkeepCourse"/>
+        <interface method="POST" name="相关推荐" url="/course/relatedList" value="relatedList"/>
+        <interface method="POST" name="我的资源" url="/course/mylist" value="mylist"/>
+        <interface method="POST" name="课堂中，更换课件时，课件详情" url="/course/infoByClassroom" value="infoByClassroom"/>
+        <interface method="POST" name="单纯查询子资源列表" url="/course/childList" value="childList"/>
+        <interface method="POST" name="上传ppt" url="/course/uploadPpt" value="uploadPpt"/>
+        <interface method="POST" name="我创建的资源列表" url="/course/myCreate" value="myCreate"/>
+        <interface method="POST" name="查询我购买的资源列表" url="/course/myBuy" value="myBuy"/>
+        <interface method="POST" name="上传图片文件" url="/course/uploadFile" value="uploadFile"/>
+        <interface method="POST" name="我的资源PC" url="/course/myBuyPC" value="myBuyPC"/>
+    </interfaces>
+    <interfaces name="　实名认证" value="usrAuthen">
+        <interface method="POST" name="用户认证" url="/usrAuthen/addAuthen" value="addAuthen"/>
+        <interface method="POST" name="查询用户认证列表" url="/usrAuthen/list" value="list"/>
+    </interfaces>
+    <interfaces name="　支付管理" value="pay">
+        <interface method="POST" name="获得充值图标" url="/pay/rateList" value="rateList"/>
+        <interface method="POST" name="用户充值" url="/pay/usrRecharge" value="usrRecharge"/>
+        <interface method="POST" name="用户购买课程" url="/pay/buyLesson" value="buyLesson"/>
+        <interface method="POST" name="购买资源" url="/pay/buyCourseware" value="buyCourseware"/>
+        <interface method="POST" name="获取Ping++支付凭证" url="/pay/getPingxx" value="getPingxx"/>
+        <interface method="POST" name="查询用户充值记录" url="/pay/userTrans" value="userTrans"/>
+        <interface method="POST" name="获取提现账号" url="/pay/drawAccount"
+                   value="drawAccount"/>
+        <interface method="POST" name="提现申请" url="/pay/drawApply" value="drawApply"/>
+        <interface method="POST" name="扫码支付（支付宝或微信）" url="/pay/getPingxxScan" value="getPingxxScan"/>
+        <interface method="POST" name="苹果支付成功后调用" url="/pay/applePayReturn" value="applePayReturn"/>
+        <interface method="POST" name="获取充值图标" url="/pay/rateListForWeb" value="rateListForWeb"/>
+        <interface method="POST" name="web微信充值" url="/pay/webUsrRecharge" value="webUsrRecharge"/>
+        <interface method="POST" name="获取微信、支付宝二维码" url="/pay/getNative" value="getNative"/>
+        <interface method="POST" name="获得充值图标(IOS端)" url="/pay/rateForApple" value="rateForApple"/>
+        <interface method="POST" name="转换橙币，和橙时光(IOS)" url="/pay/convertAmout" value="convertAmout"/>
+    </interfaces>
+    <interfaces name="　年级管理" value="grade">
+        <interface method="POST" name="查询年级列表" url="/grade/list" value="list"/>
+        <interface method="POST" name="查询年级列表(标签类型)" url="/grade/taglist" value="taglist"/>
+        <interface method="POST" name="年级列表（绑定学科）" url="/grade/gradelist" value="gradelist"/>
+        <interface method="POST" name="根据机构ID查询年级和学科列表" url="/grade/listByOrgId" value="listByOrgId"/>
+    </interfaces>
+    <interfaces name="　课堂心跳" value="heart">
+        <interface method="POST" name="课堂心跳" url="/heart/classroom" value="classroom"/>
+    </interfaces>
+    <interfaces name="　课堂管理" value="classInfo">
+        <interface method="POST" name="根据课程ID获得课堂列表" url="/classInfo/listByLessonId" value="listByLessonId"/>
+        <interface method="POST" name="拿到课堂附加资源列表" url="/classInfo/optionList" value="optionList"/>
+        <interface method="POST" name="申请开课，添加视频表信息" url="/classInfo/classroomStart" value="classroomStart"/>
+        <interface method="POST" name="课堂结束，保存信息" url="/classInfo/classroomEnd" value="classroomEnd"/>
+        <interface method="POST" name="用户加入课堂" url="/classInfo/classroomAddUser" value="classroomAddUser"/>
+        <interface method="POST" name="用户根据课堂CODE加入课堂" url="/classInfo/classroomCodeAddUser"
+                   value="classroomCodeAddUser"/>
+        <interface method="POST" name="用户退出课堂" url="/classInfo/classroomRemoveUser" value="classroomRemoveUser"/>
+        <interface method="POST" name="获得课堂CODE" url="/classInfo/getCode" value="getCode"/>
+        <interface method="POST" name="快速开课" url="/classInfo/quickStart" value="quickStart"/>
+        <interface method="POST" name="群组禁言" url="/classInfo/muteTlistAll" value="muteTlistAll"/>
+        <interface method="POST" name="回填课堂视频URL" url="/classInfo/classVideo" value="classVideo"/>
+        <interface method="POST" name="拿到课堂的课件" url="/classInfo/getCourse" value="getCourse"/>
+        <interface method="POST" name="获取7牛直播推流URL" url="/classInfo/pushUrl" value="pushUrl"/>
+        <interface method="POST" name="获取7牛直播观看URL" url="/classInfo/pullUrl" value="pullUrl"/>
+        <interface method="POST" name="课堂中用户举手" url="/classInfo/handsUp" value="handsUp"/>
+        <interface method="POST" name="教师同意用户举手" url="/classInfo/agreeHandsUp" value="agreeHandsUp"/>
+        <interface method="POST" name="老师点赞学生答案" url="/classInfo/laudStudent" value="laudStudent"/>
+        <interface method="POST" name="7牛连麦——创建连麦房间" url="/classInfo/qiniuCreateRoom" value="qiniuCreateRoom"/>
+        <interface method="POST" name="7牛连麦——获得鉴权" url="/classInfo/qiniuRoomToken" value="qiniuRoomToken"/>
+        <interface method="POST" name="7牛连麦——连麦房间观看地址" url="/classInfo/qiniuRoomUrl" value="qiniuRoomUrl"/>
+        <interface method="POST" name="获得七牛连麦的APP列表" url="/classInfo/rtcAppList" value="rtcAppList"/>
+        <interface method="POST" name="课堂结束，保存信息(白板服务器调用)" url="/classInfo/whiteHouseEnd" value="whiteHouseEnd"/>
+        <interface method="POST" name="查询课堂类型和资料" url="/classInfo/classroomInfo" value="classroomInfo"/>
+        <interface method="POST" name="根据课堂CODE查询正在开课的" url="/classInfo/lessonByCode" value="lessonByCode"/>
+        <interface method="POST" name="查询是否存在正在开课的课堂" url="/classInfo/notClose" value="notClose"/>
+        <interface method="POST" name="课堂重连" url="/classInfo/reconnect" value="reconnect"/>
+        <interface method="POST" name="课堂进行时，截取课堂封面" url="/classInfo/videoFace" value="videoFace"/>
+        <interface method="POST" name="PC端调用答题接口" url="/classInfo/pcAnswer" value="pcAnswer"/>
+        <interface method="POST" name="课堂时间" url="/classInfo/timeSwitch" value="timeSwitch"/>
+        <interface method="POST" name="获取老师当天要开得课堂列表" url="/classInfo/listByToday" value="listByToday"/>
+        <interface method="POST" name="获取今天课堂列表" url="/classInfo/roomToday" value="roomToday"/>
+        <interface method="POST" name="管理员系统调用关闭课堂" url="/classInfo/adminClassEnd" value="adminClassEnd"/>
+        <interface method="POST" name="课堂中老师发起抢答" url="/classInfo/answerfirst" value="answerfirst"/>
+        <interface method="POST" name="校正用户考勤记录" url="/classInfo/revise" value="revise"/>
+        <interface method="POST" name="web端白板url" url="/classInfo/weburl" value="weburl"/>
+        <interface method="POST" name="未来两周的待上课节" url="/classInfo/weekRoom" value="weekRoom"/>
+        <interface method="POST" name="获取课堂用户列表" url="/classInfo/roomUser" value="roomUser"/>
+    </interfaces>
+    <interfaces name="　机构管理" value="org">
+        <interface method="POST" name="查询机构/学校列表" url="/org/list" value="list"/>
+        <interface method="POST" name="获取机构新闻" url="/org/msglist" value="msglist"/>
+        <interface method="POST" name="新闻详情" url="/org/msgInfo" value="msgInfo"/>
+        <interface method="POST" name="用户同意加入机构" url="/org/joinOrg" value="joinOrg"/>
+        <interface method="POST" name="添加机构" url="/org/create" value="create"/>
+        <interface method="POST" name="已经加入的机构列表" url="/org/joinList" value="joinList"/>
+        <interface method="POST" name="退出机构" url="/org/removeOrg" value="removeOrg"/>
+        <interface method="POST" name="禁止添加" url="/org/disabled" value="disabled"/>
+    </interfaces>
+    <interfaces name="　课程管理" value="lessonInfo">
+        <interface method="POST" name="查询用户时候拥有该课程" url="/lessonInfo/existPays" value="existPays"/>
+        <interface method="POST" name="相关推荐" url="/lessonInfo/relatedList" value="relatedList"/>
+        <interface method="POST" name="选课中心筛选条件" url="/lessonInfo/screen" value="screen"/>
+        <interface method="POST" name="课程列表" url="/lessonInfo/list" value="list"/>
+        <interface method="POST" name="课程详情" url="/lessonInfo/lessonInfo" value="lessonInfo"/>
+        <interface method="POST" name="课程评论" url="/lessonInfo/score" value="score"/>
+        <interface method="POST" name="查询用户课程列表" url="//lessonInfo/usrLesson" value="usrLesson"/>
+        <interface method="POST" name="我要听课，我要上课的日历列表" url="/lessonInfo/studyLesson" value="studyLesson"/>
+        <interface method="POST" name="点赞课程" url="/lessonInfo/likedLesson" value="likedLesson"/>
+        <interface method="POST" name="取消点赞" url="/lessonInfo/rmlikedLesson" value="rmlikedLesson"/>
+        <interface method="POST" name="收藏课程" url="/lessonInfo/keepLesson" value="keepLesson"/>
+        <interface method="POST" name="取消收藏" url="/lessonInfo/rmkeepLesson" value="rmkeepLesson"/>
+        <interface method="POST" name="查询课程评论" url="/lessonInfo/lessonScore" value="lessonScore"/>
+        <interface method="POST" name="我的课程" url="/lessonInfo/myLesson" value="myLesson"/>
+        <interface method="POST" name="获取退课款项" url="/lessonInfo/retreat" value="retreat"/>
+        <interface method="POST" name="退课申请" url="/lessonInfo/refundApply" value="refundApply"/>
+        <interface method="POST" name="查询退课状态" url="/lessonInfo/refundStatus" value="refundStatus"/>
+        <interface method="POST" name="我创建的课程" url="/lessonInfo/myCreateLesson" value="myCreateLesson"/>
+        <interface method="POST" name="删除私课" url="/lessonInfo/delLesson" value="delLesson"/>
+        <interface method="POST" name="获取视频回放记录" url="/lessonInfo/getVideoRecord" value="getVideoRecord"/>
+        <interface method="POST" name="根据视频id查询播放量" url="/lessonInfo/getTotalPlays" value="getTotalPlays"/>
+        <interface method="POST" name="免费课程列表" url="/lessonInfo/freeList" value="freeList"/>
+        <interface method="POST" name="我的课程(我购买的)PC" url="/lessonInfo/myLessonPC" value="myLessonPC"/>
+        <interface method="POST" name="更新视频回放，观看时长" url="/lessonInfo/updateVideoTime" value="updateVideoTime"/>
+    </interfaces>
+    <interfaces name="　省市" value="compartment">
+        <interface method="POST" name="查询所有省和地市" url="/compartment/alllist" value="alllist"/>
+        <interface method="POST" name="查询省市列表" url="/compartment/list" value="list"/>
+    </interfaces>
+    <interfaces name="　主页接口" value="top">
+        <interface method="POST" name="机构新闻更多" url="/top/v2OrgMsgList" value="v2OrgMsgList"/>
+        <interface method="POST" name="直播课更多" url="/top/v2topList" value="v2topList"/>
+        <interface method="POST" name="首页列表" url="/top/v2playList" value="v2playList"/>
+        <interface method="POST" name="精品课更多" url="/top/v2lesList" value="v2lesList"/>
+        <interface method="POST" name="主页轮播广告" url="/top/advertList" value="advertList"/>
+        <interface method="POST" name="学科列表" url="/top/usrMenu" value="usrMenu"/>
+        <interface method="POST" name="查询主页列表项" url="/top/topList" value="topList"/>
+        <interface method="POST" name="主页，加载更多" url="/top/topMore" value="topMore"/>
+        <interface method="POST" name="选课中心主页" url="/top/chooseList" value="chooseList"/>
+        <interface method="POST" name="导引页接口" url="/top/bootpage" value="bootpage"/>
+        <interface method="POST" name="资源库主页" url="/top/coursList" value="coursList"/>
+        <interface method="POST" name="选课中心，加载更多" url="/top/chooseMore" value="chooseMore"/>
+        <interface method="POST" name="资源库，加载更多" url="/top/coursMore" value="coursMore"/>
+        <interface method="POST" name="查询直播课" url="/top/playLesson" value="playLesson"/>
+        <interface method="POST" name="最近将要直播的10堂课" url="/top/minTimeLesson" value="minTimeLesson"/>
+        <interface method="POST" name="搜索推荐" url="/top/getSearchCem" value="getSearchCem"/>
+    </interfaces>
+    <interfaces name="　用户标签" value="usrTag">
+        <interface method="POST" name="查询用户标签" url="/usrTag/list" value="list"/>
+        <interface method="POST" name="添加用户标签" url="/usrTag/addUsrTag" value="addUsrTag"/>
+    </interfaces>
+    <interfaces name="　头像" value="headImg">
+        <interface method="POST" name="头像列表" url="/headImg/list" value="list"/>
+    </interfaces>
+    <interfaces name="　轮播广告" value="advert">
+        <interface method="POST" name="获取弹窗广告" url="/advert/getAlertAdvert" value="getAlertAdvert"/>
+    </interfaces>
+    <interfaces name="　学科" value="lessonType">
+        <interface method="POST" name="查询学科列表" url="/lessonType/list" value="list"/>
+        <interface method="POST" name="查询用户选择的学科列表" url="/lessonType/userlist" value="userlist"/>
+        <interface method="POST" name="学科编辑保存" url="/lessonType/savelist" value="savelist"/>
+    </interfaces>
+    <interfaces name="　安全问题" value="safeQues">
+        <interface method="POST" name="安全问题列表" url="/safeQues/list" value="list"/>
+    </interfaces>
+    <interfaces name="　用户收藏" value="usrColl">
+        <interface method="POST" name="用户收藏列表" url="/usrColl/list" value="list"/>
+    </interfaces>
+    <interfaces name="　用户管理" value="mobile">
+        <interface method="POST" name="获取验证码(手机/邮箱)" url="/mobile/phoneCode" value="phoneCode"/>
+        <interface method="POST" name="用户登陆(手机/邮箱/用户名)" url="/mobile/login" value="login"
+                   schema="schema/app/mobile/login.json"/>
+        <interface method="POST" name="token自动登陆" url="/mobile/tokenLogin" value="tokenLogin"/>
+        <interface method="POST" name="用户退出" url="/mobile/loginOut" value="loginOut"/>
+        <interface method="POST" name="获取用户信息" url="/mobile/userInfo" value="userInfo"/>
+        <interface method="POST" name="用户注册(手机号/账号/邮箱)" url="/mobile/userRegister" value="userRegister"/>
+        <interface method="POST" name="忘记密码" url="/mobile/findPassword" value="findPassword"/>
+        <interface method="POST" name="修改手机号或者邮箱" url="/mobile/updateContact" value="updateContact"/>
+        <interface method="POST" name="修改用户信息" url="/mobile/updateUserInfo" value="updateUserInfo"/>
+        <interface method="POST" name="根据用户CODE，获得云信ID" url="/mobile/userByCode" value="userByCode"/>
+        <interface method="POST" name="根据ID获得用户信息" url="/mobile/userInfoById" value="userInfoById"/>
+        <interface method="POST" name="收藏用户" url="/mobile/keepUser" value="keepUser"/>
+        <interface method="POST" name="取消收藏" url="/mobile/rmkeepUser" value="rmkeepUser"/>
+        <interface method="POST" name="机构用户管理的教师列表" url="/mobile/orgUserList" value="orgUserList"/>
+        <interface method="POST" name="用户修改密码" url="/mobile/updatePassword" value="updatePassword"/>
+        <interface method="POST" name="用户绑定手机(验证码类型为4)" url="/mobile/bingPhone" value="bingPhone"/>
+        <interface method="POST" name="第三方登陆" url="/mobile/otherLogin" value="otherLogin"/>
+        <interface method="POST" name="APP扫码，登录页面端" url="/mobile/login2" value="login2"/>
+        <interface method="POST" name="机构用户/教师的课件(微课)" url="/mobile/orgCourseList" value="orgCourseList"/>
+        <interface method="POST" name="扫码登陆web接口" url="/mobile/scanLogin" value="scanLogin"/>
+        <interface method="POST" name="分享页面注册" url="/mobile/shareUserRegister" value="shareUserRegister"/>
+        <interface method="POST" name="根据手机获取用户信息" url="/mobile/getUserInfoByPhone" value="getUserInfoByPhone"/>
+        <interface method="POST" name="增加用户的米猪时光" url="/mobile/getMizhuTime" value="getMizhuTime"/>
+        <interface method="POST" name="ISO系统登陆" url="/mobile/appleLogin" value="appleLogin"/>
+    </interfaces>
+</main>

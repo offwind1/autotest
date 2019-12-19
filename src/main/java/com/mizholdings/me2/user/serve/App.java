@@ -9,69 +9,124 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class App extends ServeBase {
-    private LessonInfoAgent lessonInfoAgent;
-    private CourseAgent courseAgent;
-    private MobileAgent mobileAgent;
-    private VoteAgent voteAgent;
-    private FullschAgent fullschAgent;
-    private CardAgent cardAgent;
-    private TopAgent topAgent;
-    private PayAgent payAgent;
-    private ClassInfoAgent classInfoAgent;
-    private IntegAgent integAgent;
-    private CreditAgent creditAgent;
-    private ClassChartAgent classChartAgent;
-
     public App(User user) {
         super(user);
     }
 
-    public LessonInfoAgent lessonInfoAgent() {
-        return (LessonInfoAgent) getAgent("lessonInfoAgent");
-    }
-
-    public CourseAgent courseAgent() {
-        return (CourseAgent) getAgent("courseAgent");
+    public LebuAgent LebuAgent() {
+        return (LebuAgent) getAgent("LebuAgent");
     }
 
     public FullschAgent fullschAgent() {
         return (FullschAgent) getAgent("fullschAgent");
     }
 
-    public VoteAgent voteAgent() {
-        return (VoteAgent) getAgent("voteAgent");
-    }
-
-    public MobileAgent mobileAgent() {
-        return (MobileAgent) getAgent("mobileAgent");
-    }
-
     public CardAgent cardAgent() {
         return (CardAgent) getAgent("cardAgent");
     }
 
-    public TopAgent topAgent() {
-        return (TopAgent) getAgent("topAgent");
+    public VoteAgent voteAgent() {
+        return (VoteAgent) getAgent("voteAgent");
     }
 
-    public ClassInfoAgent classInfoAgent() {
-        return (ClassInfoAgent) getAgent("classInfoAgent");
-    }
-
-    public PayAgent payAgent() {
-        return (PayAgent) getAgent("payAgent");
-    }
-
-    public IntegAgent integAgent() {
-        return (IntegAgent) getAgent("integAgent");
+    public ClassChartAgent classChartAgent() {
+        return (ClassChartAgent) getAgent("classChartAgent");
     }
 
     public CreditAgent creditAgent() {
         return (CreditAgent) getAgent("creditAgent");
     }
 
-    public ClassChartAgent classChartAgent() {
-        return (ClassChartAgent) getAgent("classChartAgent");
+    public BankAgent bankAgent() {
+        return (BankAgent) getAgent("bankAgent");
+    }
+
+    public IntegAgent integAgent() {
+        return (IntegAgent) getAgent("integAgent");
+    }
+
+    public RankAgent rankAgent() {
+        return (RankAgent) getAgent("rankAgent");
+    }
+
+    public CatalogAgent catalogAgent() {
+        return (CatalogAgent) getAgent("catalogAgent");
+    }
+
+    public QuesAgent quesAgent() {
+        return (QuesAgent) getAgent("quesAgent");
+    }
+
+    public CourseAgent courseAgent() {
+        return (CourseAgent) getAgent("courseAgent");
+    }
+
+    public UsrAuthenAgent usrAuthenAgent() {
+        return (UsrAuthenAgent) getAgent("usrAuthenAgent");
+    }
+
+    public PayAgent payAgent() {
+        return (PayAgent) getAgent("payAgent");
+    }
+
+    public GradeAgent gradeAgent() {
+        return (GradeAgent) getAgent("gradeAgent");
+    }
+
+    public HeartAgent heartAgent() {
+        return (HeartAgent) getAgent("heartAgent");
+    }
+
+    public ClassInfoAgent classInfoAgent() {
+        return (ClassInfoAgent) getAgent("classInfoAgent");
+    }
+
+    public OrgAgent orgAgent() {
+        return (OrgAgent) getAgent("orgAgent");
+    }
+
+    public LessonInfoAgent lessonInfoAgent() {
+        return (LessonInfoAgent) getAgent("lessonInfoAgent");
+    }
+
+    public CompartmentAgent compartmentAgent() {
+        return (CompartmentAgent) getAgent("compartmentAgent");
+    }
+
+    public TopAgent topAgent() {
+        return (TopAgent) getAgent("topAgent");
+    }
+
+    public UsrTagAgent usrTagAgent() {
+        return (UsrTagAgent) getAgent("usrTagAgent");
+    }
+
+    public HeadImgAgent headImgAgent() {
+        return (HeadImgAgent) getAgent("headImgAgent");
+    }
+
+    public AdvertAgent advertAgent() {
+        return (AdvertAgent) getAgent("advertAgent");
+    }
+
+    public LessonTypeAgent lessonTypeAgent() {
+        return (LessonTypeAgent) getAgent("lessonTypeAgent");
+    }
+
+    public SafeQuesAgent safeQuesAgent() {
+        return (SafeQuesAgent) getAgent("safeQuesAgent");
+    }
+
+    public UsrCollAgent usrCollAgent() {
+        return (UsrCollAgent) getAgent("usrCollAgent");
+    }
+
+    public MobileAgent mobileAgent() {
+        return (MobileAgent) getAgent("mobileAgent");
+    }
+
+    public AnswerAgent answerAgent() {
+        return (AnswerAgent) getAgent("answerAgent");
     }
 
 

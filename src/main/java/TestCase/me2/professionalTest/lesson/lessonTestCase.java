@@ -20,6 +20,10 @@ public class lessonTestCase {
         teacher = GlobalMe2.init().getTeacher();
         superAdmin = GlobalMe2.init().getSuperAdmin();
         student = GlobalMe2.init().getUserBase();
+
+        System.out.println(teacher);
+        System.out.println(superAdmin);
+        System.out.println(student);
     }
 
     private String classroomVideoId;
@@ -30,14 +34,15 @@ public class lessonTestCase {
     private int studentNum = 10;
 
 
-    @BeforeGroups(groups = {"test"})
+    @BeforeGroups(groups = {"lessonTestCase"})
     public void beforeTest() {
+        System.out.println(teacher);
         String lessonId = teacher.newLessonAndGetLessonId(4);
         String userIds = String.join(",", GlobalMe2.getUserIds(studentNum));
         teacher.getWeb().lessonAgent().addTeacherStudent(userIds, lessonId);
 
         teacher.getWeb().lessonAgent().apply(lessonId);
-        superAdmin.getWeb().lessonAgent().passLesson(lessonId);
+        superAdmin.getManage().lessonAgent().passLesson(lessonId);
 
         JSONObject object = teacher.getApp().lessonInfoAgent().lessonInfo(lessonId);
         object = Common.random(object.getJSONObject("data").getJSONArray("classroomInfoList"));
@@ -50,9 +55,9 @@ public class lessonTestCase {
         cloudAccount = object.getJSONObject("data").getJSONObject("classroomInfo").getString("teacherCloudeAccount");
     }
 
-    @Test(groups = {"test"})
+    @Test(groups = {"lessonTestCase"})
     public void test() {
-        JSONObject object = superAdmin.getWeb().classroomAgent().onlineListV2ByClassroomCode(classroomCode);
+        JSONObject object = superAdmin.getManage().classroomAgent().onlineListV2ByClassroomCode(classroomCode);
         object = Common.filder(object.getJSONObject("data").getJSONArray("list"), classroomId, "classroomId");
 
         if (studentNum != object.getInteger("studentCount")) {
@@ -61,13 +66,13 @@ public class lessonTestCase {
     }
 
 
-    @Test(groups = {"test"})
+    @Test(groups = {"lessonTestCase"})
     public void test1() {
         JSONObject object = teacher.getApp().classChartAgent().arrive(classroomId);
     }
 
 
-    @AfterGroups(groups = {"test"})
+    @AfterGroups(groups = {"lessonTestCase"})
     public void afterTest() {
         teacher.getApp().classInfoAgent().classroomEnd(classroomVideoId, cloudAccount);
     }

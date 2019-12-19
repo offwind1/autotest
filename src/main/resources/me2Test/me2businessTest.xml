@@ -35,6 +35,13 @@
             <class name="TestCase.me2.professionalTest.chanTestCase"></class>
         </classes>
     </test>
+    <test name="回放记录测试">
+        <classes>
+            <class name="TestCase.me2.professionalTest.lesson.classroomVideoTestCase"></class>
+            <class name="TestCase.me2.professionalTest.lesson.classroomVideoTestCase2"></class>
+            <class name="TestCase.me2.professionalTest.lesson.classroomVideoTestCase3"></class>
+        </classes>
+    </test>
 
 
 </suite>

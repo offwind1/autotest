@@ -35,7 +35,7 @@ public class creditTestCase {
     @Test(description = "7_2 未创建学分的情况下，获取用户学分信息")
     public void test_7_2() {
         JSONObject object = no_credit_teacher.getWeb().creditAgent().getCreditByUserId();
-        SampleAssert.assertMsg("学分未创建!", object);
+        SampleAssert.assertMsg("未查询到!", object);
     }
 
     @Test(description = "7_3 修改其他人的学分信息")

@@ -3,12 +3,10 @@ package TestCase.me2.normalTest;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.GlobalMe2;
+import com.mizholdings.me2.M2TYPE;
 import com.mizholdings.me2.agent.web.LessonAgent;
-import com.mizholdings.me2.agent.web.WebCourseAgent;
 import com.mizholdings.me2.user.Me2SuperAdmin;
 import com.mizholdings.me2.user.Me2Teacher;
-import com.mizholdings.me2.user.Me2UserBase;
-import com.mizholdings.me2.user.serve.ServeBase;
 import com.mizholdings.util.Common;
 import com.mizholdings.util.SampleAssert;
 import io.qameta.allure.Allure;
@@ -18,7 +16,6 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class knowledgeTestCase {
 
@@ -37,7 +34,7 @@ public class knowledgeTestCase {
 
     @Test(description = "3_1_1 获取知识点")
     public void test3_1_1() {
-        JSONObject object = teacher.getWeb().me2tikuAgent().queryKnowledgeList();
+        JSONObject object = teacher.getTiku().me2tikuAgent().queryKnowledgeList();
         List<String> idList = new ArrayList<>();
         List<String> nameList = new ArrayList<>();
 
@@ -105,10 +102,10 @@ public class knowledgeTestCase {
     @Test(description = "3_4_1 课件添加知识点", dependsOnMethods = {"test3_1_1"})
     public void test3_4_1() {
         String courseId = teacher.newCourseAndApply();
-        JSONObject object = teacher.getWeb().webCourseAgent().editCourseware(courseId,
+        JSONObject object = teacher.getWeb().courseAgent().editCourseware(courseId,
                 Common.creatRandomString(), "0", knowledgeIds, knowledgeNames);
-        object = teacher.getWeb().webCourseAgent().editCourseware(courseId, Common.creatRandomString(), "0", knowledgeIds, knowledgeNames);
-        object = teacher.getWeb().webCourseAgent().mylist(ServeBase.GRADEID.ONE, WebCourseAgent.COURSEWARE_TYPE.ALL, ServeBase.LESSON_TYPE_ID.ALL);
+        object = teacher.getWeb().courseAgent().editCourseware(courseId, Common.creatRandomString(), "0", knowledgeIds, knowledgeNames);
+        object = teacher.getWeb().courseAgent().mylist(M2TYPE.GRADEID.ONE, M2TYPE.COURSEWARE_TYPE.ALL, M2TYPE.LESSON_TYPE_ID.ALL);
         object = Common.filder(object.getJSONObject("data").getJSONArray("list"), courseId, "coursewareId");
 
         if (!object.containsKey("knowledgeIds") || !knowledgeIds.equals(object.getString("knowledgeIds"))) {

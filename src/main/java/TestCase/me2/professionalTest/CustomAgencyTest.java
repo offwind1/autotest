@@ -51,7 +51,19 @@ public class CustomAgencyTest {
     }
 
     public JSONObject studentQuitJigou(Me2UserBase student) {
-        return jigou.getWeb().webUsrAgent().orgDelTeacher(student.getUserId());
+        return jigou.getWeb().usrAgent().orgDelTeacher(student.getUserId());
+    }
+
+    @Test
+    public void test_temp() {
+        in_jigou_student.setOrgId(jigou.getOrgId());
+        studentSearchLesson(in_jigou_student, "风吹草低现牛羊");
+        in_jigou_student.getApp().topAgent().topMore(Parameter.creat()
+                .add("gradeId", "1")
+                .add("topId", "1")
+                .add("hotTop", "1")
+                .add("page", "1")
+        );
     }
 
 
@@ -82,7 +94,7 @@ public class CustomAgencyTest {
     @Test(description = "1_2_1_2 机构用户，可以登录全封闭app")
     public void test1_2_1_2() {
         JSONObject object = in_jigou_student.orgLogin(jigou.getOrgId());
-        SampleAssert.assertEquals("登陆成功", object);
+        SampleAssert.assertEquals("查询成功", object);
     }
 
 //    @Test(description = "1_2_2 用户加入多个机构")
@@ -148,7 +160,7 @@ public class CustomAgencyTest {
     public String newLessonAndApply() {
         String lessonId = jigou.newLessonAndGetLessonId(LessonAgent.FreeType.NO_FREE);
         jigou.getWeb().lessonAgent().apply(lessonId);
-        superAdmin.getWeb().lessonAgent().passLesson(lessonId);
+        superAdmin.getManage().lessonAgent().passLesson(lessonId);
         return lessonId;
     }
 
@@ -157,9 +169,9 @@ public class CustomAgencyTest {
         coursewareName = UUID.randomUUID().toString().replace("-", "").substring(0, 4);
         coursewareId = object.getJSONObject("data").getString("coursewareId");
 
-        object = jigou.getWeb().webCourseAgent().editCourseware(coursewareId, coursewareName);
+        object = jigou.getWeb().courseAgent().editCourseware(coursewareId, coursewareName);
         SampleAssert.assertCode200(object);
-        object = jigou.getWeb().webCourseAgent().applyCourse(coursewareId);
+        object = jigou.getWeb().courseAgent().applyCourse(coursewareId);
         SampleAssert.assertCode200(object);
     }
 
@@ -296,7 +308,7 @@ public class CustomAgencyTest {
     public void creatMessageAndApply() {
         messageId = jigou.creatMessage();
         jigou.getWeb().orgInfoAgent().applyMessage(messageId);
-        superAdmin.getWeb().orgInfoAgent().replyOrgMessage(messageId);
+        superAdmin.getManage().orgInfoAgent().replyOrgMessage(messageId);
     }
 
     @Test(description = "1_3_3_1 非机构用户，搜索新闻", groups = {"new_message"})

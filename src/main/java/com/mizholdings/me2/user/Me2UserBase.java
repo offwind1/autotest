@@ -1,22 +1,17 @@
 package com.mizholdings.me2.user;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.interfaces.web.UsrInterface;
-import com.mizholdings.me2.interfaces.api.MobileInterface;
 import com.mizholdings.me2.user.serve.App;
+import com.mizholdings.me2.user.serveInterface.appInterface;
 import com.mizholdings.util.*;
+import com.mizholdings.util.requests.Request;
 import io.qameta.allure.Step;
 
-public class Me2UserBase extends User {
-    public static MobileInterface mobileInterface = Requests.getService(MobileInterface.class);
-    public static UsrInterface usrInterface = Requests.getService(UsrInterface.class);
-
+public class Me2UserBase extends User implements appInterface {
     protected JSONObject object;
     protected String account;
     protected String password;
     protected String cloudUsrAccount = "";
-
-
     protected App app;
 
     public Me2UserBase(String account, String password, String TAG) {
@@ -37,7 +32,8 @@ public class Me2UserBase extends User {
     }
 
     public static JSONObject Login(String account, String password) {
-        return Requests.getJson(mobileInterface.login(Parameter.creat()
+
+        return Request.go("app", "mobile", "login", Parameter.creat()
                 .add("account", account)
                 .add("password", password)
                 .add("phone", "")
@@ -47,11 +43,11 @@ public class Me2UserBase extends User {
                 .add("proType", "ykdebug")
                 .add("longitude", "")
                 .add("latitude", "")
-                .getMap()));
+                .getObjectMap()).json();
     }
 
     private void init(JSONObject object) {
-        SampleAssert.assertEquals("登陆成功", object);
+        SampleAssert.assertEquals("查询成功", object);
         this.object = object;
         token = object.getJSONObject("data").getString("token");
         userId = object.getJSONObject("data").getString("userId");
@@ -68,9 +64,8 @@ public class Me2UserBase extends User {
     }
 
     @Step("用户登陆(手机/邮箱/用户名) app")
-//    @Attachment("return")
     public JSONObject login() {
-        return Requests.getJson(mobileInterface.login(Parameter.creat()
+        return Request.go("app", "mobile", "login", Parameter.creat()
                 .add("account", account)
                 .add("password", password)
                 .add("orgId", orgId)
@@ -81,16 +76,15 @@ public class Me2UserBase extends User {
                 .add("proType", "ykdebug")
                 .add("longitude", "")
                 .add("latitude", "")
-                .getMap()));
+                .getObjectMap()).json();
     }
 
     @Step("用户登陆(手机/邮箱/用户名) web")
-//    @Attachment("return")
     public JSONObject webLogin() {
-        return Requests.getJson(usrInterface.login(Parameter.creat()
+        return Request.go("web", "usr", "login", Parameter.creat()
                 .add("userName", account)
                 .add("password", password)
-                .getMap()));
+                .getObjectMap()).json();
     }
 
     public JSONObject orgLogin(String orgId) {

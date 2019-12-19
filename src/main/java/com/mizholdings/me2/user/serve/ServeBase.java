@@ -1,56 +1,99 @@
 package com.mizholdings.me2.user.serve;
 
+import cn.hutool.cache.Cache;
+import cn.hutool.cache.CacheUtil;
+import cn.hutool.cache.impl.CacheObj;
+import cn.hutool.core.lang.func.Func0;
+import com.mizholdings.me2.GlobalMe2;
 import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.User;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class ServeBase {
     protected User user;
+    private static final String DEFINE_AGENT_PACKAGE = GlobalMe2.getProperties("define.agent.package");
+    private final String package_path;
+    private final Cache<String, Object> map = CacheUtil.newLFUCache(8);
 
     public ServeBase(User user) {
         this.user = user;
+        String[] strings = getClass().getName().split("\\.");
+        package_path = DEFINE_AGENT_PACKAGE + "." + strings[strings.length - 1].toLowerCase();
     }
 
     protected Object getAgent(String agentName) {
+        if (map.containsKey(agentName)) {
+            return map.get(agentName);
+        }
+
         try {
-            Field field = getField(this.getClass(), agentName);
-            field.setAccessible(true);
-            Object value = field.get(this);
-            if (value == null) {
-//                Constructor constructor = field.getType().getDeclaredConstructor(User.class);
-                Constructor constructor = field.getType().getDeclaredConstructor(User.class);
-                value = constructor.newInstance(user);
-                field.set(this, value);
-            }
+            Class cl = Class.forName(package_path + "." + firstWordToUpperCase(agentName));
+            Constructor constructor = cl.getDeclaredConstructor(User.class);
+            Object value = constructor.newInstance(user);
+            map.put(agentName, value);
             return value;
+        } catch (ClassNotFoundException | NoSuchMethodException e) {
+            e.printStackTrace();
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
             e.printStackTrace();
-        } catch (NoSuchFieldException e) {
+        } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
 
-        return null;
+        throw new RuntimeException(package_path + "." + agentName + "未找到");
     }
 
-    private Field getField(Class cls, String fieldName) throws NoSuchFieldException {
-        try {
-            return cls.getDeclaredField(fieldName);
-        } catch (NoSuchFieldException e) {
-            if (cls.getSuperclass() != null) {
-                return getField(cls.getSuperclass(), fieldName);
-            }
-            throw e;
-        }
+
+    private static String firstWordToUpperCase(String str) {
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
+
+//
+//    protected Object getAgent(String agentName) {
+//        try {
+//            Field field = getField(this.getClass(), agentName);
+//            field.setAccessible(true);
+//            Object value = field.get(this);
+//            if (value == null) {
+////                Constructor constructor = field.getType().getDeclaredConstructor(User.class);
+//                Constructor constructor = field.getType().getDeclaredConstructor(User.class);
+//                value = constructor.newInstance(user);
+//                field.set(this, value);
+//            }
+//            return value;
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        } catch (InstantiationException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//    }
+//
+//    private Field getField(Class cls, String fieldName) throws NoSuchFieldException {
+//        try {
+//            return cls.getDeclaredField(fieldName);
+//        } catch (NoSuchFieldException e) {
+//            if (cls.getSuperclass() != null) {
+//                return getField(cls.getSuperclass(), fieldName);
+//            }
+//            throw e;
+//        }
+//    }
 
     public enum GRADEID {
         ONE("1", "一年级"),

@@ -1,64 +1,164 @@
 package com.mizholdings.me2.user.serve;
 
 import com.mizholdings.me2.agent.web.*;
-import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.User;
 
-public class Web extends ServeBase {
+import java.util.HashMap;
+import java.util.Map;
 
-    private WebUsrAgent webUsrAgent;
-    private WebCourseAgent webCourseAgent;
-    private LessonAgent lessonAgent;
-    private OrgInfoAgent orgInfoAgent;
-    private Me2tikuAgent me2tikuAgent;
-    private ClassroomAgent classroomAgent;
-    private ItemAgent itemAgent;
-    private ChanGroupAgent chanGroupAgent;
-    private ChanAgent chanAgent;
-    private CreditAgent creditAgent;
+public class Web extends ServeBase {
 
     public Web(User user) {
         super(user);
     }
 
-    public WebUsrAgent webUsrAgent() {
-        return (WebUsrAgent) getAgent("webUsrAgent");
-    }
+//    public UsrAgent webUsrAgent() {
+//        return (UsrAgent) getAgent("webUsrAgent");
+//    }
+//
+//    public CourseTypeAgent courseTypeAgent() {
+//        return (CourseTypeAgent) getAgent("courseTypeAgent");
+//    }
+//
+//    public WebCourseAgent webCourseAgent() {
+//        return (WebCourseAgent) getAgent("webCourseAgent");
+//    }
+//
+//    public LessonAgent lessonAgent() {
+//        return (LessonAgent) getAgent("lessonAgent");
+//    }
+//
+//    public OrgInfoAgent orgInfoAgent() {
+//        return (OrgInfoAgent) getAgent("orgInfoAgent");
+//    }
+//
+//    public Me2tikuAgent me2tikuAgent() {
+//        return (Me2tikuAgent) getAgent("me2tikuAgent");
+//    }
 
-    public WebCourseAgent webCourseAgent() {
-        return (WebCourseAgent) getAgent("webCourseAgent");
-    }
+//    public ClassroomAgent classroomAgent() {
+//        return (ClassroomAgent) getAgent("classroomAgent");
+//    }
+//
+//    public ItemAgent itemAgent() {
+//        return (ItemAgent) getAgent("itemAgent");
+//    }
+//
+//    public ChanGroupAgent chanGroupAgent() {
+//        return (ChanGroupAgent) getAgent("chanGroupAgent");
+//    }
+//
+//    public ChanAgent chanAgent() {
+//        return (ChanAgent) getAgent("chanAgent");
+//    }
+//
+//    public CreditAgent creditAgent() {
+//        return (CreditAgent) getAgent("creditAgent");
+//    }
 
-    public LessonAgent lessonAgent() {
-        return (LessonAgent) getAgent("lessonAgent");
-    }
 
-    public OrgInfoAgent orgInfoAgent() {
-        return (OrgInfoAgent) getAgent("orgInfoAgent");
-    }
-
-    public Me2tikuAgent me2tikuAgent() {
-        return (Me2tikuAgent) getAgent("me2tikuAgent");
-    }
-
-    public ClassroomAgent classroomAgent() {
-        return (ClassroomAgent) getAgent("classroomAgent");
+    public ShoppingAgent shoppingAgent() {
+        return (ShoppingAgent) getAgent("shoppingAgent");
     }
 
     public ItemAgent itemAgent() {
         return (ItemAgent) getAgent("itemAgent");
     }
 
-    public ChanGroupAgent chanGroupAgent() {
-        return (ChanGroupAgent) getAgent("chanGroupAgent");
+    public TtiaoAgent ttiaoAgent() {
+        return (TtiaoAgent) getAgent("ttiaoAgent");
     }
 
-    public ChanAgent chanAgent() {
-        return (ChanAgent) getAgent("chanAgent");
+    public HlpAgent hlpAgent() {
+        return (HlpAgent) getAgent("hlpAgent");
+    }
+
+    public PayAgent payAgent() {
+        return (PayAgent) getAgent("payAgent");
     }
 
     public CreditAgent creditAgent() {
         return (CreditAgent) getAgent("creditAgent");
+    }
+
+    public AgentAgent agentAgent() {
+        return (AgentAgent) getAgent("agentAgent");
+    }
+
+    public TopPageAgent topPageAgent() {
+        return (TopPageAgent) getAgent("topPageAgent");
+    }
+
+    public AdvertAgent advertAgent() {
+        return (AdvertAgent) getAgent("advertAgent");
+    }
+
+    public CoursewareAgent coursewareAgent() {
+        return (CoursewareAgent) getAgent("coursewareAgent");
+    }
+
+    public CourseAgent courseAgent() {
+        return (CourseAgent) getAgent("courseAgent");
+    }
+
+    public ShareAgent shareAgent() {
+        return (ShareAgent) getAgent("shareAgent");
+    }
+
+    public CourseTypeAgent courseTypeAgent() {
+        return (CourseTypeAgent) getAgent("courseTypeAgent");
+    }
+
+    public CompartAgent compartAgent() {
+        return (CompartAgent) getAgent("compartAgent");
+    }
+
+    public OrgInfoAgent orgInfoAgent() {
+        return (OrgInfoAgent) getAgent("orgInfoAgent");
+    }
+
+    public GradeAgent gradeAgent() {
+        return (GradeAgent) getAgent("gradeAgent");
+    }
+
+    public QiniuAgent qiniuAgent() {
+        return (QiniuAgent) getAgent("qiniuAgent");
+    }
+
+    public LessonTypeAgent lessonTypeAgent() {
+        return (LessonTypeAgent) getAgent("lessonTypeAgent");
+    }
+
+    public ClassroomAgent classroomAgent() {
+        return (ClassroomAgent) getAgent("classroomAgent");
+    }
+
+    public RefundAgent refundAgent() {
+        return (RefundAgent) getAgent("refundAgent");
+    }
+
+    public LessonAgent lessonAgent() {
+        return (LessonAgent) getAgent("lessonAgent");
+    }
+
+    public NewTagInfoAgent newTagInfoAgent() {
+        return (NewTagInfoAgent) getAgent("newTagInfoAgent");
+    }
+
+    public UsrAgent usrAgent() {
+        return (UsrAgent) getAgent("usrAgent");
+    }
+
+    public IntegAgent integAgent() {
+        return (IntegAgent) getAgent("integAgent");
+    }
+
+    public PushAgent pushAgent() {
+        return (PushAgent) getAgent("pushAgent");
+    }
+
+    public AnswerAgent answerAgent() {
+        return (AnswerAgent) getAgent("answerAgent");
     }
 
 

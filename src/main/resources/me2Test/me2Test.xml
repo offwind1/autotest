@@ -32,5 +32,18 @@
             </class>
         </classes>
     </test>
+    <test name="资源管理">
+        <classes>
+            <class name="TestCase.me2.normalTest.courseTestCase">
+            </class>
+        </classes>
+    </test>
+    <test name="答题卡测试">
+        <classes>
+            <class name="TestCase.me2.normalTest.answerTest">
+            </class>
+        </classes>
+    </test>
+
 
 </suite>

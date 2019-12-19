@@ -25,13 +25,13 @@ public class chanTestCase {
         //新建渠道
         String chnId = superAdmin.newChan();
         //渠道和群绑定
-        superAdmin.getWeb().chanAgent().banding(chnId, grpId);
+        superAdmin.getManage().chanAgent().banding(chnId, grpId);
         //删除群
-        superAdmin.getWeb().chanGroupAgent().del(grpId);
+        superAdmin.getManage().chanGroupAgent().del(grpId);
         //查看渠道信息
-        JSONObject object = superAdmin.getWeb().chanAgent().info(chnId);
+        JSONObject object = superAdmin.getManage().chanAgent().info(chnId);
         //删除渠道
-        superAdmin.getWeb().chanAgent().del(chnId);
+        superAdmin.getManage().chanAgent().del(chnId);
 
         //是否群消息还遗留着
         object = Common.filder(object.getJSONObject("data").getJSONObject("chan").getJSONArray("groupList"), grpId, "grpId");

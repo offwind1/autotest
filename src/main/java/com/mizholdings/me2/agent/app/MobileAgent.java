@@ -1,19 +1,16 @@
 package com.mizholdings.me2.agent.app;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.interfaces.api.MobileInterface;
-import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
-import org.testng.annotations.Test;
 
 public class MobileAgent extends MODBase<MobileAgent> {
 
-    public static MobileInterface mobileInterface = Requests.getService(MobileInterface.class);
+//    public static MobileInterface mobileInterface = Requests.getService(MobileInterface.class);
 
     public MobileAgent(User executor) {
         super(executor);
-        interfaced = mobileInterface;
+//        interfaced = mobileInterface;
     }
 
     /**
@@ -27,126 +24,6 @@ public class MobileAgent extends MODBase<MobileAgent> {
 
 
     /**
-     * 获取验证码(手机/邮箱)
-     *
-     * @param javaBean phoneCode
-     * @return
-     */
-    public JSONObject phoneCode(PLJavaBean javaBean) {
-        return exec("phoneCode", javaBean);
-    }
-
-    /**
-     * 用户登陆(手机/邮箱/用户名)
-     *
-     * @param javaBean login
-     * @return
-     */
-    public JSONObject login(PLJavaBean javaBean) {
-        return exec("login", javaBean);
-    }
-
-    /**
-     * token自动登陆
-     *
-     * @param javaBean tokenLogin
-     * @return
-     */
-    public JSONObject tokenLogin(PLJavaBean javaBean) {
-        return exec("tokenLogin", javaBean);
-    }
-
-    /**
-     * 用户退出
-     *
-     * @param javaBean loginOut
-     * @return
-     */
-    public JSONObject loginOut(PLJavaBean javaBean) {
-        return exec("loginOut", javaBean);
-    }
-
-    /**
-     * 用户注册(手机号/账号/邮箱)
-     *
-     * @param javaBean userRegister
-     * @return
-     */
-    public JSONObject userRegister(PLJavaBean javaBean) {
-        return exec("userRegister", javaBean);
-    }
-
-    /**
-     * 忘记密码
-     *
-     * @param javaBean findPassword
-     * @return
-     */
-    public JSONObject findPassword(PLJavaBean javaBean) {
-        return exec("findPassword", javaBean);
-    }
-
-    /**
-     * 修改手机号或者邮箱
-     *
-     * @param javaBean updateContact
-     * @return
-     */
-    public JSONObject updateContact(PLJavaBean javaBean) {
-        return exec("updateContact", javaBean);
-    }
-
-    /**
-     * 修改用户信息
-     *
-     * @param javaBean updateUserInfo
-     * @return
-     */
-    public JSONObject updateUserInfo(PLJavaBean javaBean) {
-        return exec("updateUserInfo", javaBean);
-    }
-
-    /**
-     * 根据用户CODE，获得云信ID
-     *
-     * @param javaBean userByCode
-     * @return
-     */
-    public JSONObject userByCode(PLJavaBean javaBean) {
-        return exec("userByCode", javaBean);
-    }
-
-    /**
-     * 根据ID获得用户信息
-     *
-     * @param javaBean userInfoById
-     * @return
-     */
-    public JSONObject userInfoById(PLJavaBean javaBean) {
-        return exec("userInfoById", javaBean);
-    }
-
-    /**
-     * 收藏用户
-     *
-     * @param javaBean keepUser
-     * @return
-     */
-    public JSONObject keepUser(PLJavaBean javaBean) {
-        return exec("keepUser", javaBean);
-    }
-
-    /**
-     * 取消收藏
-     *
-     * @param javaBean rmkeepUser
-     * @return
-     */
-    public JSONObject rmkeepUser(PLJavaBean javaBean) {
-        return exec("rmkeepUser", javaBean);
-    }
-
-    /**
      * 机构用户管理的教师列表
      *
      * @param userId 机构id
@@ -155,46 +32,6 @@ public class MobileAgent extends MODBase<MobileAgent> {
     public JSONObject orgUserList(String userId) {
         return exec("orgUserList", Parameter.creat()
                 .add("userId", userId));
-    }
-
-    /**
-     * 用户修改密码
-     *
-     * @param javaBean updatePassword
-     * @return
-     */
-    public JSONObject updatePassword(PLJavaBean javaBean) {
-        return exec("updatePassword", javaBean);
-    }
-
-    /**
-     * 用户绑定手机(验证码类型为4)
-     *
-     * @param javaBean bingPhone
-     * @return
-     */
-    public JSONObject bingPhone(PLJavaBean javaBean) {
-        return exec("bingPhone", javaBean);
-    }
-
-    /**
-     * 第三方登陆
-     *
-     * @param javaBean otherLogin
-     * @return
-     */
-    public JSONObject otherLogin(PLJavaBean javaBean) {
-        return exec("otherLogin", javaBean);
-    }
-
-    /**
-     * APP扫码，登录页面端
-     *
-     * @param javaBean login2
-     * @return
-     */
-    public JSONObject login2(PLJavaBean javaBean) {
-        return exec("login2", javaBean);
     }
 
     /**
@@ -210,55 +47,245 @@ public class MobileAgent extends MODBase<MobileAgent> {
                 .add("page", "1"));
     }
 
+
+    /**
+     * 获取验证码(手机/邮箱)
+     *
+     * @return json
+     */
+    @Step("获取验证码(手机/邮箱)")
+    public JSONObject phoneCode(Parameter parameter) {
+        return exec("phoneCode", parameter);
+    }
+
+    /**
+     * 用户登陆(手机/邮箱/用户名)
+     *
+     * @return json
+     */
+    @Step("用户登陆(手机/邮箱/用户名)")
+    public JSONObject login(Parameter parameter) {
+        return exec("login", parameter);
+    }
+
+    /**
+     * token自动登陆
+     *
+     * @return json
+     */
+    @Step("token自动登陆")
+    public JSONObject tokenLogin(Parameter parameter) {
+        return exec("tokenLogin", parameter);
+    }
+
+    /**
+     * 用户退出
+     *
+     * @return json
+     */
+    @Step("用户退出")
+    public JSONObject loginOut(Parameter parameter) {
+        return exec("loginOut", parameter);
+    }
+
+    /**
+     * 获取用户信息
+     *
+     * @return json
+     */
+    @Step("获取用户信息")
+    public JSONObject userInfo(Parameter parameter) {
+        return exec("userInfo", parameter);
+    }
+
+    /**
+     * 用户注册(手机号/账号/邮箱)
+     *
+     * @return json
+     */
+    @Step("用户注册(手机号/账号/邮箱)")
+    public JSONObject userRegister(Parameter parameter) {
+        return exec("userRegister", parameter);
+    }
+
+    /**
+     * 忘记密码
+     *
+     * @return json
+     */
+    @Step("忘记密码")
+    public JSONObject findPassword(Parameter parameter) {
+        return exec("findPassword", parameter);
+    }
+
+    /**
+     * 修改手机号或者邮箱
+     *
+     * @return json
+     */
+    @Step("修改手机号或者邮箱")
+    public JSONObject updateContact(Parameter parameter) {
+        return exec("updateContact", parameter);
+    }
+
+    /**
+     * 修改用户信息
+     *
+     * @return json
+     */
+    @Step("修改用户信息")
+    public JSONObject updateUserInfo(Parameter parameter) {
+        return exec("updateUserInfo", parameter);
+    }
+
+    /**
+     * 根据用户CODE，获得云信ID
+     *
+     * @return json
+     */
+    @Step("根据用户CODE，获得云信ID")
+    public JSONObject userByCode(Parameter parameter) {
+        return exec("userByCode", parameter);
+    }
+
+    /**
+     * 根据ID获得用户信息
+     *
+     * @return json
+     */
+    @Step("根据ID获得用户信息")
+    public JSONObject userInfoById(Parameter parameter) {
+        return exec("userInfoById", parameter);
+    }
+
+    /**
+     * 收藏用户
+     *
+     * @return json
+     */
+    @Step("收藏用户")
+    public JSONObject keepUser(Parameter parameter) {
+        return exec("keepUser", parameter);
+    }
+
+    /**
+     * 取消收藏
+     *
+     * @return json
+     */
+    @Step("取消收藏")
+    public JSONObject rmkeepUser(Parameter parameter) {
+        return exec("rmkeepUser", parameter);
+    }
+
+    /**
+     * 机构用户管理的教师列表
+     *
+     * @return json
+     */
+    @Step("机构用户管理的教师列表")
+    public JSONObject orgUserList(Parameter parameter) {
+        return exec("orgUserList", parameter);
+    }
+
+    /**
+     * 用户修改密码
+     *
+     * @return json
+     */
+    @Step("用户修改密码")
+    public JSONObject updatePassword(Parameter parameter) {
+        return exec("updatePassword", parameter);
+    }
+
+    /**
+     * 用户绑定手机(验证码类型为4)
+     *
+     * @return json
+     */
+    @Step("用户绑定手机(验证码类型为4)")
+    public JSONObject bingPhone(Parameter parameter) {
+        return exec("bingPhone", parameter);
+    }
+
+    /**
+     * 第三方登陆
+     *
+     * @return json
+     */
+    @Step("第三方登陆")
+    public JSONObject otherLogin(Parameter parameter) {
+        return exec("otherLogin", parameter);
+    }
+
+    /**
+     * APP扫码，登录页面端
+     *
+     * @return json
+     */
+    @Step("APP扫码，登录页面端")
+    public JSONObject login2(Parameter parameter) {
+        return exec("login2", parameter);
+    }
+
+    /**
+     * 机构用户/教师的课件(微课)
+     *
+     * @return json
+     */
+    @Step("机构用户/教师的课件(微课)")
+    public JSONObject orgCourseList(Parameter parameter) {
+        return exec("orgCourseList", parameter);
+    }
+
     /**
      * 扫码登陆web接口
      *
-     * @param javaBean scanLogin
-     * @return
+     * @return json
      */
-    public JSONObject scanLogin(PLJavaBean javaBean) {
-        return exec("scanLogin", javaBean);
+    @Step("扫码登陆web接口")
+    public JSONObject scanLogin(Parameter parameter) {
+        return exec("scanLogin", parameter);
     }
 
     /**
      * 分享页面注册
      *
-     * @param javaBean shareUserRegister
-     * @return
+     * @return json
      */
-    public JSONObject shareUserRegister(PLJavaBean javaBean) {
-        return exec("shareUserRegister", javaBean);
+    @Step("分享页面注册")
+    public JSONObject shareUserRegister(Parameter parameter) {
+        return exec("shareUserRegister", parameter);
     }
 
     /**
      * 根据手机获取用户信息
      *
-     * @param javaBean getUserInfoByPhone
-     * @return
+     * @return json
      */
-    public JSONObject getUserInfoByPhone(PLJavaBean javaBean) {
-        return exec("getUserInfoByPhone", javaBean);
+    @Step("根据手机获取用户信息")
+    public JSONObject getUserInfoByPhone(Parameter parameter) {
+        return exec("getUserInfoByPhone", parameter);
     }
 
     /**
      * 增加用户的米猪时光
      *
-     * @param javaBean getMizhuTime
-     * @return
+     * @return json
      */
-    public JSONObject getMizhuTime(PLJavaBean javaBean) {
-        return exec("getMizhuTime", javaBean);
+    @Step("增加用户的米猪时光")
+    public JSONObject getMizhuTime(Parameter parameter) {
+        return exec("getMizhuTime", parameter);
     }
 
     /**
      * ISO系统登陆
      *
-     * @param javaBean appleLogin
-     * @return
+     * @return json
      */
-    public JSONObject appleLogin(PLJavaBean javaBean) {
-        return exec("appleLogin", javaBean);
+    @Step("ISO系统登陆")
+    public JSONObject appleLogin(Parameter parameter) {
+        return exec("appleLogin", parameter);
     }
-
 
 }

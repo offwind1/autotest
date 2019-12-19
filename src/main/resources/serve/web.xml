@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<main host="https://api.mizholdings.com/t/mizhu/web">
+    <interfaces name="　购物车" value="shopping">
+        <interface method="POST" name="商品加入购物车" url="/shopping/add" value="add"/>
+        <interface method="POST" name="查询购物车列表" url="/shopping/list" value="list"/>
+        <interface method="POST" name="删除商品" url="/shopping/delete" value="delete"/>
+        <interface method="POST" name="清空购物车" url="/shopping/deleteAll" value="deleteAll"/>
+    </interfaces>
+    <interfaces name="　收款项目" value="item">
+        <interface method="POST" name="查询收费列表" url="/item/list" value="list"/>
+        <interface method="POST" name="添加收款项目" url="/item/add" value="add"/>
+        <interface method="POST" name="修改收款项目" url="/item/update" value="update"/>
+        <interface method="POST" name="查询收款项目信息" url="/item/getById" value="getById"/>
+        <interface method="POST" name="删除收款项目" url="/item/delete" value="delete"/>
+    </interfaces>
+    <!--    <interfaces name="　知识点" value="lesson">-->
+    <!--    </interfaces>-->
+    <interfaces name="　头条广告" value="ttiao">
+        <interface method="POST" name="获取课程价格" url="/ttiao/getLesson" value="getLesson"/>
+        <interface method="POST" name="开始报名" url="/ttiao/enroll" value="enroll"/>
+        <interface method="POST" name="查询订单支付状态" url="/ttiao/orderStatus" value="orderStatus"/>
+    </interfaces>
+    <interfaces name="　电子答题卡" value="answer">
+        <interface method="POST" name="创建答题卡" url="/answer/addAnswerCard" value="addAnswerCard"/>
+        <interface method="POST" name="删除答题卡" url="/answer/deleteAnswerCard" value="deleteAnswerCard"/>
+        <interface method="POST" name="查看答题卡" url="/answer/getAnswerCard" value="getAnswerCard"/>
+        <interface method="POST" name="修改答题卡" url="/answer/updateAnswerCard" value="updateAnswerCard"/>
+    </interfaces>
+    <interfaces name="　好友助力活动" value="hlp">
+        <interface method="POST" name="根据ID获取好友助力列表（最近的前10个）" url="/hlp/getHlpList" value="getHlpList"/>
+        <interface method="POST" name=" 根据code判断是否老用户，老用户则返回用户信息，新用户则不返回" url="/hlp/getWxUserInfo"
+                   value="getWxUserInfo"/>
+        <interface method="POST" name="老用户绑定微信账号（暂时不用）" url="/hlp/bangdingWX" value="bangdingWX"/>
+        <interface method="POST" name="参加助力" url="/hlp/joinHelp" value="joinHelp"/>
+        <interface method="POST" name="助力榜单" url="/hlp/getTopList" value="getTopList"/>
+        <interface method="POST" name="获取WX签名字段" url="/hlp/getWxsign" value="getWxsign"/>
+        <interface method="POST" name="领取助力积分活动" url="//hlp/helperReward" value="helperReward"/>
+    </interfaces>
+    <interfaces name="　支付管理" value="pay">
+        <interface method="POST" name="网页JSAPI支付" url="/pay/buyLessonUseJSAPI" value="buyLessonUseJSAPI"/>
+        <interface method="POST" name="获取网页微信用户信息" url="/pay/webWxGetUserInfo" value="webWxGetUserInfo"/>
+        <interface method="POST" name="微信H5充值" url="/pay/wxpayH5" value="wxpayH5"/>
+    </interfaces>
+    <interfaces name="　学分管理" value="credit">
+        <interface method="POST" name="添加学分信息" url="/credit/addCreditInfo" value="addCreditInfo"/>
+        <interface method="POST" name="根据用户查询学分" url="/credit/creditList" value="creditList"/>
+        <interface method="POST" name="用户积分记录" url="/credit/userCredit" value="userCredit"/>
+        <interface method="POST" name="获取用户学分信息" url="/credit/getCreditByUserId" value="getCreditByUserId"/>
+        <interface method="POST" name="修改学分信息" url="/credit/editCreditInfo" value="editCreditInfo"/>
+        <interface method="POST" name="修改积分" url="/credit/editUserCredit" value="editUserCredit"/>
+        <interface method="POST" name="查询课程列表" url="/credit/creditLessonList" value="creditLessonList"/>
+        <interface method="POST" name="学分资源列表" url="/credit/creditCourseList" value="creditCourseList"/>
+    </interfaces>
+    <interfaces name="　代理商管理" value="agent">
+        <interface method="POST" name="代理商充值查询" url="/agent/recordList" value="recordList"/>
+        <interface method="POST" name="查询代理商信息" url="/agent/getAgentInfoById" value="getAgentInfoById"/>
+        <interface method="POST" name="根据账号查询代理商下的用户" url="/agent/getAgentUserByaAccount"
+                   value="getAgentUserByaAccount"/>
+        <interface method="POST" name="代理商给用户充值" url="/agent/rechargeToUser" value="rechargeToUser"/>
+        <interface method="POST" name="获取ping++支付凭证" url="/pay/getPingxx" value="getPingxx"/>
+        <interface method="POST" name="轮训检查充值结果" url="/pay/getRechargeResult" value="getRechargeResult"/>
+        <interface method="POST" name="修改代理商信息" url="/agent/edit" value="edit"/>
+        <interface method="POST" name="检验代理商原密码是否正确" url="/agent/checkPassword" value="checkPassword"/>
+        <interface method="POST" name="代理商管理" url="/agent/agentList" value="agentList"/>
+        <interface method="POST" name="新增代理商" url="/agent/addAgentUser" value="addAgentUser"/>
+        <interface method="POST" name="检验代理商信息重复" url="/agent/checkAgent" value="checkAgent"/>
+        <interface method="POST" name="根据代理商id获取代理商信息" url="/agent/getAgentUserById" value="getAgentUserById"/>
+        <interface method="POST" name="修改代理商密码" url="/agent/changePassword" value="changePassword"/>
+        <interface method="POST" name="查看代理商下的用户" url="/agent/agentUserList" value="agentUserList"/>
+        <interface method="POST" name="删除代理商" url="/agent/deleteAgentUser" value="deleteAgentUser"/>
+        <interface method="POST" name="修改代理商账户" url="/agent/editAgentBank" value="editAgentBank"/>
+        <interface method="POST" name="修改代理商账户" url="/agent/editAgentBank" value="editAgentBank"/>
+        <interface method="POST" name="代理商提现" url="/agent/agentDrawcash" value="agentDrawcash"/>
+        <interface method="POST" name="获取代理商折扣区间" url="/agent/getAgentDiscountById" value="getAgentDiscountById"/>
+    </interfaces>
+    <interfaces name="　推荐管理" value="topPage">
+        <interface method="POST" name="推荐内容" url="/topPage/recommend" value="recommend"/>
+        <interface method="POST" name="推荐列表" url="/topPage/topPageList" value="topPageList"/>
+        <interface method="POST" name="修改推荐项" url="/topPage/edit" value="edit"/>
+        <interface method="POST" name="撤销推荐" url="/topPage/delTopPage" value="delTopPage"/>
+    </interfaces>
+    <interfaces name="　广告管理" value="advert">
+        <interface method="POST" name="广告列表" url="/advert/list" value="list"/>
+        <interface method="POST" name="添加广告" url="/advert/add" value="add"/>
+        <interface method="POST" name="根据ID拿到广告详情" url="/advert/getAdvertById" value="getAdvertById"/>
+        <interface method="POST" name="广告编辑" url="/advert/edit" value="edit"/>
+        <interface method="POST" name="删除广告" url="/advert/del" value="del"/>
+    </interfaces>
+    <interfaces name="　课件管理" value="courseware">
+        <interface method="POST" name="转让课件" url="/courseware/transferCourseware" value="transferCourseware"/>
+    </interfaces>
+    <interfaces name="　资源管理" value="course">
+        <interface method="POST" name="下架资源" url="/course/shutdownCourse" value="shutdownCourse"/>
+        <interface method="POST" name="资源库列表" url="/course/list" value="list"/>
+        <interface method="POST" name="初始化新增资源" url="/course/initCourse" value="initCourse"/>
+        <interface method="POST" name="根据ID，获得资源详情" url="/course/getCourseById" value="getCourseById"/>
+        <interface method="POST" name="根据ID获得资源子集" url="/course/getChildListById" value="getChildListById"/>
+        <interface method="POST" name="设置资源信息" url="/course/editCourseware" value="editCourseware"/>
+        <interface method="POST" name="删除子资源中一个" url="/course/delChild" value="delChild"/>
+        <interface method="POST" name="自己创建的资源列表" url="/course/mylist" value="mylist"/>
+        <interface method="POST" name="用户购买资源列表" url="/course/buylist" value="buylist"/>
+        <interface method="POST" name="添加资源_新增添加" url="/course/addNewCourse" value="addNewCourse"/>
+        <interface method="POST" name="添加资源_从资源库选择添加" url="/course/addOldCourse" value="addOldCourse"/>
+        <interface method="POST" name="根据ID获取详情，自己创建的资源（有已审批的、未审批的）" url="/course/getMyCosById" value="getMyCosById"/>
+        <interface method="POST" name="根据ID获得资源子集,自己创建的资源（有已审批的、未审批的）" url="/course/getMyChildListById"
+                   value="getMyChildListById"/>
+        <interface method="POST" name="根据ID获取详情，已购买的" url="/course/getBuyCosById" value="getBuyCosById"/>
+        <interface method="POST" name="根据ID获得资源子集,已购买的" url="/course/getBuyChildListById" value="getBuyChildListById"/>
+        <interface method="POST" name="资源送审" url="/course/applyCourse" value="applyCourse"/>
+        <interface method="POST" name="审批资源列表" url="/course/applylist" value="applylist"/>
+        <interface method="POST" name="审批资源" url="/course/replyCourse" value="replyCourse"/>
+        <interface method="POST" name="删除自己的资源(必须是未送审，或者已经审批过的)" url="/course/delMyCourse" value="delMyCourse"/>
+        <interface method="POST" name="购买资源" url="/course/buyCourse" value="buyCourse"/>
+        <interface method="POST" name="向教师推荐资源" url="/course/courseForTeacher" value="courseForTeacher"/>
+        <interface method="POST" name="根据课程id查询订单" url="/course/getConsumByCourseId" value="getConsumByCourseId"/>
+        <interface method="POST" name="新增ppt" url="/course/uploadPpt" value="uploadPpt"/>
+        <interface method="POST" name="下架资源" url="/course/banCourse" value="banCourse"/>
+        <interface method="POST" name="推荐资源" url="/course/recommendCourseware" value="recommendCourseware"/>
+        <interface method="POST" name="获取资源标签" url="/web/course/getTags" value="getTags"/>
+        <interface method="POST" name="上传文件" url="/course/uploadFile" value="uploadFile"/>
+        <interface method="POST" name="资源转换状态回调地址 " url="/course/courseCallback" value="courseCallback"/>
+        <interface method="POST" name="根据ID删除子集资源" url="/course/deleteMyChildListById" value="deleteMyChildListById"/>
+    </interfaces>
+    <interfaces name="　分享相关" value="share">
+        <interface method="POST" name="分享资源" url="/share/course" value="course"/>
+        <interface method="POST" name="机构分享" url="/share/org" value="org"/>
+        <interface method="POST" name="课程分享" url="/share/lesson" value="lesson"/>
+        <interface method="POST" name="分享教师" url="/share/teacher" value="teacher"/>
+    </interfaces>
+    <interfaces name="　资源类型" value="courseType">
+        <interface method="POST" name="资源类型分类" url="/courseType/list" value="list"/>
+    </interfaces>
+    <interfaces name="　省市管理" value="compart">
+        <interface method="POST" name="省市列表" url="/compart/list" value="list"/>
+    </interfaces>
+    <interfaces name="　机构管理" value="orgInfo">
+        <interface method="POST" name="验证账号重复" url="/orgInfo/accountCheck" value="accountCheck"/>
+        <interface method="POST" name="分页列表" url="/orgInfo/list" value="list"/>
+        <interface method="POST" name="根据ID拿到机构" url="/orgInfo/getOrgById" value="getOrgById"/>
+        <interface method="POST" name="添加机构" url="/orgInfo/insert" value="insert"/>
+        <interface method="POST" name="更新机构信息" url="/orgInfo/editOrg" value="editOrg"/>
+        <interface method="POST" name="查询认证机构" url="/orgInfo/applylist" value="applylist"/>
+        <interface method="POST" name="认证机构审批" url="/orgInfo/replyOrg" value="replyOrg"/>
+        <interface method="POST" name="机构用户注册" url="/orgInfo/orgSignUp" value="orgSignUp"/>
+        <interface method="POST" name="验证机构名称重复" url="/orgInfo/orgNameCheck" value="orgNameCheck"/>
+        <interface method="POST" name="修改机构审核信息" url="/orgInfo/editOrgAuthen" value="editOrgAuthen"/>
+        <interface method="POST" name="机构添加教师" url="/orgInfo/addTeacher" value="addTeacher"/>
+        <interface method="POST" name="获取待审批机构消息列表" url="/orgInfo/orgMessageList" value="orgMessageList"/>
+        <interface method="POST" name="审批机构新闻" url="/orgInfo/replyOrgMessage" value="replyOrgMessage"/>
+        <interface method="POST" name="根据id获取机构新闻详情" url="/orgInfo/getMessageById" value="getMessageById"/>
+        <interface method="POST" name="查询机构新闻" url="/orgInfo/orgMessageList" value="orgMessageList"/>
+        <interface method="POST" name="根据id查看新闻内容" url="/orgInfo/getMessageById" value="getMessageById"/>
+        <interface method="POST" name="新增新闻" url="/orgInfo/insertMessage" value="insertMessage"/>
+        <interface method="POST" name="修改新闻" url="/orgInfo/editMessage" value="editMessage"/>
+        <interface method="POST" name="删除新闻" url="/orgInfo/delMessage" value="delMessage"/>
+        <interface method="POST" name="新闻提交审核" url="/orgInfo/applyMessage" value="applyMessage"/>
+        <interface method="POST" name="下架机构新闻" url="/" value=""/>
+        <interface method="POST" name="机构添加学生" url="/orgInfo/addStudentToOrg" value="addStudentToOrg"
+                   schema="schema/web/orgInfo/addStudentToOrg.json"/>
+        <interface method="POST" name="推荐机构" url="/orgInfo/recommendOrg" value="recommendOrg"/>
+        <interface method="POST" name="机构学生列表" url="/orgInfo/orgStudentList" value="orgStudentList"/>
+    </interfaces>
+    <interfaces name="　年级管理" value="grade">
+        <interface method="POST" name="年级列表，分页查询" url="/grade/list" value="list"/>
+        <interface method="POST" name="查询所有年级" url="/grade/allList" value="allList"/>
+        <interface method="POST" name="添加班级" url="/grade/addClass" value="addClass"/>
+        <interface method="POST" name="班级列表" url="/grade/classList" value="classList"/>
+        <interface method="POST" name="编辑班级" url="/grade/editClass" value="editClass"/>
+        <interface method="POST" name="删除班级" url="/grade/delClass" value="delClass"/>
+        <interface method="POST" name="查看班级中的学生" url="/grade/userByStuId" value="userByStuId"/>
+        <interface method="POST" name="从年级中删除学生" url="/grade/delStudent" value="delStudent"/>
+    </interfaces>
+    <interfaces name="　七牛云" value="qiniu">
+        <interface method="POST" name="获得uptoken" url="/qiniu/getUptoken" value="getUptoken"/>
+        <interface method="POST" name="添加课堂视频转码" url="/qiniu/addClassVideoTranscoding"
+                   value="addClassVideoTranscoding"/>
+        <interface method="POST" name="添加课件资源转码" url="/qiniu/addCoursewareTranscoding"
+                   value="addCoursewareTranscoding"/>
+    </interfaces>
+    <interfaces name="　学科分类" value="lessonType">
+        <interface method="POST" name="查询学科分类" url="/lessonType/list" value="list"/>
+    </interfaces>
+    <interfaces name="　课节管理" value="classroom">
+        <interface method="POST" name="课节绑定知识点" url="/classroom/bangdingKnowledge" value="bangdingKnowledge"/>
+        <interface method="POST" name="根据课程ID，查询课节信息" url="/classroom/listByLessonId" value="listByLessonId"/>
+        <interface method="POST" name="新增课节" url="/classroom/add" value="add"/>
+        <interface method="POST" name="根据课节ID，获得课节信息" url="/classroom/getClassroomById" value="getClassroomById"/>
+        <interface method="POST" name="编辑课节" url="/classroom/edit" value="edit"/>
+        <interface method="POST" name="申请发布" url="/classroom/apply" value="apply"/>
+        <interface method="POST" name="审批发布的申请" url="/classroom/reply" value="reply"/>
+        <interface method="POST" name="根据课节ID删除记录" url="/classroom/delClassroomById" value="delClassroomById"/>
+        <interface method="POST" name="课节申请列表" url="/classroom/applylist" value="applylist"/>
+        <interface method="POST" name="直播课管理" url="/classroom/onlineList" value="onlineList"/>
+        <interface method="POST" name="查看课堂附件" url="/classroom/classroomOptions" value="classroomOptions"/>
+        <interface method="POST" name="新增课堂视频" url="/classroom/addClassVideo" value="addClassVideo"/>
+        <interface method="POST" name="修改课堂视频" url="/classroom/editClassVideo" value="editClassVideo"/>
+        <interface method="POST" name="删除课堂视频" url="/classroom/deleteClassVideo" value="deleteClassVideo"/>
+        <interface method="POST" name="直播课管理（V2）" url="/classroom/onlineListV2" value="onlineListV2"/>
+    </interfaces>
+    <interfaces name="　退款" value="refund">
+        <interface method="POST" name="退课记录" url="/refund/refundList" value="refundList"/>
+        <interface method="POST" name="退课老师审批" url="/refund/teacherApply" value="teacherApply"/>
+        <interface method="POST" name="退款流程查询" url="/refund/refundInfo" value="refundInfo"/>
+        <interface method="POST" name="退款金额查询" url="/refund/refundMoney" value="refundMoney"/>
+        <interface method="POST" name="老师主动退款" url="/refund/teahcerDelStu" value="teahcerDelStu"/>
+    </interfaces>
+    <interfaces name="　课程管理" value="lesson">
+        <interface method="POST" name="课程绑定知识点" url="/lesson/bangdingKnowledge" value="bangdingKnowledge"/>
+        <interface method="POST" name="课程分页列表" url="/lesson/list" value="list"/>
+        <interface method="POST" name="课程新增" url="/lesson/add" value="add"/>
+        <interface method="POST" name="根据ID获得课程信息" url="/lesson/getLessonInfoById" value="getLessonInfoById"/>
+        <interface method="POST" name="根据课程ID拿到评论（一级）" url="/lesson/getLessonScoreById" value="getLessonScoreById"/>
+        <interface method="POST" name="编辑课程" url="/lesson/edit" value="edit"/>
+        <interface method="POST" name="根据课程ID，删除课程" url="/lesson/delLessonInfoById" value="delLessonInfoById"/>
+        <interface method="POST" name="老师回复评论" url="/lesson/teacherScore" value="teacherScore"/>
+        <interface method="POST" name="老师删除评论" url="/lesson/delScore" value="delScore"/>
+        <interface method="POST" name="根据课程id拿到课堂视频" url="/lesson/getVideo" value="getVideo"/>
+        <interface method="POST" name="下架课程" url="/lesson/banLesson" value="banLesson"/>
+        <interface method="POST" name="冻结课程" url="/lesson/freezeLesson" value="freezeLesson"/>
+        <interface method="POST" name="课程提交审批" url="/lesson/apply" value="apply"/>
+        <interface method="POST" name="课程评论列表" url="/lesson/scoreList" value="scoreList"/>
+        <interface method="POST" name="审核评论" url="/lesson/replyScore" value="replyScore"/>
+        <interface method="POST" name="推荐课程" url="/lesson/recommendLesson" value="recommendLesson"/>
+        <interface method="POST" name="关闭课程" url="/lesson/lessonClose" value="lessonClose"/>
+        <interface method="POST" name="老师添加学生" url="/lesson/addTeacherStudent" value="addTeacherStudent"/>
+        <interface method="POST" name="添加cc课程" url="/lesson/addCCLesson" value="addCCLesson"/>
+        <interface method="POST" name="我购买的课程" url="/lesson/myLesson" value="myLesson"/>
+        <interface method="POST" name="新增视频回放记录" url="/lesson/setVideoRecord" value="setVideoRecord"/>
+        <interface method="POST" name="根据视频id查询播放量" url="/lesson/getTotalPlays" value="getTotalPlays"/>
+        <interface method="POST" name="上传导入学生1" url="/lesson/uploadFile" value="uploadFile"/>
+        <interface method="POST" name="加入班级，根据导入文件" url="/lesson/joinClassByFile" value="joinClassByFile"/>
+        <interface method="POST" name="加入班级，根据用户ID" url="/lesson/joinClassByUserId" value="joinClassByUserId"/>
+        <interface method="POST" name="根据班级ID添加学生" url="//lesson/studentByClassId" value="studentByClassId"/>
+        <interface method="POST" name="根据账号，查询用户" url="//lesson/userListByAccount" value="userListByAccount"/>
+        <interface method="POST" name="返回课程中的班级" url="/lesson/groupByClass" value="groupByClass"/>
+    </interfaces>
+    <interfaces name="　标签管理" value="newTagInfo">
+        <interface method="POST" name="获取标签列表" url="/newTagInfo/tagList" value="tagList"/>
+        <interface method="POST" name="添加标签" url="/newTagInfo/addTag" value="addTag"/>
+        <interface method="POST" name="删除标签" url="/newTagInfo/deleteTag" value="deleteTag"/>
+        <interface method="POST" name="修改标签" url="/newTagInfo/editTag" value="editTag"/>
+    </interfaces>
+    <interfaces name="　用户管理" value="usr">
+        <interface method="POST" name="机构列表" url="/usr/orgUserList" value="orgUserList"/>
+        <interface method="POST" name="查询机构下老师信息" url="/usr/orgTeacherInfo" value="orgTeacherInfo"/>
+        <interface method="POST" name="代理商登陆" url="/usr/agentLogin" value="agentLogin"/>
+        <interface method="POST" name="根据课程Id查学生信息" url="/usr/lessonStudent" value="lessonStudent"/>
+        <interface method="POST" name="验证登陆用户密码" url="/usr/checkPassword" value="checkPassword"/>
+        <interface method="POST" name="用户登陆" url="/usr/login" value="login" schema="schema/web/usr/login.json"/>
+        <interface method="POST" name="获取登陆用户信息" url="/usr/getInfo" value="getInfo"/>
+        <interface method="POST" name="用户列表" url="/usr/list" value="list"/>
+        <interface method="POST" name="根据用户ID获得用户信息" url="/usr/getUserById" value="getUserById"/>
+        <interface method="POST" name="编辑用户信息" url="/usr/editUser" value="editUser"/>
+        <interface method="POST" name="认证审批" url="/usr/replyUser" value="replyUser"/>
+        <interface method="POST" name="查询认证的用户" url="/usr/applylist" value="applylist"/>
+        <interface method="POST" name="用户消费记录查询" url="/usr/consumList" value="consumList"/>
+        <interface method="POST" name="用户交易记录" url="/usr/transaction" value="transaction"/>
+        <interface method="POST" name="提现申请" url="/usr/drawcash" value="drawcash"/>
+        <interface method="POST" name="查询提现申请" url="/usr/applyCashList" value="applyCashList"/>
+        <interface method="POST" name="提现申请审批" url="/usr/replyCash" value="replyCash"/>
+        <interface method="POST" name="查询登陆用户信息和机构信息" url="//usr/usrOrgInfo" value="usrOrgInfo"/>
+        <interface method="POST" name="查询登录用户交易记录" url="//usr/transList" value="transList"/>
+        <interface method="POST" name="订单管理" url="/usr/consumListPage" value="consumListPage"/>
+        <interface method="POST" name="检验老师是否注册" url="/usr/checkTeacher" value="checkTeacher"/>
+        <interface method="POST" name="机构删除老师" url="/usr/orgDelTeacher" value="orgDelTeacher"/>
+        <interface method="POST" name="查询老师下的学生" url="/usr/getStuByTeacher" value="getStuByTeacher"/>
+        <interface method="POST" name="提现申请列表" url="/usr/drawcashList" value="drawcashList"/>
+        <interface method="POST" name="用户管理" url="/usr/usrManage" value="usrManage"/>
+        <interface method="POST" name="删除用户" url="/usr/delUser" value="delUser"/>
+        <interface method="POST" name="用户认证" url="/usr/authenUser" value="authenUser"/>
+        <interface method="POST" name="安全问题列表" url="/usr/safeQuestion" value="safeQuestion"/>
+        <interface method="POST" name="添加用户" url="/usr/addNewUser" value="addNewUser"/>
+        <interface method="POST" name="修改用户米猪币或米猪时光" url="/usr/changeMoney" value="changeMoney"/>
+        <interface method="POST" name="获取验证码" url="/usr/phoneCode" value="phoneCode"/>
+        <interface method="POST" name="检验验证码" url="/usr/checkPhoneCode" value="checkPhoneCode"/>
+        <interface method="POST" name="用户收支明细查询" url="/usr/incomeList" value="incomeList"/>
+        <interface method="POST" name="课程课件交易记录" url="/usr/lessonCourseList" value="lessonCourseList"/>
+        <interface method="POST" name="冻结列表" url="/usr/freezeList" value="freezeList"/>
+        <interface method="POST" name="冻结用户资金" url="/usr/freezeCoin" value="freezeCoin"/>
+        <interface method="POST" name="解冻米猪币" url="/usr/unFreezeCoin" value="unFreezeCoin"/>
+        <interface method="POST" name="管理员审批退课" url="/refund/managerApply" value="managerApply"/>
+        <interface method="POST" name="银行列表" url="/usr/bankList" value="bankList"/>
+        <interface method="POST" name="扫码登陆" url="/usr/scanLogin" value="scanLogin"/>
+        <interface method="POST" name="查看用户提现列表" url="/usr/userDrawcashList" value="userDrawcashList"/>
+        <interface method="POST" name="审批提现申请" url="/usr/drawcashReply" value="drawcashReply"/>
+        <interface method="POST" name="获取用户学分id" url="/usr/getUserCreditId" value="getUserCreditId"/>
+        <interface method="POST" name="米猪币账户管理" url="/usr/mizhuCoinBillManage" value="mizhuCoinBillManage"/>
+        <interface method="POST" name="老师查询学生" url="/usr/teacherSearchUser" value="teacherSearchUser"/>
+        <interface method="POST" name="定制机构用户登录" url="/usr/orgUserLogin" value="orgUserLogin"/>
+        <interface method="POST" name="新用户领取课程" url="/web/usr/reverseLesson" value="reverseLesson"/>
+        <interface method="POST" name="合并账号" url="/usr/accountMerge" value="accountMerge"/>
+    </interfaces>
+    <interfaces name="　积分管理" value="integ">
+        <interface method="POST" name="查询积分规则列表" url="/integ/integList" value="integList"/>
+        <interface method="POST" name="新增积分规则" url="/integ/add" value="add"/>
+        <interface method="POST" name="根据积分规则id查询积分规则信息" url="/integ/getIntegById" value="getIntegById"/>
+        <interface method="POST" name="修改积分规则" url="/integ/editIntegRule" value="editIntegRule"/>
+        <interface method="POST" name="删除积分规则" url="/integ/delIntegRule" value="delIntegRule"/>
+        <interface method="POST" name="用户积分查询" url="/integ/userIntegList" value="userIntegList"/>
+        <interface method="POST" name="修改用户积分" url="/integ/editInteg" value="editInteg"/>
+    </interfaces>
+    <interfaces name="　推送管理" value="push">
+        <interface method="POST" name="查询标签列表" url="/push/tagList" value="tagList"/>
+        <interface method="POST" name="添加标签" url="/push/addTag" value="addTag"/>
+        <interface method="POST" name="根据id查询标签详情" url="/push/getTagById" value="getTagById"/>
+        <interface method="POST" name="修改标签信息" url="/push/edit" value="edit"/>
+        <interface method="POST" name="删除标签" url="/push/deleteById" value="deleteById"/>
+        <interface method="POST" name="推送列表" url="/push/pushList" value="pushList"/>
+        <interface method="POST" name="新增推送" url="/push/addPush" value="addPush"/>
+        <interface method="POST" name="审批推送" url="/push/applyPush" value="applyPush"/>
+        <interface method="POST" name="删除推送" url="/push/deletePush" value="deletePush"/>
+        <interface method="POST" name="根据推送id获取推送信息" url="/push/getPushById" value="getPushById"/>
+        <interface method="POST" name="推送消息" url="/push/pushMessage" value="pushMessage"/>
+    </interfaces>
+    <interfaces name="　云课PC版" value="com">
+        <interface method="POST" name="云课PC版本更新接口" url="http://www.mizholdings.com/yunkepc/Version.json"
+                   value="Version.json"/>
+    </interfaces>
+</main>

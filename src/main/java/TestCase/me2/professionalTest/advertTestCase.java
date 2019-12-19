@@ -8,10 +8,15 @@ import com.mizholdings.me2.user.Me2SuperAdmin;
 import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.Common;
 import com.mizholdings.util.SampleAssert;
+import io.qameta.allure.Allure;
+import io.qameta.allure.model.Label;
+import io.qameta.allure.model.StepResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.UUID;
 
 public class advertTestCase {
 
@@ -39,7 +44,7 @@ public class advertTestCase {
     private String remark;
     private String advertId;
 
-    @Test(description = "添加机构广告， 机构用户查看", groups = {"test"})
+    @Test(description = "添加机构广告， 机构用户查看", groups = {"advertTestCase"})
     public void test() {
         String remark = Common.creatRandomString();
         superAdmin.setOrgId(jigou.getOrgId());
@@ -54,7 +59,7 @@ public class advertTestCase {
 
     }
 
-    @AfterGroups(groups = {"test"})
+    @AfterGroups(groups = {"advertTestCase"})
     public void after_test() {
         superAdmin.getManage().advertAgent().del(advertId);
     }
@@ -97,7 +102,10 @@ public class advertTestCase {
         advertId = object.getString("advertId");
         superAdmin.getManage().advertAgent().del(advertId);
         superAdmin.getManage().advertAgent().del(advertId);
-
     }
+
+
+
+
 
 }

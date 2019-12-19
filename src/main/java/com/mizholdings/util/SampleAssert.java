@@ -1,7 +1,13 @@
 package com.mizholdings.util;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.mizholdings.me2.M2TYPE;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import org.testng.Assert;
+import ru.yandex.qatools.allure.annotations.Attach;
 
 public class SampleAssert {
 
@@ -39,6 +45,16 @@ public class SampleAssert {
         }
     }
 
+    public static void assertEquals(JSONObject object, String key, String value) {
+        if (notEqual(value, object.getString(key), key)) {
+            throw new RuntimeException("json对象的" + key + "值 !=" + value);
+        }
+    }
+
+    @Step("{key}: {k}=={v}")
+    public static boolean notEqual(String k, String v, String key) {
+        return ObjectUtil.notEqual(k, v);
+    }
 
     public static void assertEquals(String string, JSONObject object) {
         assert string.equals(object.getString("msg")) : string + "==" + object.getString("msg");

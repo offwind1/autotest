@@ -2,17 +2,14 @@ package com.mizholdings.me2.agent.web;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.GlobalMe2;
-import com.mizholdings.me2.interfaces.AdvertInterface;
-import com.mizholdings.me2.interfaces.mizhumanage.ChanadvInterface;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
-public class AdvertAgent extends MODBase<ChanAdvAgent> {
-    public static AdvertInterface advertInterface = Requests.getService(AdvertInterface.class);
-
+public class AdvertAgent extends MODBase<AdvertAgent> {
+//    public static AdvertInterface advertInterface = Requests.getService(AdvertInterface.class);
     public AdvertAgent(User executor) {
         super(executor);
-        interfaced = advertInterface;
+//        interfaced = advertInterface;
     }
 
     /**
@@ -124,6 +121,57 @@ public class AdvertAgent extends MODBase<ChanAdvAgent> {
     @Step("删除广告advert/del")
     public JSONObject del(String advertId) {
         return exec("del", Parameter.creat().add("advertId", advertId));
+    }
+
+
+    /**
+     * 广告列表
+     *
+     * @return json
+     */
+    @Step("广告列表")
+    public JSONObject list(Parameter parameter) {
+        return exec("list", parameter);
+    }
+
+    /**
+     * 添加广告
+     *
+     * @return json
+     */
+    @Step("添加广告")
+    public JSONObject add(Parameter parameter) {
+        return exec("add", parameter);
+    }
+
+    /**
+     * 根据ID拿到广告详情
+     *
+     * @return json
+     */
+    @Step("根据ID拿到广告详情")
+    public JSONObject getAdvertById(Parameter parameter) {
+        return exec("getAdvertById", parameter);
+    }
+
+    /**
+     * 广告编辑
+     *
+     * @return json
+     */
+    @Step("广告编辑")
+    public JSONObject edit(Parameter parameter) {
+        return exec("edit", parameter);
+    }
+
+    /**
+     * 删除广告
+     *
+     * @return json
+     */
+    @Step("删除广告")
+    public JSONObject del(Parameter parameter) {
+        return exec("del", parameter);
     }
 
 

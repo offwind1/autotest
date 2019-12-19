@@ -1,28 +1,14 @@
 package com.mizholdings.me2.agent.app;
 
+import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.user.Me2UserBase;
-import com.mizholdings.me2.interfaces.api.ClassChartInterface;
+import com.mizholdings.me2.M2TYPE;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
 public class ClassChartAgent extends MODBase<ClassChartAgent> {
-    public static ClassChartInterface classChartInterface = Requests.getService(ClassChartInterface.class);
-
     public ClassChartAgent(User executor) {
         super(executor);
-        interfaced = classChartInterface;
-    }
-
-
-    /**
-     * 课堂互动列表
-     *
-     * @param javaBean interact
-     * @return
-     */
-    public JSONObject interact(PLJavaBean javaBean) {
-        return exec("interact", javaBean);
     }
 
     /**
@@ -38,164 +24,297 @@ public class ClassChartAgent extends MODBase<ClassChartAgent> {
     }
 
     /**
-     * 作业统计
+     * 回放记录-班级（总表）
      *
-     * @param javaBean homework
      * @return
      */
-    public JSONObject homework(PLJavaBean javaBean) {
-        return exec("homework", javaBean);
+    @Step("回放记录-班级（总表）")
+    public JSONObject getVideoList(String stuId, String startTime, String endTime) {
+        return exec("getVideoList", Parameter.creat()
+                .add("stuId", stuId)
+                .add("startTime", startTime)
+                .add("endTime", endTime));
+    }
+
+    /**
+     * 回放记录-班级（总表） 搜索内容默认当天
+     *
+     * @param stuId 班级id
+     * @return
+     */
+    @Step("回放记录-班级（总表） 搜索内容默认当天")
+    public JSONObject getVideoList(String stuId) {
+        return getVideoList(stuId, DateUtil.today(), DateUtil.today());
+    }
+
+
+    /**
+     * 回放记录-班级（详情表）
+     *
+     * @return
+     */
+    @Step("回放记录-班级（详情表）")
+    public JSONObject getVideoListClass(String lessonId, String stuId) {
+        return exec("getVideoListClass", Parameter.creat()
+                .add("lessonId", lessonId)
+                .add("stuId", stuId)
+        );
+    }
+
+
+    /**
+     * 回放记录-学科（详情表）
+     *
+     * @param lessonId       班级Id
+     * @param stuId          班级id
+     * @param lesson_type_id 课程ID
+     * @return
+     */
+    @Step("回放记录-学科（详情表）")
+    public JSONObject getVideoLesTypeClass(String lessonId, String stuId, M2TYPE.LESSON_TYPE_ID lesson_type_id,
+                                           String startTime, String endTime) {
+        return exec("getVideoLesTypeClass", Parameter.creat()
+                .add("lessonId", lessonId)
+                .add("stuId", stuId)
+                .add("lessonTypeId", lesson_type_id.value)
+                .add("startTime", startTime)
+                .add("endTime", endTime)
+        );
+    }
+
+    public JSONObject getVideoLesTypeClass(String lessonId, String stuId, M2TYPE.LESSON_TYPE_ID lesson_type_id) {
+        return getVideoLesTypeClass(lessonId, stuId, lesson_type_id, DateUtil.today(), DateUtil.today());
+    }
+
+
+    /**
+     * 课堂互动列表
+     *
+     * @return json
+     */
+    @Step("课堂互动列表")
+    public JSONObject interact(Parameter parameter) {
+        return exec("interact", parameter);
+    }
+
+    /**
+     * 到课统计
+     *
+     * @return json
+     */
+    @Step("到课统计")
+    public JSONObject arrive(Parameter parameter) {
+        return exec("arrive", parameter);
+    }
+
+    /**
+     * 作业统计
+     *
+     * @return json
+     */
+    @Step("作业统计")
+    public JSONObject homework(Parameter parameter) {
+        return exec("homework", parameter);
     }
 
     /**
      * 答题进度
      *
-     * @param javaBean answer
-     * @return
+     * @return json
      */
-    public JSONObject answer(PLJavaBean javaBean) {
-        return exec("answer", javaBean);
+    @Step("答题进度")
+    public JSONObject answer(Parameter parameter) {
+        return exec("answer", parameter);
     }
 
     /**
      * 课堂统计导出XLS
      *
-     * @param javaBean export
-     * @return
+     * @return json
      */
-    public JSONObject export(PLJavaBean javaBean) {
-        return exec("export", javaBean);
+    @Step("课堂统计导出XLS")
+    public JSONObject export(Parameter parameter) {
+        return exec("export", parameter);
     }
 
     /**
      * 导出XLS考勤概述
      *
-     * @param javaBean summary
-     * @return
+     * @return json
      */
-    public JSONObject summary(PLJavaBean javaBean) {
-        return exec("summary", javaBean);
+    @Step("导出XLS考勤概述")
+    public JSONObject summary(Parameter parameter) {
+        return exec("summary", parameter);
     }
 
     /**
      * 根据班级导出XLS
      *
-     * @param javaBean exportByStuId
-     * @return
+     * @return json
      */
-    public JSONObject exportByStuId(PLJavaBean javaBean) {
-        return exec("exportByStuId", javaBean);
+    @Step("根据班级导出XLS")
+    public JSONObject exportByStuId(Parameter parameter) {
+        return exec("exportByStuId", parameter);
     }
 
     /**
      * 根据时间班级查询考勤信息
      *
-     * @param javaBean getAttendanceByStuId
-     * @return
+     * @return json
      */
-    public JSONObject getAttendanceByStuId(PLJavaBean javaBean) {
-        return exec("getAttendanceByStuId", javaBean);
+    @Step("根据时间班级查询考勤信息")
+    public JSONObject getAttendanceByStuId(Parameter parameter) {
+        return exec("getAttendanceByStuId", parameter);
     }
 
     /**
      * 根据时间班级查询考勤详细信息(学生考勤)
      *
-     * @param javaBean getAttendanceInfoByStuId
-     * @return
+     * @return json
      */
-    public JSONObject getAttendanceInfoByStuId(PLJavaBean javaBean) {
-        return exec("getAttendanceInfoByStuId", javaBean);
+    @Step("根据时间班级查询考勤详细信息(学生考勤)")
+    public JSONObject getAttendanceInfoByStuId(Parameter parameter) {
+        return exec("getAttendanceInfoByStuId", parameter);
     }
 
     /**
      * 学科考勤（总表）
      *
-     * @param javaBean getLessonTypeDili
-     * @return
+     * @return json
      */
-    public JSONObject getLessonTypeDili(PLJavaBean javaBean) {
-        return exec("getLessonTypeDili", javaBean);
+    @Step("学科考勤（总表）")
+    public JSONObject getLessonTypeDili(Parameter parameter) {
+        return exec("getLessonTypeDili", parameter);
     }
 
     /**
      * 学科考勤（班级表）
      *
-     * @param javaBean getLessonTypeDiliClass
-     * @return
+     * @return json
      */
-    public JSONObject getLessonTypeDiliClass(PLJavaBean javaBean) {
-        return exec("getLessonTypeDiliClass", javaBean);
+    @Step("学科考勤（班级表）")
+    public JSONObject getLessonTypeDiliClass(Parameter parameter) {
+        return exec("getLessonTypeDiliClass", parameter);
     }
 
     /**
      * 学科考勤XLS文件导出
      *
-     * @param javaBean exportByLesType
-     * @return
+     * @return json
      */
-    public JSONObject exportByLesType(PLJavaBean javaBean) {
-        return exec("exportByLesType", javaBean);
+    @Step("学科考勤XLS文件导出")
+    public JSONObject exportByLesType(Parameter parameter) {
+        return exec("exportByLesType", parameter);
     }
 
     /**
      * 回放记录-班级（总表）
      *
-     * @param javaBean getVideoList
-     * @return
+     * @return json
      */
-    public JSONObject getVideoList(PLJavaBean javaBean) {
-        return exec("getVideoList", javaBean);
+    @Step("回放记录-班级（总表）")
+    public JSONObject getVideoList(Parameter parameter) {
+        return exec("getVideoList", parameter);
     }
 
     /**
      * 回放记录-班级（详情表）
      *
-     * @param javaBean getVideoListClass
-     * @return
+     * @return json
      */
-    public JSONObject getVideoListClass(PLJavaBean javaBean) {
-        return exec("getVideoListClass", javaBean);
+    @Step("回放记录-班级（详情表）")
+    public JSONObject getVideoListClass(Parameter parameter) {
+        return exec("getVideoListClass", parameter);
     }
 
     /**
      * 视频回看统计导出
      *
-     * @param javaBean exportByVideo
-     * @return
+     * @return json
      */
-    public JSONObject exportByVideo(PLJavaBean javaBean) {
-        return exec("exportByVideo", javaBean);
+    @Step("视频回看统计导出")
+    public JSONObject exportByVideo(Parameter parameter) {
+        return exec("exportByVideo", parameter);
     }
 
     /**
      * 回放记录-学科（列表）
      *
-     * @param javaBean getVideoLesType
-     * @return
+     * @return json
      */
-    public JSONObject getVideoLesType(PLJavaBean javaBean) {
-        return exec("getVideoLesType", javaBean);
+    @Step("回放记录-学科（列表）")
+    public JSONObject getVideoLesType(Parameter parameter) {
+        return exec("getVideoLesType", parameter);
     }
 
     /**
      * 回放记录-学科（详情表）
      *
-     * @param javaBean getVideoLesTypeClass
-     * @return
+     * @return json
      */
-    public JSONObject getVideoLesTypeClass(PLJavaBean javaBean) {
-        return exec("getVideoLesTypeClass", javaBean);
+    @Step("回放记录-学科（详情表）")
+    public JSONObject getVideoLesTypeClass(Parameter parameter) {
+        return exec("getVideoLesTypeClass", parameter);
     }
 
     /**
      * 回放记录-学科-导出
      *
-     * @param javaBean exportByVideoType
-     * @return
+     * @return json
      */
-    public JSONObject exportByVideoType(PLJavaBean javaBean) {
-        return exec("exportByVideoType", javaBean);
+    @Step("回放记录-学科-导出")
+    public JSONObject exportByVideoType(Parameter parameter) {
+        return exec("exportByVideoType", parameter);
     }
 
+    /**
+     * 课堂考勤-教师（列表）
+     *
+     * @return json
+     */
+    @Step("课堂考勤-教师（列表）")
+    public JSONObject getClassChartByTeacher(Parameter parameter) {
+        return exec("getClassChartByTeacher", parameter);
+    }
+
+    /**
+     * 回放记录-教师（列表）
+     *
+     * @return json
+     */
+    @Step("回放记录-教师（列表）")
+    public JSONObject getVideoListByTeacher(Parameter parameter) {
+        return exec("getVideoListByTeacher", parameter);
+    }
+
+    /**
+     * 回放记录-教师（列表详情）
+     *
+     * @return json
+     */
+    @Step("回放记录-教师（列表详情）")
+    public JSONObject getVideoListByTeacherDetail(Parameter parameter) {
+        return exec("getVideoListByTeacherDetail", parameter);
+    }
+
+    /**
+     * 导出回访记录-个人用户（教师）
+     *
+     * @return json
+     */
+    @Step("导出回访记录-个人用户（教师）")
+    public JSONObject exportByVideoTeacher(Parameter parameter) {
+        return exec("exportByVideoTeacher", parameter);
+    }
+
+    /**
+     * WEB端考勤，课程下拉框
+     *
+     * @return json
+     */
+    @Step("WEB端考勤，课程下拉框")
+    public JSONObject getUserLessonList(Parameter parameter) {
+        return exec("getUserLessonList", parameter);
+    }
 
 }

@@ -1,16 +1,15 @@
 package com.mizholdings.me2.agent.app;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.user.Me2UserBase;
-import com.mizholdings.me2.interfaces.api.CreditInterface;
 import com.mizholdings.util.*;
+import io.qameta.allure.Step;
 
 public class CreditAgent extends MODBase<CreditAgent> {
-    public static CreditInterface creditInterface = Requests.getService(CreditInterface.class);
+//    public static CreditInterface creditInterface = Requests.getService(CreditInterface.class);
 
     public CreditAgent(User executor) {
         super(executor);
-        interfaced = creditInterface;
+//        interfaced = creditInterface;
     }
 
 
@@ -46,5 +45,35 @@ public class CreditAgent extends MODBase<CreditAgent> {
         return exec("getCreditList", Parameter.creat().add("page", "1"));
     }
 
+
+    /**
+     * 学生学习资源，获取学分
+     *
+     * @return json
+     */
+    @Step("学生学习资源，获取学分")
+    public JSONObject addByCourse(Parameter parameter) {
+        return exec("addByCourse", parameter);
+    }
+
+    /**
+     * 学生学习课堂，老师指定学分
+     *
+     * @return json
+     */
+    @Step("学生学习课堂，老师指定学分")
+    public JSONObject addByClassroom(Parameter parameter) {
+        return exec("addByClassroom", parameter);
+    }
+
+    /**
+     * 用户查询自己的学分
+     *
+     * @return json
+     */
+    @Step("用户查询自己的学分")
+    public JSONObject getCreditList(Parameter parameter) {
+        return exec("getCreditList", parameter);
+    }
 
 }

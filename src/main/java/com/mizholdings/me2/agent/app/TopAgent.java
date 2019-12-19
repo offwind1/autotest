@@ -2,17 +2,16 @@ package com.mizholdings.me2.agent.app;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.agent.web.AdvertAgent;
-import com.mizholdings.me2.user.Me2UserBase;
-import com.mizholdings.me2.interfaces.api.TopInterface;
 import com.mizholdings.me2.user.serve.ServeBase;
 import com.mizholdings.util.*;
+import io.qameta.allure.Step;
 
 public class TopAgent extends MODBase<TopAgent> {
-    public static TopInterface topInterface = Requests.getService(TopInterface.class);
+//    public static TopInterface topInterface = Requests.getService(TopInterface.class);
 
     public TopAgent(User executor) {
         super(executor);
-        interfaced = topInterface;
+//        interfaced = topInterface;
     }
 
 
@@ -27,115 +26,6 @@ public class TopAgent extends MODBase<TopAgent> {
         );
     }
 
-    /**
-     * 学科列表
-     *
-     * @param javaBean usrMenu
-     * @return
-     */
-    public JSONObject usrMenu(PLJavaBean javaBean) {
-        return exec("usrMenu", javaBean);
-    }
-
-    /**
-     * 查询主页列表项
-     *
-     * @param javaBean topList
-     * @return
-     */
-    public JSONObject topList(PLJavaBean javaBean) {
-        return exec("topList", javaBean);
-    }
-
-    /**
-     * 主页，加载更多
-     *
-     * @param javaBean topMore
-     * @return
-     */
-    public JSONObject topMore(PLJavaBean javaBean) {
-        return exec("topMore", javaBean);
-    }
-
-    /**
-     * 选课中心主页
-     *
-     * @param javaBean chooseList
-     * @return
-     */
-    public JSONObject chooseList(PLJavaBean javaBean) {
-        return exec("chooseList", javaBean);
-    }
-
-    /**
-     * 导引页接口
-     *
-     * @param javaBean bootpage
-     * @return
-     */
-    public JSONObject bootpage(PLJavaBean javaBean) {
-        return exec("bootpage", javaBean);
-    }
-
-    /**
-     * 资源库主页
-     *
-     * @param javaBean coursList
-     * @return
-     */
-    public JSONObject coursList(PLJavaBean javaBean) {
-        return exec("coursList", javaBean);
-    }
-
-    /**
-     * 选课中心，加载更多
-     *
-     * @param javaBean chooseMore
-     * @return
-     */
-    public JSONObject chooseMore(PLJavaBean javaBean) {
-        return exec("chooseMore", javaBean);
-    }
-
-    /**
-     * 资源库，加载更多
-     *
-     * @param javaBean coursMore
-     * @return
-     */
-    public JSONObject coursMore(PLJavaBean javaBean) {
-        return exec("coursMore", javaBean);
-    }
-
-    /**
-     * 查询直播课
-     *
-     * @param javaBean playLesson
-     * @return
-     */
-    public JSONObject playLesson(PLJavaBean javaBean) {
-        return exec("playLesson", javaBean);
-    }
-
-    /**
-     * 最近将要直播的10堂课
-     *
-     * @param javaBean minTimeLesson
-     * @return
-     */
-    public JSONObject minTimeLesson(PLJavaBean javaBean) {
-        return exec("minTimeLesson", javaBean);
-    }
-
-    /**
-     * 搜索推荐
-     *
-     * @param javaBean getSearchCem
-     * @return
-     */
-    public JSONObject getSearchCem(PLJavaBean javaBean) {
-        return exec("getSearchCem", javaBean);
-    }
 
     /**
      * 机构新闻更多
@@ -171,5 +61,125 @@ public class TopAgent extends MODBase<TopAgent> {
         }
     }
 
+
+    /**
+     * 主页轮播广告
+     *
+     * @return json
+     */
+    @Step("主页轮播广告")
+    public JSONObject advertList(Parameter parameter) {
+        return exec("advertList", parameter);
+    }
+
+    /**
+     * 学科列表
+     *
+     * @return json
+     */
+    @Step("学科列表")
+    public JSONObject usrMenu(Parameter parameter) {
+        return exec("usrMenu", parameter);
+    }
+
+    /**
+     * 查询主页列表项
+     *
+     * @return json
+     */
+    @Step("查询主页列表项")
+    public JSONObject topList(Parameter parameter) {
+        return exec("topList", parameter);
+    }
+
+    /**
+     * 主页，加载更多
+     *
+     * @return json
+     */
+    @Step("主页，加载更多")
+    public JSONObject topMore(Parameter parameter) {
+        return exec("topMore", parameter);
+    }
+
+    /**
+     * 选课中心主页
+     *
+     * @return json
+     */
+    @Step("选课中心主页")
+    public JSONObject chooseList(Parameter parameter) {
+        return exec("chooseList", parameter);
+    }
+
+    /**
+     * 导引页接口
+     *
+     * @return json
+     */
+    @Step("导引页接口")
+    public JSONObject bootpage(Parameter parameter) {
+        return exec("bootpage", parameter);
+    }
+
+    /**
+     * 资源库主页
+     *
+     * @return json
+     */
+    @Step("资源库主页")
+    public JSONObject coursList(Parameter parameter) {
+        return exec("coursList", parameter);
+    }
+
+    /**
+     * 选课中心，加载更多
+     *
+     * @return json
+     */
+    @Step("选课中心，加载更多")
+    public JSONObject chooseMore(Parameter parameter) {
+        return exec("chooseMore", parameter);
+    }
+
+    /**
+     * 资源库，加载更多
+     *
+     * @return json
+     */
+    @Step("资源库，加载更多")
+    public JSONObject coursMore(Parameter parameter) {
+        return exec("coursMore", parameter);
+    }
+
+    /**
+     * 查询直播课
+     *
+     * @return json
+     */
+    @Step("查询直播课")
+    public JSONObject playLesson(Parameter parameter) {
+        return exec("playLesson", parameter);
+    }
+
+    /**
+     * 最近将要直播的10堂课
+     *
+     * @return json
+     */
+    @Step("最近将要直播的10堂课")
+    public JSONObject minTimeLesson(Parameter parameter) {
+        return exec("minTimeLesson", parameter);
+    }
+
+    /**
+     * 搜索推荐
+     *
+     * @return json
+     */
+    @Step("搜索推荐")
+    public JSONObject getSearchCem(Parameter parameter) {
+        return exec("getSearchCem", parameter);
+    }
 
 }

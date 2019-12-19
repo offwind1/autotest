@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<main host="https://hw-mz-test.mizholdings.com/me2tiku/web">
+    <interfaces name="　题库" value="me2tiku">
+        <interface method="POST" name="查询知识点列表" url="/qb/queryKnowledgeList" value="queryKnowledgeList"/>
+    </interfaces>
+</main>

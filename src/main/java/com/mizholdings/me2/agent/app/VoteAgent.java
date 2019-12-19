@@ -1,72 +1,76 @@
 package com.mizholdings.me2.agent.app;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.interfaces.api.VoteInterface;
-import com.mizholdings.me2.user.Me2UserBase;
-import com.mizholdings.util.MODBase;
-import com.mizholdings.util.PLJavaBean;
-import com.mizholdings.util.Requests;
-import com.mizholdings.util.User;
+import com.mizholdings.util.*;
+import io.qameta.allure.Step;
 
 public class VoteAgent extends MODBase<VoteAgent> {
-    public static VoteInterface voteInterface = Requests.getService(VoteInterface.class);
+//    public static VoteInterface voteInterface = Requests.getService(VoteInterface.class);
 
     public VoteAgent(User executor) {
         super(executor);
-        interfaced = voteInterface;
+//        interfaced = voteInterface;
     }
 
 
-   
-/**
- * 老师发起投票
- *
- * @param javaBean insert
- * @return
- */
-public JSONObject insert(PLJavaBean javaBean) {
-    return exec("insert", javaBean);
-}
+    /**
+     * 老师发起投票
+     *
+     * @return
+     */
+    public JSONObject insert() {
+        return exec("insert", Parameter.creat());
+    }
 
-/**
- * 查询课堂中所有投票
- *
- * @param javaBean getList
- * @return
- */
-public JSONObject getList(PLJavaBean javaBean) {
-    return exec("getList", javaBean);
-}
 
-/**
- * 提交投票结果
- *
- * @param javaBean subOption
- * @return
- */
-public JSONObject subOption(PLJavaBean javaBean) {
-    return exec("subOption", javaBean);
-}
+    /**
+     * 老师发起投票
+     *
+     * @return json
+     */
+    @Step("老师发起投票")
+    public JSONObject insert(Parameter parameter) {
+        return exec("insert", parameter);
+    }
 
-/**
- * 获得投票用户列表
- *
- * @param javaBean getOptionUser
- * @return
- */
-public JSONObject getOptionUser(PLJavaBean javaBean) {
-    return exec("getOptionUser", javaBean);
-}
+    /**
+     * 查询课堂中所有投票
+     *
+     * @return json
+     */
+    @Step("查询课堂中所有投票")
+    public JSONObject getList(Parameter parameter) {
+        return exec("getList", parameter);
+    }
 
-/**
- * 结束投票
- *
- * @param javaBean voteEnd
- * @return
- */
-public JSONObject voteEnd(PLJavaBean javaBean) {
-    return exec("voteEnd", javaBean);
-}
+    /**
+     * 提交投票结果
+     *
+     * @return json
+     */
+    @Step("提交投票结果")
+    public JSONObject subOption(Parameter parameter) {
+        return exec("subOption", parameter);
+    }
 
+    /**
+     * 获得投票用户列表
+     *
+     * @return json
+     */
+    @Step("获得投票用户列表")
+    public JSONObject getOptionUser(Parameter parameter) {
+        return exec("getOptionUser", parameter);
+    }
+
+    /**
+     * 结束投票
+     *
+     * @return json
+     */
+    @Step("结束投票")
+    public JSONObject voteEnd(Parameter parameter) {
+        return exec("voteEnd", parameter);
+    }
 
 }
