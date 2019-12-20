@@ -25,9 +25,10 @@ public class answerTest {
 
     @BeforeClass
     public void beforeClass() {
-        teacher = GlobalMe2.init().getTeacher();
-        superAdmin = GlobalMe2.init().getSuperAdmin();
-        student = GlobalMe2.init().getUserBase();
+        teacher = new Me2Teacher("vta10000", "111111");
+//        teacher = GlobalMe2.init().getTeacher();
+//        superAdmin = GlobalMe2.init().getSuperAdmin();
+//        student = GlobalMe2.init().getUserBase();
     }
 
     private String lessonId;
@@ -50,23 +51,26 @@ public class answerTest {
     public void test() {
 //        init1(2);
 
+//        teacher.getWeb().usrAgent().getUserById("")
 
 //        JSONObject object = teacher.getWeb().lessonAgent().myLesson(Parameter.creat().add("currentPage", "1").add("pageSize", "10"));
 //        lessonIds = Common.map(object.getJSONObject("data").getJSONArray("list"), "lessonId");
-        JSONObject object;
+//        JSONObject object;
 
 //        for (String lessonId : lessonIds) {
-//            object = teacher.getApp().lessonInfoAgent().lessonInfo(lessonId);
-//            classroomIds = Common.map(object.getJSONObject("data").getJSONArray("classroomInfoList"), "classroomId");
-//            for (String classroomId : classroomIds) {
-//                asdasdasd(lessonId, classroomId);
-//            }
+        JSONObject object = teacher.getApp().lessonInfoAgent().lessonInfo("7aa4195c0cab4ee6b807a0502ca9e006");
+        classroomIds = Common.map(object.getJSONObject("data").getJSONArray("classroomInfoList"), "classroomId");
+        for (String classroomId : classroomIds) {
+//            asdasdasd(lessonId, classroomId);
+            teacher.getWeb().answerAgent().addAnswerCard("7aa4195c0cab4ee6b807a0502ca9e006", classroomId, 3, 3, "testCard");
+        }
 //        }
     }
 
     public void asdasdasd(String less, String clas) {
         String objectiveItemAnswer = "[{\"answerId\": 1,\"questionQtype\": 1,\"realAnswer\": \"A\"},{\"answerId\": 2,\"questionQtype\": 1,\"realAnswer\": \"B\"},{\"answerId\": 3,\"questionQtype\": 1, \"realAnswer\": \"C\"}]";
         String subjectiveItemAnswer = "[\"http://images.mizholdings.com/qqqYgRGeqpW.png,http://images.mizholdings.com/qqqYgRGeqpW.png\",\"http://images.mizholdings.com/qqqYgRGeqpW.png,http://images.mizholdings.com/qqqYgRGeqpW.png\",\"http://images.mizholdings.com/qqqYgRGeqpW.png,http://images.mizholdings.com/qqqYgRGeqpW.png\"]";
+
 
         JSONObject object = teacher.getWeb().answerAgent().addAnswerCard(Parameter.creat()
                 .add("lessonId", less)

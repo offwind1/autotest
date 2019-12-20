@@ -118,10 +118,11 @@ public class courseTestCase {
     }
 
 
-//    @Test(description = "购买资源course/buyCourse")
-//    public void test_course_buyCourse() {
-//        other.getWeb().webCourseAgent().buyCourse(courseId);
-//    }
+    @Test(description = "购买资源course/buyCourse")
+    public void test_course_buyCourse() {
+        JSONObject object = other.getWeb().courseAgent().buyCourse(courseId);
+        SampleAssert.assertCode200(object);
+    }
 
     @Test(description = "根据课程id查询订单course/getConsumByCourseId")
     public void test_course_getConsumByCourseId() {

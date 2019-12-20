@@ -60,7 +60,7 @@ public class AnswerAgent extends MODBase<AnswerAgent> {
     }
 
     public JSONObject addAnswerCard(String lessonId, String classroomId, int k_count, int z_count, String cardName) {
-        creatAnswerCardParam(lessonId, classroomId, k_count, z_count, cardName);
+//        creatAnswerCardParam(lessonId, classroomId, k_count, z_count, cardName);
         return addAnswerCard(creatAnswerCardParam(lessonId, classroomId, k_count, z_count, cardName));
     }
 
