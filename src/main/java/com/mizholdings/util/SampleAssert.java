@@ -47,7 +47,7 @@ public class SampleAssert {
 
     public static void assertEquals(JSONObject object, String key, String value) {
         if (notEqual(value, object.getString(key), key)) {
-            throw new RuntimeException("json对象的" + key + "值 !=" + value);
+            throw new RuntimeException("json对象的" + key + "值:" + object.getString(key) + " !=" + value);
         }
     }
 

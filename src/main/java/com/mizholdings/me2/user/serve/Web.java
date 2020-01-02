@@ -12,51 +12,6 @@ public class Web extends ServeBase {
         super(user);
     }
 
-//    public UsrAgent webUsrAgent() {
-//        return (UsrAgent) getAgent("webUsrAgent");
-//    }
-//
-//    public CourseTypeAgent courseTypeAgent() {
-//        return (CourseTypeAgent) getAgent("courseTypeAgent");
-//    }
-//
-//    public WebCourseAgent webCourseAgent() {
-//        return (WebCourseAgent) getAgent("webCourseAgent");
-//    }
-//
-//    public LessonAgent lessonAgent() {
-//        return (LessonAgent) getAgent("lessonAgent");
-//    }
-//
-//    public OrgInfoAgent orgInfoAgent() {
-//        return (OrgInfoAgent) getAgent("orgInfoAgent");
-//    }
-//
-//    public Me2tikuAgent me2tikuAgent() {
-//        return (Me2tikuAgent) getAgent("me2tikuAgent");
-//    }
-
-//    public ClassroomAgent classroomAgent() {
-//        return (ClassroomAgent) getAgent("classroomAgent");
-//    }
-//
-//    public ItemAgent itemAgent() {
-//        return (ItemAgent) getAgent("itemAgent");
-//    }
-//
-//    public ChanGroupAgent chanGroupAgent() {
-//        return (ChanGroupAgent) getAgent("chanGroupAgent");
-//    }
-//
-//    public ChanAgent chanAgent() {
-//        return (ChanAgent) getAgent("chanAgent");
-//    }
-//
-//    public CreditAgent creditAgent() {
-//        return (CreditAgent) getAgent("creditAgent");
-//    }
-
-
     public ShoppingAgent shoppingAgent() {
         return (ShoppingAgent) getAgent("shoppingAgent");
     }
@@ -160,6 +115,5 @@ public class Web extends ServeBase {
     public AnswerAgent answerAgent() {
         return (AnswerAgent) getAgent("answerAgent");
     }
-
 
 }

@@ -25,6 +25,15 @@
         <interface method="POST" name="删除答题卡" url="/answer/deleteAnswerCard" value="deleteAnswerCard"/>
         <interface method="POST" name="查看答题卡" url="/answer/getAnswerCard" value="getAnswerCard"/>
         <interface method="POST" name="修改答题卡" url="/answer/updateAnswerCard" value="updateAnswerCard"/>
+
+        <interface method="POST" name="作业模块列表" url="/answer/getWorkList" value="getWorkList"/>
+        <interface method="POST" name="作业统计结果" url="/answer/getWorkStatisticsList" value="getWorkStatisticsList"/>
+        <interface method="POST" name="答题进度" url="/answer/getQuestionsSchedule" value="getQuestionsSchedule"/>
+        <interface method="POST" name="试题得分分析" url="/answer/answerAnalyze" value="answerAnalyze"/>
+        <interface method="POST" name="学生主观题列表" url="/answer/getStudentSubjectiveItemList" value="getStudentSubjectiveItemList"/>
+        <interface method="POST" name="学生主观题批改" url="/answer/updateStudentSubjectiveItem" value="updateStudentSubjectiveItem"/>
+        <interface method="POST" name="提交作业的学校列表" url="/answer/getWorkSchoolList" value="getWorkSchoolList"/>
+        <interface method="POST" name="提交作业的班级列表" url="/answer/getWorkClassList" value="getWorkClassList"/>
     </interfaces>
     <interfaces name="　好友助力活动" value="hlp">
         <interface method="POST" name="根据ID获取好友助力列表（最近的前10个）" url="/hlp/getHlpList" value="getHlpList"/>

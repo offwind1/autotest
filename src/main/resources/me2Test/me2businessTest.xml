@@ -4,42 +4,42 @@
 
     <test name="机构权限测试">
         <classes>
-            <class name="TestCase.me2.professionalTest.CustomAgencyTest">
+            <class name="professionalTest.CustomAgencyTest">
             </class>
-            <class name="TestCase.me2.professionalTest.advertTestCase">
+            <class name="professionalTest.advertTestCase">
             </class>
         </classes>
     </test>
     <test name="学习模块测试">
         <classes>
-            <class name="TestCase.me2.professionalTest.XueXiPageTest">
+            <class name="professionalTest.XueXiPageTest">
             </class>
         </classes>
     </test>
     <test name="积分相关测试">
         <classes>
-            <class name="TestCase.me2.professionalTest.TestIntegCase">
+            <class name="professionalTest.TestIntegCase">
             </class>
         </classes>
     </test>
     <test name="学分管理">
         <classes>
-            <class name="TestCase.me2.professionalTest.creditTestCase">
+            <class name="professionalTest.creditTestCase">
             </class>
         </classes>
     </test>
     <test name="通用测试">
         <classes>
-            <class name="TestCase.me2.bugTest.TestFullschCase">
+            <class name="bugTest.TestFullschCase">
             </class>
-            <class name="TestCase.me2.professionalTest.chanTestCase"></class>
+            <class name="professionalTest.chanTestCase"></class>
         </classes>
     </test>
     <test name="回放记录测试">
         <classes>
-            <class name="TestCase.me2.professionalTest.lesson.classroomVideoTestCase"></class>
-            <class name="TestCase.me2.professionalTest.lesson.classroomVideoTestCase2"></class>
-            <class name="TestCase.me2.professionalTest.lesson.classroomVideoTestCase3"></class>
+            <class name="professionalTest.lesson.classroomVideoTestCase"></class>
+            <class name="professionalTest.lesson.classroomVideoTestCase2"></class>
+            <class name="professionalTest.lesson.classroomVideoTestCase3"></class>
         </classes>
     </test>
 

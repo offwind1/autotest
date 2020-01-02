@@ -1,7 +1,7 @@
 package com.mizholdings.me2.agent.manage;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.GlobalMe2;
+import com.mizholdings.me2.Global;
 import com.mizholdings.me2.M2TYPE;
 import com.mizholdings.util.Common;
 import com.mizholdings.util.MODBase;
@@ -138,7 +138,7 @@ public class CourseAgent extends MODBase<CourseAgent> {
                 .add("order", order)
                 .add("startTime", Common.getNowTime())
                 .add("endTime", Common.getEndTime(7))
-                .add("coursewareImg", GlobalMe2.getImageUrl()));
+                .add("coursewareImg", Global.getImageUrl()));
     }
 
     public JSONObject recommendCourseware(String coursewareId) {
@@ -232,7 +232,7 @@ public class CourseAgent extends MODBase<CourseAgent> {
 
     @Step("添加资源_新增添加")
     public JSONObject addNewCourse(String parentId) {
-        return addNewCourse(parentId, GlobalMe2.getImageUrl(), M2TYPE.COURSEWARE_TYPE.IMAGE, "1");
+        return addNewCourse(parentId, Global.getImageUrl(), M2TYPE.COURSEWARE_TYPE.IMAGE, "1");
     }
 
 

@@ -1,7 +1,7 @@
 package com.mizholdings.me2.agent.manage;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.GlobalMe2;
+import com.mizholdings.me2.Global;
 import com.mizholdings.util.Common;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.Parameter;
@@ -36,7 +36,7 @@ public class ChanGroupAgent extends MODBase<ChanGroupAgent> {
     }
 
     public JSONObject add(String grpName, String grpType) {
-        return add(grpName, grpType, GlobalMe2.getImageUrl());
+        return add(grpName, grpType, Global.getImageUrl());
     }
 
     public JSONObject add(String grpName) {
@@ -54,11 +54,11 @@ public class ChanGroupAgent extends MODBase<ChanGroupAgent> {
     }
 
     public JSONObject edit(String grpId, String grpName, String grpType) {
-        return edit(grpId, grpName, grpType, GlobalMe2.getImageUrl());
+        return edit(grpId, grpName, grpType, Global.getImageUrl());
     }
 
     public JSONObject edit(String grpId, String grpName) {
-        return edit(grpId, grpName, "分类2", GlobalMe2.getImageUrl());
+        return edit(grpId, grpName, "分类2", Global.getImageUrl());
     }
 
     @Step("渠道群删除chanGroup/del")

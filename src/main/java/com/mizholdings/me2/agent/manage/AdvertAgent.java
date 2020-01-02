@@ -1,7 +1,7 @@
 package com.mizholdings.me2.agent.manage;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.GlobalMe2;
+import com.mizholdings.me2.Global;
 import com.mizholdings.util.Common;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.Parameter;
@@ -91,7 +91,7 @@ public class AdvertAgent extends MODBase<ChanAdvAgent> {
     }
 
     public JSONObject add(String remark) {
-        return add(GlobalMe2.getImageUrl(), "https://www.baidu.com", remark, ADVERT_TYPE.HENG_FU, SRC_TYPE.LINK);
+        return add(Global.getImageUrl(), "https://www.baidu.com", remark, ADVERT_TYPE.HENG_FU, SRC_TYPE.LINK);
     }
 
 
@@ -117,7 +117,7 @@ public class AdvertAgent extends MODBase<ChanAdvAgent> {
     }
 
     public JSONObject edit(String advertId, String remark) {
-        return edit(advertId, GlobalMe2.getImageUrl(), "https://www.baidu.com", remark, ADVERT_TYPE.HENG_FU, SRC_TYPE.LINK);
+        return edit(advertId, Global.getImageUrl(), "https://www.baidu.com", remark, ADVERT_TYPE.HENG_FU, SRC_TYPE.LINK);
     }
 
 

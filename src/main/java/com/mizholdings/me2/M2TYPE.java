@@ -87,4 +87,18 @@ public class M2TYPE {
         }
     }
 
+    public enum AnswerResult {
+        RIGHT("0", "正确"),
+        WRONG("2", "错误"),
+        HALF_RIGHT("1", "半对");
+
+        public String value;
+        public String name;
+
+        private AnswerResult(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+    }
+
 }

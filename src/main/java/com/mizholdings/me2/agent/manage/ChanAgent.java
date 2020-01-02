@@ -1,7 +1,7 @@
 package com.mizholdings.me2.agent.manage;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.GlobalMe2;
+import com.mizholdings.me2.Global;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.Parameter;
 import com.mizholdings.util.User;
@@ -35,11 +35,11 @@ public class ChanAgent extends MODBase<ChanAgent> {
     }
 
     public JSONObject add(String chnName, String linkMan, String chnAir) {
-        return add(chnName, linkMan, chnAir, GlobalMe2.getImageUrl());
+        return add(chnName, linkMan, chnAir, Global.getImageUrl());
     }
 
     public JSONObject add(String chnName) {
-        return add(chnName, "linkMan", "chnAir", GlobalMe2.getImageUrl());
+        return add(chnName, "linkMan", "chnAir", Global.getImageUrl());
     }
 
     @Step("渠道信息编辑")
@@ -54,11 +54,11 @@ public class ChanAgent extends MODBase<ChanAgent> {
     }
 
     public JSONObject edit(String chnId, String chnName, String linkMan, String chnAir) {
-        return edit(chnId, chnName, linkMan, chnAir, GlobalMe2.getImageUrl());
+        return edit(chnId, chnName, linkMan, chnAir, Global.getImageUrl());
     }
 
     public JSONObject edit(String chnId, String chnName) {
-        return edit(chnId, chnName, "linkMan", "chnAir", GlobalMe2.getImageUrl());
+        return edit(chnId, chnName, "linkMan", "chnAir", Global.getImageUrl());
     }
 
     @Step("渠道绑定群")

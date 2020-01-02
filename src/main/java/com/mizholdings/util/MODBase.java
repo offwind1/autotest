@@ -5,6 +5,7 @@ import com.mizholdings.util.requests.Request;
 import com.mizholdings.util.requests.Response;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import java.util.Map;
 
 public class MODBase<T extends MODBase> {
@@ -43,26 +44,15 @@ public class MODBase<T extends MODBase> {
         return (T) this;
     }
 
-//
-//    public JSONObject exec(String funName, PLJavaBean javaBean) {
-//        return exec(funName, Funcs.javabeanToMap(javaBean));
-//    }
-//
-//    public JSONObject exec(String funName, Parameter parameter, int i) {
-//        if (executor instanceof Me2UserBase) {
-//            parameter.add("orgId", ((Me2UserBase) executor).getOrgId());
-//        }
-//        return exec(funName, parameter.getMap());
-//    }
-
-
     public JSONObject exec(String funcName) {
         return exec(funcName, Parameter.creat());
     }
 
     public JSONObject exec(String funcName, Parameter parameter) {
         if (executor instanceof User) {
-            parameter.add("orgId", ((User) executor).getOrgId());
+            if (!parameter.containsKey("orgId")) {
+                parameter.add("orgId", ((User) executor).getOrgId());
+            }
             parameter.add("token", ((User) executor).getToken());
         }
         return exec(funcName, parameter.getObjectMap());
@@ -78,77 +68,4 @@ public class MODBase<T extends MODBase> {
         throw new RuntimeException(response.text);
     }
 
-//
-//    public JSONObject exec(String funName, Map<String, String> map) {
-//        if (interfaced == null) {
-//            logger.error("interface is null");
-//            return null;
-//        }
-//        Allure.addAttachment("parameters", map.toString());
-//
-//        try {
-//            Method method = interfaced.getClass().getMethod(funName, String.class, Map.class);
-//            Call<ResponseBody> bodyCall = (Call<ResponseBody>) method.invoke(interfaced, executor.getToken(), map);
-//            return Requests.getJson(bodyCall);
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//            logger.error("未匹配到接口函数");
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-//
-//    public JSONObject exec_no_token(String funName, Parameter parameter) {
-//        return exec_no_token(funName, parameter);//.getMap());
-//    }
-//
-//    public JSONObject exec_no_token(String funName, Map<String, String> map) {
-//        if (interfaced == null) {
-//            logger.error("interface is null");
-//            return null;
-//        }
-//        Allure.addAttachment("parameters", map.toString());
-//
-//        try {
-//            Method method = interfaced.getClass().getMethod(funName, Map.class);
-//            Call<ResponseBody> bodyCall = (Call<ResponseBody>) method.invoke(interfaced, map);
-//            return Requests.getJson(bodyCall);
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//            logger.error("未匹配到接口函数");
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-
-//
-//    @Attachment("{funName} return")
-//    public JSONObject exec(String funName) {
-//        if (interfaced == null) {
-//            logger.error("interface is null");
-//            return null;
-//        }
-//        try {
-//            Method method = interfaced.getClass().getMethod(funName, String.class);
-//            Call<ResponseBody> bodyCall = (Call<ResponseBody>) method.invoke(interfaced, executor.getToken());
-//            return Requests.getJson(bodyCall);
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//            logger.error("未匹配到接口函数");
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 }

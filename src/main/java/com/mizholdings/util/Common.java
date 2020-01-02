@@ -27,6 +27,11 @@ public class Common {
         return format.format(c.getTime());
     }
 
+    public static String getMethodName() {
+        StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
+        StackTraceElement e = stacktrace[2];
+        return e.getMethodName();
+    }
 
     public static String creatRandomString() {
         return TEMP_STRING + DateUtil.format(DateUtil.date(), "yyyy-MM-dd_HH:mm");

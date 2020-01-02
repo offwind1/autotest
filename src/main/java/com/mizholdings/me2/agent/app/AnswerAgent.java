@@ -1,11 +1,14 @@
 package com.mizholdings.me2.agent.app;
 
+import cn.hutool.core.util.RandomUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.Parameter;
 import com.mizholdings.util.User;
 import io.qameta.allure.Step;
+
+import java.util.List;
 
 public class AnswerAgent extends MODBase<AnswerAgent> {
 
@@ -43,12 +46,12 @@ public class AnswerAgent extends MODBase<AnswerAgent> {
         return exec("saveAnswerCard", parameter);
     }
 
-    public JSONObject saveAnswerCard(String lessonId, String classroomId, String answerCardId, int count) {
+    public JSONObject saveAnswerCard(String lessonId, String classroomId, String answerCardId, List<String> answerIds) {
         return saveAnswerCard(Parameter.creat()
                 .add("lessonId", lessonId)
                 .add("classroomId", classroomId)
                 .add("answerCardId", answerCardId)
-                .add("answerListJson", creatAnswerCard(count))
+                .add("answerListJson", creatAnswerCard(answerIds))
         );
     }
 
@@ -58,14 +61,25 @@ public class AnswerAgent extends MODBase<AnswerAgent> {
         return abcd[index % abcd.length];
     }
 
-    private String creatAnswerCard(int count) {
+
+    private String creatAnswerCard(List<String> answerIds) {
+        return creatAnswerCard(answerIds, getABCD(RandomUtil.randomInt(12)));
+    }
+
+    private String creatAnswerCard(List<String> answerIds, int index) {
+        return creatAnswerCard(answerIds, getABCD(index));
+    }
+
+    private String creatAnswerCard(List<String> answerIds, String answer) {
         JSONArray array = new JSONArray();
-        for (int i = 0; i < count; i++) {
+        for (String answerId : answerIds) {
             JSONObject object = new JSONObject();
-            object.put("answerId", String.valueOf(i + 1));
-            object.put("userAnswer", getABCD(i));
+            object.put("answerId", answerId);
+            object.put("answerType", 1);
+            object.put("userAnswer", answer);
             array.add(object);
         }
+
         return array.toJSONString();
     }
 
@@ -116,12 +130,24 @@ public class AnswerAgent extends MODBase<AnswerAgent> {
         return exec("submitAnswerCard", parameter);
     }
 
-    public JSONObject submitAnswerCard(String lessonId, String classroomId, String answerCardId, int count) {
+
+    public JSONObject submitAnswerCard(String lessonId, String classroomId, String answerCardId, List<String> answerIds) {
         return submitAnswerCard(Parameter.creat()
                 .add("lessonId", lessonId)
                 .add("classroomId", classroomId)
                 .add("answerCardId", answerCardId)
-                .add("answerListJson", creatAnswerCard(count))
+                .add("answerListJson", creatAnswerCard(answerIds))
         );
     }
+
+    public JSONObject submitAnswerCard(String lessonId, String classroomId, String answerCardId, List<String> answerIds, int answer) {
+        return submitAnswerCard(Parameter.creat()
+                .add("lessonId", lessonId)
+                .add("classroomId", classroomId)
+                .add("answerCardId", answerCardId)
+                .add("answerListJson", creatAnswerCard(answerIds, answer))
+        );
+    }
+
+
 }

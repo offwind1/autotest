@@ -1,12 +1,7 @@
 package com.mizholdings.me2.user.serve;
 
 import com.mizholdings.me2.agent.app.*;
-import com.mizholdings.me2.user.Me2UserBase;
 import com.mizholdings.util.User;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 
 public class App extends ServeBase {
     public App(User user) {

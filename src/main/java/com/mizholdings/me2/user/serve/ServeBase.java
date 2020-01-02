@@ -2,22 +2,15 @@ package com.mizholdings.me2.user.serve;
 
 import cn.hutool.cache.Cache;
 import cn.hutool.cache.CacheUtil;
-import cn.hutool.cache.impl.CacheObj;
-import cn.hutool.core.lang.func.Func0;
-import com.mizholdings.me2.GlobalMe2;
-import com.mizholdings.me2.user.Me2UserBase;
+import com.mizholdings.me2.Global;
 import com.mizholdings.util.User;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 public class ServeBase {
     protected User user;
-    private static final String DEFINE_AGENT_PACKAGE = GlobalMe2.getProperties("define.agent.package");
+    private static final String DEFINE_AGENT_PACKAGE = Global.getProperties("define.agent.package");
     private final String package_path;
     private final Cache<String, Object> map = CacheUtil.newLFUCache(8);
 

@@ -57,6 +57,9 @@ public class Parameter {
         return oap;
     }
 
+    public Boolean containsKey(String key) {
+        return map.containsKey(key);
+    }
 }
 
 

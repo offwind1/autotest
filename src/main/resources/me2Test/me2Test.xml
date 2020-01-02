@@ -4,43 +4,43 @@
 
     <test name="收款项目测试">
         <classes>
-            <class name="TestCase.me2.normalTest.itemTestCase">
+            <class name="normalTest.itemTestCase">
             </class>
         </classes>
     </test>
     <test name="知识点测试">
         <classes>
-            <class name="TestCase.me2.normalTest.knowledgeTestCase">
+            <class name="normalTest.knowledgeTestCase">
             </class>
         </classes>
     </test>
     <test name="渠道测试">
         <classes>
-            <class name="TestCase.me2.normalTest.chanTestCase">
+            <class name="normalTest.chanTestCase">
             </class>
         </classes>
     </test>
     <test name="学分管理">
         <classes>
-            <class name="TestCase.me2.normalTest.creditTestCase">
+            <class name="normalTest.creditTestCase">
             </class>
         </classes>
     </test>
     <test name="广告模块">
         <classes>
-            <class name="TestCase.me2.normalTest.advertTestCase">
+            <class name="normalTest.advertTestCase">
             </class>
         </classes>
     </test>
     <test name="资源管理">
         <classes>
-            <class name="TestCase.me2.normalTest.courseTestCase">
+            <class name="normalTest.courseTestCase">
             </class>
         </classes>
     </test>
     <test name="答题卡测试">
         <classes>
-            <class name="TestCase.me2.normalTest.answerTest">
+            <class name="answerTest.answerTestCase">
             </class>
         </classes>
     </test>

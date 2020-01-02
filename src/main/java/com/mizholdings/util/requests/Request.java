@@ -1,20 +1,11 @@
 package com.mizholdings.util.requests;
 
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.http.Header;
-import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpUtil;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.JsonNode;
-//import com.github.fge.jackson.JsonLoader;
-//import com.github.fge.jackson.JsonNodeReader;
-//import com.github.fge.jsonschema.core.exceptions.ProcessingException;
-//import com.github.fge.jsonschema.core.report.ProcessingReport;
-//import com.github.fge.jsonschema.main.JsonSchema;
-//import com.github.fge.jsonschema.main.JsonSchemaFactory;
-import com.mizholdings.me2.GlobalMe2;
-import com.mizholdings.util.Parameter;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.mizholdings.me2.Global;
 import com.mizholdings.util.Requests;
 import com.mizholdings.util.XmlTool.ElementMine;
 import io.qameta.allure.Allure;
@@ -37,7 +28,7 @@ public class Request {
         logger.info("\n");
         logger.info(agent + ":" + funcName);
 
-        ElementMine elementMine = GlobalMe2.getServe(serve);
+        ElementMine elementMine = Global.getServe(serve);
         String host = elementMine.getAttribute("host");
         ElementMine interfaces = elementMine.getElementsByTagNameAndValue("interfaces", agent);
         String interfaces_name = interfaces.getAttribute("name");
@@ -53,8 +44,8 @@ public class Request {
 
         logger.info("interfaces_value:" + interfaces_value + " # interface_url:" + interface_url);
         Response response = doRequest(url, method, map, interfaces_name, interfaceName);
-        logger.info("response:" + response.text);
-        Allure.addAttachment("response", response.text);
+
+        showResponse(response);
 
         String schema_path = "schema\\" + serve + "\\" + interfaces_value + "\\" + interface_value + ".json";
         if (response.state && FileUtil.isFile(schema_path)) {
@@ -67,8 +58,13 @@ public class Request {
         return response;
     }
 
+    private static void showResponse(Response response) {
+        String text = response.getText();
+        logger.info("response:" + text);
+        Allure.addAttachment("response", text);
+    }
 
-    public static void JsonSchema(String schema_path, Response response, Map<String, Object> map) {
+    private static void JsonSchema(String schema_path, Response response, Map<String, Object> map) {
         String schema_string = readFile(schema_path);
         String schema_json = formatString(schema_string, map);
         JsonSchema(readJsonString(schema_json), readJsonString(response.text));
@@ -110,7 +106,7 @@ public class Request {
         return new org.json.JSONObject(json_string);
     }
 
-    @Step("{model}:{name}")
+    @Step("{model} : {name}")
     private static Response doRequest(String url, String method, Map<String, Object> map, String model, String name) {
         logger.info(model + name);
         logger.info("URL:" + url);

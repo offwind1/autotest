@@ -11,7 +11,6 @@ public class ShoppingAgent extends MODBase<ShoppingAgent> {
     }
 
 
-    
     /**
      * 商品加入购物车
      *
@@ -21,7 +20,11 @@ public class ShoppingAgent extends MODBase<ShoppingAgent> {
     public JSONObject add(Parameter parameter) {
         return exec("add", parameter);
     }
-    
+
+    public JSONObject add(String goodsIds) {
+        return add(Parameter.creat().add("goodsIds", goodsIds));
+    }
+
     /**
      * 查询购物车列表
      *
@@ -31,7 +34,7 @@ public class ShoppingAgent extends MODBase<ShoppingAgent> {
     public JSONObject list(Parameter parameter) {
         return exec("list", parameter);
     }
-    
+
     /**
      * 删除商品
      *
@@ -41,7 +44,7 @@ public class ShoppingAgent extends MODBase<ShoppingAgent> {
     public JSONObject delete(Parameter parameter) {
         return exec("delete", parameter);
     }
-    
+
     /**
      * 清空购物车
      *
@@ -51,6 +54,6 @@ public class ShoppingAgent extends MODBase<ShoppingAgent> {
     public JSONObject deleteAll(Parameter parameter) {
         return exec("deleteAll", parameter);
     }
-    
+
 
 }

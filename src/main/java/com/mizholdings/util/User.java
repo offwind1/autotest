@@ -1,11 +1,5 @@
 package com.mizholdings.util;
 
-import com.mizholdings.me2.user.Me2UserBase;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-
 public abstract class User {
 
     protected String orgId = "0";

@@ -1,359 +1,42 @@
-{
-  "type": "object",
-  "required": [
-    "msg",
-    "result",
-    "code",
-    "data"
-  ],
-  "properties": {
-    "msg": {
-      "type": "string"
-    },
-    "result": {
-      "type": "integer"
-    },
-    "code": {
-      "type": "integer"
-    },
-    "data": {
-      "type": "object",
-      "required": [
-        "la"
-      ],
-      "properties": {
-        "la": {
-          "type": "object",
-          "required": [
-            "createUserId",
-            "cardName",
-            "submitAnswer",
-            "classroomId",
-            "lessonId",
-            "subjectiveItemList",
-            "objectiveItemCount",
-            "subjectiveItemCount",
-            "answerCount",
-            "createTime",
-            "answerCardId",
-            "objectiveItemList",
-            "status"
-          ],
-          "properties": {
-            "createUserId": {
-              "type": "integer"
-            },
-            "cardName": {
-              "pattern": "^{{cardName}}",
-              "type": "string"
-            },
-            "submitAnswer": {
-              "type": "integer"
-            },
-            "classroomId": {
-              "pattern": "^{{classroomId}}$",
-              "type": "string"
-            },
-            "lessonId": {
-              "pattern": "^{{lessonId}}$",
-              "type": "string"
-            },
-            "subjectiveItemList": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": [
-                  "answerId",
-                  "auto",
-                  "questionId",
-                  "userPhoto",
-                  "ttCount",
-                  "classroomId",
-                  "answerResult",
-                  "answerCount",
-                  "coursewareId",
-                  "answerResultValue",
-                  "seq",
-                  "teacherRemark",
-                  "lessonTypeId",
-                  "stuId",
-                  "answerType",
-                  "hrefRightCount",
-                  "lessonId",
-                  "nullCount",
-                  "answerPerc",
-                  "realAnswer",
-                  "userName",
-                  "userId",
-                  "rightCount",
-                  "teacherId",
-                  "userAnswer",
-                  "questionQtype",
-                  "createTime",
-                  "answerCardId",
-                  "wrongCount",
-                  "status"
-                ],
-                "properties": {
-                  "answerId": {
-                    "type": "string"
-                  },
-                  "auto": {
-                    "type": "integer"
-                  },
-                  "questionId": {
-                    "type": "integer"
-                  },
-                  "userPhoto": {
-                    "type": "string"
-                  },
-                  "ttCount": {
-                    "type": "integer"
-                  },
-                  "classroomId": {
-                    "pattern": "^{{classroomId}}$",
-                    "type": "string"
-                  },
-                  "answerResult": {
-                    "type": "integer"
-                  },
-                  "answerCount": {
-                    "type": "integer"
-                  },
-                  "coursewareId": {
-                    "type": "string"
-                  },
-                  "answerResultValue": {
-                    "type": "string"
-                  },
-                  "seq": {
-                    "type": "integer"
-                  },
-                  "teacherRemark": {
-                    "type": "string"
-                  },
-                  "lessonTypeId": {
-                    "type": "integer"
-                  },
-                  "stuId": {
-                    "type": "integer"
-                  },
-                  "answerType": {
-                    "type": "integer"
-                  },
-                  "hrefRightCount": {
-                    "type": "integer"
-                  },
-                  "lessonId": {
-                    "type": "string"
-                  },
-                  "nullCount": {
-                    "type": "integer"
-                  },
-                  "answerPerc": {
-                    "type": "string"
-                  },
-                  "realAnswer": {
-                    "type": "string"
-                  },
-                  "userName": {
-                    "type": "string"
-                  },
-                  "userId": {
-                    "type": "integer"
-                  },
-                  "rightCount": {
-                    "type": "integer"
-                  },
-                  "teacherId": {
-                    "type": "integer"
-                  },
-                  "userAnswer": {
-                    "type": "string"
-                  },
-                  "questionQtype": {
-                    "type": "integer"
-                  },
-                  "createTime": {
-                    "type": "string"
-                  },
-                  "answerCardId": {
-                    "type": "integer",
-                    "enum": [{{answerCardId}}]
-                  },
-                  "wrongCount": {
-                    "type": "integer"
-                  },
-                  "status": {
-                    "type": "integer"
-                  }
-                }
-              }
-            },
-            "objectiveItemCount": {
-              "type": "integer"
-            },
-            "subjectiveItemCount": {
-              "type": "integer"
-            },
-            "answerCount": {
-              "type": "integer"
-            },
-            "createTime": {
-              "pattern": "^(.*)$",
-              "type": "string"
-            },
-            "answerCardId": {
-              "type": "integer"
-            },
-            "objectiveItemList": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": [
-                  "answerId",
-                  "auto",
-                  "questionId",
-                  "userPhoto",
-                  "ttCount",
-                  "classroomId",
-                  "answerResult",
-                  "answerCount",
-                  "coursewareId",
-                  "answerResultValue",
-                  "seq",
-                  "teacherRemark",
-                  "lessonTypeId",
-                  "stuId",
-                  "answerType",
-                  "hrefRightCount",
-                  "lessonId",
-                  "nullCount",
-                  "answerPerc",
-                  "realAnswer",
-                  "userName",
-                  "userId",
-                  "rightCount",
-                  "teacherId",
-                  "userAnswer",
-                  "questionQtype",
-                  "createTime",
-                  "answerCardId",
-                  "wrongCount",
-                  "status"
-                ],
-                "properties": {
-                  "answerId": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "auto": {
-                    "type": "integer"
-                  },
-                  "questionId": {
-                    "type": "integer"
-                  },
-                  "userPhoto": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "ttCount": {
-                    "type": "integer"
-                  },
-                  "classroomId": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "answerResult": {
-                    "type": "integer"
-                  },
-                  "answerCount": {
-                    "type": "integer"
-                  },
-                  "coursewareId": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "answerResultValue": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "seq": {
-                    "type": "integer"
-                  },
-                  "teacherRemark": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "lessonTypeId": {
-                    "type": "integer"
-                  },
-                  "stuId": {
-                    "type": "integer"
-                  },
-                  "answerType": {
-                    "type": "integer"
-                  },
-                  "hrefRightCount": {
-                    "type": "integer"
-                  },
-                  "lessonId": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "nullCount": {
-                    "type": "integer"
-                  },
-                  "answerPerc": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "realAnswer": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "userName": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "userId": {
-                    "type": "integer"
-                  },
-                  "rightCount": {
-                    "type": "integer"
-                  },
-                  "teacherId": {
-                    "type": "integer"
-                  },
-                  "userAnswer": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "questionQtype": {
-                    "type": "integer"
-                  },
-                  "createTime": {
-                    "pattern": "^(.*)$",
-                    "type": "string"
-                  },
-                  "answerCardId": {
-                    "type": "integer"
-                  },
-                  "wrongCount": {
-                    "type": "integer"
-                  },
-                  "status": {
-                    "type": "integer"
-                  }
-                }
-              }
-            },
-            "status": {
-              "type": "integer"
-            }
-          }
-        }
-      }
-    }
+[
+  {
+    "answerId": "fd7432e6275149fc8fa8072c8c97f28c",
+    "userAnswer": "D",
+    "answerType": 1
+  },
+  {
+    "answerId": "77297897302f47658b62aebea2e02202",
+    "userAnswer": "D",
+    "answerType": 1
+  },
+  {
+    "answerId": "7c2585efeff644528a0ac0f9840e02f4",
+    "userAnswer": "D",
+    "answerType": 1
+  },
+  {
+    "answerId": "6f2c887d2dd945bbac9cb8d98abb94f5",
+    "userAnswer": "D",
+    "answerType": 1
+  },
+  {
+    "answerId": "b1008b0d870b40cab399d1700956b652",
+    "userAnswer": "D",
+    "answerType": 1
+  },
+  {
+    "answerId": "aec29f7dc4f141f2bec2d5ef39193af4",
+    "userAnswer": "h",
+    "answerType": 1
+  },
+  {
+    "answerId": "4328506f053948d3b637c8d5c9be4788",
+    "userAnswer": "s",
+    "answerType": 1
+  },
+  {
+    "answerId": "4c7f81820c584c2e8c1a561bcc795a2c",
+    "userAnswer": "j",
+    "answerType": 1
   }
-}
+]
