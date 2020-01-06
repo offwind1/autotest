@@ -4,10 +4,9 @@
 
     <test name="机构权限测试">
         <classes>
-            <class name="professionalTest.CustomAgencyTest">
-            </class>
-            <class name="professionalTest.advertTestCase">
-            </class>
+            <class name="professionalTest.CustomAgencyTest"/>
+            <class name="professionalTest.advertTestCase"/>
+            <class name="jigouTest.jigouAuthTestCase"/>
         </classes>
     </test>
     <test name="学习模块测试">
@@ -30,16 +29,14 @@
     </test>
     <test name="通用测试">
         <classes>
-            <class name="bugTest.TestFullschCase">
-            </class>
-            <class name="professionalTest.chanTestCase"></class>
+            <class name="bugTest.TestFullschCase"/>
         </classes>
     </test>
     <test name="回放记录测试">
         <classes>
-            <class name="professionalTest.lesson.classroomVideoTestCase"></class>
-            <class name="professionalTest.lesson.classroomVideoTestCase2"></class>
-            <class name="professionalTest.lesson.classroomVideoTestCase3"></class>
+<!--            <class name="professionalTest.lesson.classroomVideoTestCase"/>-->
+<!--            <class name="professionalTest.lesson.classroomVideoTestCase2"/>-->
+            <class name="professionalTest.lesson.classroomVideoTestCase3"/>
         </classes>
     </test>
 

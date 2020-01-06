@@ -24,8 +24,9 @@ public class courseTestCase {
     public void beforeClass() {
         teacher = Global.init().getTeacher();
         other = Global.init().getRandomTeacher();
-
         superAdmin = Global.init().getSuperAdmin();
+
+
         courseId = teacher.newCourseAndApply();
 //        courseId = "3ccaa3fa332941f2be474c5a3c0c6178";
     }
@@ -105,11 +106,11 @@ public class courseTestCase {
         teacher.getWeb().courseAgent().applyCourse(courseId);
     }
 
-    @Test(description = "审批资源列表course/applylist")
-    public void test_course_applylist() {
-        JSONObject object = superAdmin.getManage().courseAgent().applylist();
-        SampleAssert.assertCode200(object);
-    }
+//    @Test(description = "审批资源列表course/applylist")
+//    public void test_course_applylist() {
+//        JSONObject object = superAdmin.getManage().courseAgent().applylist();
+//        SampleAssert.assertCode200(object);
+//    }
 
     @Test(description = "审批资源course/replyCourse")
     public void test_course_replyCourse() {
@@ -117,12 +118,12 @@ public class courseTestCase {
         SampleAssert.assertCode200(object);
     }
 
-
-    @Test(description = "购买资源course/buyCourse")
-    public void test_course_buyCourse() {
-        JSONObject object = other.getWeb().courseAgent().buyCourse(courseId);
-        SampleAssert.assertCode200(object);
-    }
+//
+//    @Test(description = "购买资源course/buyCourse")
+//    public void test_course_buyCourse() {
+//        JSONObject object = other.getWeb().courseAgent().buyCourse(courseId);
+//        SampleAssert.assertCode200(object);
+//    }
 
     @Test(description = "根据课程id查询订单course/getConsumByCourseId")
     public void test_course_getConsumByCourseId() {

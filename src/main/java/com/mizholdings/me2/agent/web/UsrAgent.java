@@ -17,10 +17,12 @@ public class UsrAgent extends MODBase<UsrAgent> {
     }
 
     @Step("机构删除用户")
-    public JSONObject orgDelTeacher(String jigou_userId, String teacherId) {
+    public JSONObject orgDelTeacher(String jigou_userId, String teacherId, String deleteType) {
         return exec("orgDelTeacher", Parameter.creat()
                 .add("teacherId", teacherId)
-                .add("orgId", jigou_userId));
+                .add("orgId", jigou_userId)
+                .add("deleteType", deleteType)
+        );
     }
 
     @Step("检验老师是否注册")
@@ -29,7 +31,11 @@ public class UsrAgent extends MODBase<UsrAgent> {
     }
 
     public JSONObject orgDelTeacher(String teacherId) {
-        return orgDelTeacher(executor.getUserId(), teacherId);
+        return orgDelTeacher(executor.getUserId(), teacherId, "2");
+    }
+
+    public JSONObject orgDelStudent(String teacherId) {
+        return orgDelTeacher(executor.getUserId(), teacherId, "1");
     }
 
     @Step("获取用户学分")

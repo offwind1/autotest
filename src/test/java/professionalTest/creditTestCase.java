@@ -68,6 +68,7 @@ public class creditTestCase {
     public void test_7_7() {
         JSONObject object = teacher.getWeb().creditAgent().editUserCredit(student.getUserId(), creditId, "-100");
         SampleAssert.assertMsg("修改失败", object);
+
     }
 
     //TODO /mizhu/web/credit/creditList 根据用户查询学分. 返回的班级数据，是如何定义的。一个学生可以有多个班级的话，这里返回的班级数据是怎么判断显示的

@@ -95,9 +95,15 @@ public class PayAgent extends MODBase<PayAgent> {
         return exec("buyLesson", parameter);
     }
 
-    public JSONObject buyLesson(String userId, String lessonId) {
+    public JSONObject buyLesson(String userId, String lessonIds) {
         return buyLesson(Parameter.creat()
-//                .add()
+                .add("userId", userId)
+                .add("lessonIds", lessonIds)
+                .add("paypwd", "")
+                .add("fromType", "")
+                .add("consName", "")
+                .add("consPhone", "")
+                .add("consAddr", "")
         );
     }
 

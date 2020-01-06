@@ -1,6 +1,7 @@
 package com.mizholdings.me2.user;
 
 import com.alibaba.fastjson.JSONObject;
+import com.mizholdings.me2.Global;
 import com.mizholdings.me2.user.serve.App;
 import com.mizholdings.me2.user.serveInterface.appInterface;
 import com.mizholdings.util.*;
@@ -30,21 +31,6 @@ public class UserBase extends User implements appInterface {
 
     public App getApp() {
         return app;
-    }
-
-    public static JSONObject Login(String account, String password) {
-
-        return Request.go("app", "mobile", "login", Parameter.creat()
-                .add("account", account)
-                .add("password", password)
-                .add("phone", "")
-                .add("verifycode", "")
-                .add("loginMode", "")
-                .add("machine", "")
-                .add("proType", "ykdebug")
-                .add("longitude", "")
-                .add("latitude", "")
-                .getObjectMap()).json();
     }
 
     private void init(JSONObject object) {
@@ -88,13 +74,33 @@ public class UserBase extends User implements appInterface {
                 .getObjectMap()).json();
     }
 
-    public JSONObject orgLogin(String orgId) {
-        setOrgId(orgId);
-        JSONObject object = login();
-        setOrgId("0");
-        return object;
+//    public JSONObject orgLogin(String orgId) {
+//        setOrgId(orgId);
+//        JSONObject object = login();
+//        setOrgId("0");
+//        return object;
+//    }
+
+
+    public static JSONObject Login(String account, String password, String orgId) {
+        return Request.go("app", "mobile", "login", Parameter.creat()
+                .add("account", account)
+                .add("password", password)
+                .add("orgId", orgId)
+                .add("phone", "")
+                .add("verifycode", "")
+                .add("loginMode", "")
+                .add("machine", "")
+                .add("proType", "ykdebug")
+                .add("longitude", "")
+                .add("latitude", "")
+                .getObjectMap()).json();
     }
 
+
+    public static JSONObject orgLogin(String orgId) {
+        return Login(Global.init().getAccount(), "111111", orgId);
+    }
 
     public String getAccount() {
         return account;
@@ -104,7 +110,7 @@ public class UserBase extends User implements appInterface {
         return cloudUsrAccount;
     }
 
-    public String getNickname(){
+    public String getNickname() {
         return object.getJSONObject("data").getString("nickname");
     }
 }

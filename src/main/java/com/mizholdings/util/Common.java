@@ -38,10 +38,10 @@ public class Common {
 //        return UUID.randomUUID().toString().replace("-", "").substring(0, 4);
     }
 
-    public static JSONObject filder(JSONArray array, String key, String tag) {
+    public static JSONObject filder(JSONArray array, String value, String key) {
         List<Object> list = array.stream().filter(i -> {
             JSONObject o = (JSONObject) i;
-            return key.equals(o.getString(tag));
+            return value.equals(o.getString(key));
         }).collect(Collectors.toList());
 
         if (list.size() > 0) {

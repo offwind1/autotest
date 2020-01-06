@@ -12,7 +12,9 @@ import com.mizholdings.util.Common;
 import com.mizholdings.util.SampleAssert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class classroomVideoTestCase3 {
 
@@ -97,34 +99,25 @@ public class classroomVideoTestCase3 {
 
     public void assertGetVideoListClass(JSONObject object, int studentCount, int classRoomCount) {
 
-        if (ObjectUtil.notEqual(object.getJSONArray("data").size(), studentCount)) {
+        int size = object.getJSONArray("data").stream().filter(i -> {
+            JSONObject o = (JSONObject) i;
+            return "3".equals(o.getString("userCount"));
+        }).collect(Collectors.toList()).size();
+
+        if (ObjectUtil.notEqual(size, studentCount)) {
             throw new RuntimeException("classChart/getVideoListClass 接口的" + "学生数量不正确");
-        }
-        JSONObject userInfo = Common.random(object.getJSONArray("data"));
-        if (ObjectUtil.isNotNull(userInfo)) {
-            SampleAssert.assertEquals(userInfo, "lessonId", lessonId);
-            SampleAssert.assertEquals(userInfo, "watchTime", String.valueOf(classRoomCount) + "分");
-            SampleAssert.assertEquals(userInfo, "timeLong", String.valueOf(classRoomCount * 60));
-            SampleAssert.assertEquals(userInfo, "classroomCount", String.valueOf(classRoomCount));
         }
     }
 
     public void assertGetVideoLesTypeClass(JSONObject object, int studentCount, int classRoomCount) {
+        int size = object.getJSONArray("data").stream().filter(i -> {
+            JSONObject o = (JSONObject) i;
+            return "3".equals(o.getString("userCount"));
+        }).collect(Collectors.toList()).size();
 
-        if (ObjectUtil.notEqual(object.getJSONArray("data").size(), studentCount)) {
+        if (ObjectUtil.notEqual(size, studentCount)) {
             throw new RuntimeException("classChart/getVideoListClass 接口的" + "学生数量不正确");
         }
-
-        JSONObject userInfo = Common.random(object.getJSONArray("data"));
-        if (ObjectUtil.isNull(userInfo)) {
-            throw new RuntimeException("classChart/getVideoLesTypeClass 接口，未搜索到userId为:" + student.getUserId() + "的学生");
-        } else {
-            SampleAssert.assertEquals(userInfo, "lessonId", lessonId);
-            SampleAssert.assertEquals(userInfo, "watchTime", String.valueOf(classRoomCount) + "分");
-            SampleAssert.assertEquals(userInfo, "timeLong", String.valueOf(classRoomCount * 60));
-            SampleAssert.assertEquals(userInfo, "classroomCount", String.valueOf(classRoomCount));
-        }
     }
-
 
 }

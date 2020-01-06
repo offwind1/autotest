@@ -40,7 +40,9 @@ public class Jigou extends Teacher {
      */
     public String addTeacher(String phone) {
         JSONObject object = web.usrAgent().checkTeacher(phone);
-        SampleAssert.assertEquals("已注册", object);
+//        SampleAssert.assertEquals("已注册", object);
+//        SampleAssert.assertResult0(object);
+        SampleAssert.assertCode200(object);
 
         String nickname = object.getJSONObject("data").getJSONObject("userInfo").getString("nickname");
         String userId = object.getJSONObject("data").getJSONObject("userInfo").getString("userId");
@@ -56,7 +58,7 @@ public class Jigou extends Teacher {
      * @param userId 用户id
      */
     public void delTeacher(String userId) {
-        JSONObject object = web.usrAgent().orgDelTeacher(getUserId(), userId);
+        JSONObject object = web.usrAgent().orgDelTeacher(userId);
         SampleAssert.assertCode200(object);
     }
 

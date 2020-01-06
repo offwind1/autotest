@@ -45,7 +45,7 @@ public class CustomAgencyTest {
     }
 
     public JSONObject studentQuitJigou(UserBase student) {
-        return jigou.getWeb().usrAgent().orgDelTeacher(student.getUserId());
+        return jigou.getWeb().usrAgent().orgDelStudent(student.getUserId());
     }
 
     @Test
@@ -59,7 +59,6 @@ public class CustomAgencyTest {
                 .add("page", "1")
         );
     }
-
 
     @Test(description = "1_1_1 机构加入用户")
     public void test1_1_1() {
@@ -76,51 +75,6 @@ public class CustomAgencyTest {
         JSONObject object = studentQuitJigou(student);
         SampleAssert.assertCode200(object);
     }
-
-
-    @Test(description = "1_2_1_1 非机构用户，无法登录全封闭app")
-    public void test1_2_1_1() {
-        JSONObject object = no_in_jigou_student.orgLogin(jigou.getOrgId());
-        SampleAssert.assertEquals("您的账号不在授权范围内，请联系学校教务处!", object);
-    }
-
-
-    @Test(description = "1_2_1_2 机构用户，可以登录全封闭app")
-    public void test1_2_1_2() {
-        JSONObject object = in_jigou_student.orgLogin(jigou.getOrgId());
-        SampleAssert.assertEquals("查询成功", object);
-    }
-
-//    @Test(description = "1_2_2 用户加入多个机构")
-//    public void test1_2_2() {
-//        List<String> orgIds = Arrays.asList("8398", "8419");
-//        List<String> teacherIds = Arrays.asList("4626467080113152", "4477878537112576");
-//        List<Me2Jigou> jigous = new ArrayList<>();
-//
-//        for (String name : Arrays.asList("jigou003", "fsdfsd")) {
-//            jigous.add(new Me2Jigou(name, name));
-//        }
-//
-//        for (int i = 0; i < jigous.size(); i++) {
-//            orgInfoAgent.setExecutor(jigous.get(i));
-//            orgInfoAgent.addStudentToOrg(account, orgIds.get(i));
-//        }
-//
-//        JSONObject object = Me2UserBase.Login(account, password);
-//
-//        for (int i = 0; i < jigous.size(); i++) {
-//            orgInfoAgent.setExecutor(jigous.get(i));
-//            orgInfoAgent.orgDelTeacher(teacherIds.get(i), userId);
-//        }
-//
-//        if (!orgIds.get(1).equals(object.getJSONObject("data")
-//                .getJSONArray("orgRelList").getJSONObject(0)
-//                .getString("orgId"))) {
-//
-//            throw new RuntimeException("最后加入的机构应该排在第一个");
-//        }
-//    }
-
 
     /**
      * 学生首页搜索课程
@@ -329,54 +283,5 @@ public class CustomAgencyTest {
             throw new RuntimeException("机构用户搜索新闻，未搜索到");
         }
     }
-
-    private String teacher_userId;
-
-    @BeforeGroups(groups = "new_teacher")
-    public void beforeGroups_new_teacher() {
-        try {
-            teacher_userId = jigou.addTeacher("18766700055");
-        } catch (Exception e) {
-            jigou.delTeacher(teacher_userId);
-            try {
-                teacher_userId = jigou.addTeacher("18766700055");
-            } catch (Exception a) {
-                throw new RuntimeException(a);
-            }
-        }
-    }
-
-    @Test(description = "1_4_1 机构教师显示在机构教师列表中", groups = "new_teacher")
-    public void test1_4_1() {
-
-        JSONObject object = no_in_jigou_student.getApp().mobileAgent().orgUserList(jigou.getUserId());
-
-        if (object.getJSONArray("data").stream().allMatch(i -> {
-            JSONObject o = (JSONObject) i;
-            return !teacher_userId.equals(o.getString("userId"));
-        })) {
-            throw new RuntimeException("机构教师没有显示在机构列表里");
-        }
-    }
-
-    @AfterGroups(groups = "new_teacher")
-    public void afterGroups_new_teacher() {
-        jigou.delTeacher(teacher_userId);
-    }
-
-    @Test(description = "1_4_2 机构学生，不显示在机构教师列表中")
-    public void test1_4_2() {
-        JSONObject object = no_in_jigou_student.getApp().mobileAgent().orgUserList(jigou.getUserId());
-
-        if (object.getJSONArray("data").stream().anyMatch(i -> {
-            JSONObject o = (JSONObject) i;
-            return in_jigou_student.getUserId().equals(o.getString("userId"));
-        })) {
-
-            throw new RuntimeException("机构用户管理的教师列表, 返回了学生的数据");
-        }
-
-    }
-
 
 }

@@ -1,10 +1,7 @@
 package com.mizholdings.me2.agent.web;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.util.MODBase;
-import com.mizholdings.util.Parameter;
-import com.mizholdings.util.Requests;
-import com.mizholdings.util.User;
+import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
 public class ItemAgent extends MODBase<ItemAgent> {
@@ -19,15 +16,26 @@ public class ItemAgent extends MODBase<ItemAgent> {
 
     @Step("查询收费列表")
     public JSONObject list() {
-        return exec("list");
+        return exec("list", Parameter.creat()
+                .add("page", "1")
+                .add("pageSize", "10")
+        );
     }
 
-    @Step("查询收费列表")
+    @Step("添加收款项目")
     public JSONObject add(String itemName, String loginTypes, String lessonIds) {
         return exec("add", Parameter.creat()
                 .add("itemName", itemName)
                 .add("introduce", "介绍")
                 .add("loginTypes", loginTypes)
+                .add("lessonIds", lessonIds));
+    }
+
+    public JSONObject add(String lessonIds) {
+        return exec("add", Parameter.creat()
+                .add("itemName", Common.getNowTime())
+                .add("introduce", "介绍")
+                .add("loginTypes", "2,3")
                 .add("lessonIds", lessonIds));
     }
 
@@ -39,6 +47,15 @@ public class ItemAgent extends MODBase<ItemAgent> {
                 .add("itemName", itemName)
                 .add("introduce", "介绍")
                 .add("loginTypes", loginTypes)
+                .add("lessonIds", lessonIds));
+    }
+
+    public JSONObject update(String itemId, String lessonIds) {
+        return exec("update", Parameter.creat()
+                .add("itemId", itemId)
+                .add("itemName", Common.getNowTime())
+                .add("introduce", "介绍")
+                .add("loginTypes", "2,3")
                 .add("lessonIds", lessonIds));
     }
 
@@ -98,6 +115,9 @@ public class ItemAgent extends MODBase<ItemAgent> {
         return exec("delete", parameter);
     }
 
+    public JSONObject delete(String itemId) {
+        return delete(Parameter.creat().add("itemId", itemId));
+    }
 
 
 }

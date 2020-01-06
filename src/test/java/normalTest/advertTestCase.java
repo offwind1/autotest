@@ -36,7 +36,6 @@ public class advertTestCase {
         JSONObject object = superAdmin.getManage().advertAgent().list();
         SampleAssert.assertCode200(object);
 
-
         object = Common.filder(object.getJSONObject("data").getJSONArray("list"), remark, "remark");
         advertId = object.getString("advertId");
     }
