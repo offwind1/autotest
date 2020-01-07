@@ -2,7 +2,7 @@ package com.mizholdings.me2.agent.web;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.M2TYPE;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.util.Common;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.Parameter;
@@ -136,7 +136,7 @@ public class AnswerAgent extends MODBase<AnswerAgent> {
         return exec(Common.getMethodName(), parameter);
     }
 
-    public JSONObject updateStudentSubjectiveItem(String answerCardId, String classroomId, String seq, String userId, M2TYPE.AnswerResult answerResult) {
+    public JSONObject updateStudentSubjectiveItem(String answerCardId, String classroomId, String seq, String userId, Global_enum.AnswerResult answerResult) {
         return updateStudentSubjectiveItem(Parameter.creat()
                 .add("answerCardId", answerCardId)
                 .add("classroomId", classroomId)

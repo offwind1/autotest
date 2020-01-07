@@ -117,6 +117,7 @@
         <interface method="POST" name="我创建的资源列表" url="/course/myCreate" value="myCreate"/>
         <interface method="POST" name="查询我购买的资源列表" url="/course/myBuy" value="myBuy"/>
         <interface method="POST" name="上传图片文件" url="/course/uploadFile" value="uploadFile"/>
+        <interface method="POST" name="上传课件资源" url="/course/uploadFile2" value="uploadFile2"/>
         <interface method="POST" name="我的资源PC" url="/course/myBuyPC" value="myBuyPC"/>
     </interfaces>
     <interfaces name="　实名认证" value="usrAuthen">

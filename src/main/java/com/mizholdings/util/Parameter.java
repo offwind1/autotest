@@ -1,9 +1,6 @@
 package com.mizholdings.util;
 
-import com.mizholdings.me2.M2TYPE;
-
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class Parameter {

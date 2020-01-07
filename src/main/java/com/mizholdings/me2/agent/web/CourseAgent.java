@@ -2,7 +2,7 @@ package com.mizholdings.me2.agent.web;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.Global;
-import com.mizholdings.me2.M2TYPE;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
@@ -66,7 +66,7 @@ public class CourseAgent extends MODBase<CourseAgent> {
     }
 
     @Step("用户购买资源列表")
-    public JSONObject buylist(M2TYPE.GRADEID gradeId, M2TYPE.COURSEWARE_TYPE courseware_type, M2TYPE.LESSON_TYPE_ID lesson_type_id) {
+    public JSONObject buylist(Global_enum.GRADEID gradeId, Global_enum.COURSEWARE_TYPE courseware_type, Global_enum.LESSON_TYPE_ID lesson_type_id) {
         return exec("buylist", Parameter.creat()
                 .add("currentPage", "1")
                 .add("pageSize", "20")
@@ -78,7 +78,7 @@ public class CourseAgent extends MODBase<CourseAgent> {
     }
 
     public JSONObject buylist() {
-        return buylist(M2TYPE.GRADEID.ALL, M2TYPE.COURSEWARE_TYPE.ALL, M2TYPE.LESSON_TYPE_ID.ALL);
+        return buylist(Global_enum.GRADEID.ALL, Global_enum.COURSEWARE_TYPE.ALL, Global_enum.LESSON_TYPE_ID.ALL);
     }
 
     @Step("下架资源")
@@ -93,7 +93,7 @@ public class CourseAgent extends MODBase<CourseAgent> {
     }
 
     @Step("自己创建的资源列表")
-    public JSONObject mylist(M2TYPE.GRADEID gradeId, M2TYPE.COURSEWARE_TYPE courseware_type, M2TYPE.LESSON_TYPE_ID lesson_type_id) {
+    public JSONObject mylist(Global_enum.GRADEID gradeId, Global_enum.COURSEWARE_TYPE courseware_type, Global_enum.LESSON_TYPE_ID lesson_type_id) {
         return exec("mylist", Parameter.creat()
                 .add("currentPage", "1")
                 .add("pageSize", "20")
@@ -105,7 +105,7 @@ public class CourseAgent extends MODBase<CourseAgent> {
     }
 
     public JSONObject mylist() {
-        return mylist(M2TYPE.GRADEID.ALL, M2TYPE.COURSEWARE_TYPE.ALL, M2TYPE.LESSON_TYPE_ID.ALL);
+        return mylist(Global_enum.GRADEID.ALL, Global_enum.COURSEWARE_TYPE.ALL, Global_enum.LESSON_TYPE_ID.ALL);
     }
 
     @Step("根据课程id查询订单")
@@ -160,9 +160,9 @@ public class CourseAgent extends MODBase<CourseAgent> {
     }
 
     @Step("审批资源列表")
-    public JSONObject applylist(String coursewareName, M2TYPE.COURSEWARE_TYPE courseware_type,
-                                M2TYPE.LESSON_TYPE_ID lesson_type_id, M2TYPE.PRIVATE_TYPE private_type,
-                                M2TYPE.GRADEID gradeid, M2TYPE.PUB_TYPE pub_type) {
+    public JSONObject applylist(String coursewareName, Global_enum.COURSEWARE_TYPE courseware_type,
+                                Global_enum.LESSON_TYPE_ID lesson_type_id, Global_enum.PRIVATE_TYPE private_type,
+                                Global_enum.GRADEID gradeid, Global_enum.PUB_TYPE pub_type) {
         return exec("applylist", Parameter.creat()
                 .add("coursewareName", coursewareName)
                 .add("coursewareType", courseware_type.value)
@@ -174,13 +174,13 @@ public class CourseAgent extends MODBase<CourseAgent> {
     }
 
     public JSONObject applylist() {
-        return applylist("", M2TYPE.COURSEWARE_TYPE.ALL, M2TYPE.LESSON_TYPE_ID.ALL, M2TYPE.PRIVATE_TYPE.OPEN,
-                M2TYPE.GRADEID.ALL, M2TYPE.PUB_TYPE.APPLY);
+        return applylist("", Global_enum.COURSEWARE_TYPE.ALL, Global_enum.LESSON_TYPE_ID.ALL, Global_enum.PRIVATE_TYPE.OPEN,
+                Global_enum.GRADEID.ALL, Global_enum.PUB_TYPE.APPLY);
     }
 
 
     @Step("审批资源")
-    public JSONObject replyCourse(String beforeId, M2TYPE.PUB_TYPE pub_type, String pubMsg) {
+    public JSONObject replyCourse(String beforeId, Global_enum.PUB_TYPE pub_type, String pubMsg) {
         return exec("replyCourse", Parameter.creat()
                 .add("beforeId", beforeId)
                 .add("pubType", pub_type.value)
@@ -189,7 +189,7 @@ public class CourseAgent extends MODBase<CourseAgent> {
     }
 
     public JSONObject replyCourse(String beforeId) {
-        return replyCourse(beforeId, M2TYPE.PUB_TYPE.PASS, "");
+        return replyCourse(beforeId, Global_enum.PUB_TYPE.PASS, "");
     }
 
     @Step("根据ID，获得资源详情")
@@ -217,7 +217,7 @@ public class CourseAgent extends MODBase<CourseAgent> {
     }
 
     @Step("添加资源_新增添加")
-    public JSONObject addNewCourse(String parentId, String sourceURL, M2TYPE.COURSEWARE_TYPE courseware_type, String oderNum) {
+    public JSONObject addNewCourse(String parentId, String sourceURL, Global_enum.COURSEWARE_TYPE courseware_type, String oderNum) {
         return exec("addNewCourse", Parameter.creat()
                 .add("parentId", parentId)
                 .add("sourceId", sourceURL)
@@ -229,7 +229,7 @@ public class CourseAgent extends MODBase<CourseAgent> {
 
     @Step("添加资源_新增添加")
     public JSONObject addNewCourse(String parentId) {
-        return addNewCourse(parentId, Global.getImageUrl(), M2TYPE.COURSEWARE_TYPE.IMAGE, "1");
+        return addNewCourse(parentId, Global.getImageUrl(), Global_enum.COURSEWARE_TYPE.IMAGE, "1");
     }
 
 
@@ -248,9 +248,9 @@ public class CourseAgent extends MODBase<CourseAgent> {
     }
 
     @Step("资源库列表")
-    public JSONObject list(String coursewareName, M2TYPE.COURSEWARE_TYPE courseware_type,
-                           M2TYPE.LESSON_TYPE_ID lesson_type_id, M2TYPE.GRADEID gradeid,
-                           M2TYPE.PRIVATE_TYPE private_type) {
+    public JSONObject list(String coursewareName, Global_enum.COURSEWARE_TYPE courseware_type,
+                           Global_enum.LESSON_TYPE_ID lesson_type_id, Global_enum.GRADEID gradeid,
+                           Global_enum.PRIVATE_TYPE private_type) {
         return exec("list", Parameter.creat()
                 .add("coursewareName", coursewareName)
                 .add("coursewareType", courseware_type.value)
@@ -263,27 +263,27 @@ public class CourseAgent extends MODBase<CourseAgent> {
     }
 
     public JSONObject list(String coursewareName) {
-        return list(coursewareName, M2TYPE.COURSEWARE_TYPE.ALL, M2TYPE.LESSON_TYPE_ID.ALL, M2TYPE.GRADEID.ALL, M2TYPE.PRIVATE_TYPE.OPEN);
+        return list(coursewareName, Global_enum.COURSEWARE_TYPE.ALL, Global_enum.LESSON_TYPE_ID.ALL, Global_enum.GRADEID.ALL, Global_enum.PRIVATE_TYPE.OPEN);
     }
 
     public JSONObject list() {
-        return list("", M2TYPE.COURSEWARE_TYPE.ALL, M2TYPE.LESSON_TYPE_ID.ALL, M2TYPE.GRADEID.ALL, M2TYPE.PRIVATE_TYPE.OPEN);
+        return list("", Global_enum.COURSEWARE_TYPE.ALL, Global_enum.LESSON_TYPE_ID.ALL, Global_enum.GRADEID.ALL, Global_enum.PRIVATE_TYPE.OPEN);
     }
 
-    public JSONObject list(M2TYPE.PRIVATE_TYPE private_type) {
-        return list("", M2TYPE.COURSEWARE_TYPE.ALL, M2TYPE.LESSON_TYPE_ID.ALL, M2TYPE.GRADEID.ALL, private_type);
+    public JSONObject list(Global_enum.PRIVATE_TYPE private_type) {
+        return list("", Global_enum.COURSEWARE_TYPE.ALL, Global_enum.LESSON_TYPE_ID.ALL, Global_enum.GRADEID.ALL, private_type);
     }
 
-    public JSONObject list(M2TYPE.GRADEID gradeid) {
-        return list("", M2TYPE.COURSEWARE_TYPE.ALL, M2TYPE.LESSON_TYPE_ID.ALL, gradeid, M2TYPE.PRIVATE_TYPE.OPEN);
+    public JSONObject list(Global_enum.GRADEID gradeid) {
+        return list("", Global_enum.COURSEWARE_TYPE.ALL, Global_enum.LESSON_TYPE_ID.ALL, gradeid, Global_enum.PRIVATE_TYPE.OPEN);
     }
 
-    public JSONObject list(M2TYPE.LESSON_TYPE_ID lesson_type_id) {
-        return list("", M2TYPE.COURSEWARE_TYPE.ALL, lesson_type_id, M2TYPE.GRADEID.ALL, M2TYPE.PRIVATE_TYPE.OPEN);
+    public JSONObject list(Global_enum.LESSON_TYPE_ID lesson_type_id) {
+        return list("", Global_enum.COURSEWARE_TYPE.ALL, lesson_type_id, Global_enum.GRADEID.ALL, Global_enum.PRIVATE_TYPE.OPEN);
     }
 
-    public JSONObject list(M2TYPE.COURSEWARE_TYPE courseware_type) {
-        return list("", courseware_type, M2TYPE.LESSON_TYPE_ID.ALL, M2TYPE.GRADEID.ALL, M2TYPE.PRIVATE_TYPE.OPEN);
+    public JSONObject list(Global_enum.COURSEWARE_TYPE courseware_type) {
+        return list("", courseware_type, Global_enum.LESSON_TYPE_ID.ALL, Global_enum.GRADEID.ALL, Global_enum.PRIVATE_TYPE.OPEN);
     }
 
 

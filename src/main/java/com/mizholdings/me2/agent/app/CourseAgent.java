@@ -1,6 +1,8 @@
 package com.mizholdings.me2.agent.app;
 
 import com.alibaba.fastjson.JSONObject;
+import com.mizholdings.me2.Global;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
@@ -33,6 +35,25 @@ public class CourseAgent extends MODBase<CourseAgent> {
                 .add("sourceUrl", sourceUrl)
                 .add("faceImg", "http://images.mizholdings.com/DPMIt6inrH3L~w9g.png"));
     }
+
+
+    @Step("上传课堂资源")
+    public JSONObject uploadFile2(Parameter parameter) {
+        return exec("uploadFile", parameter);
+    }
+
+
+    public JSONObject uploadFile2(String lessonId, String classroomId, Global_enum.COURSEWARE_TYPE courseware_type) {
+        return uploadFile2(Parameter.creat()
+                .add("sourceUrl", courseware_type.url)
+                .add("faceImg", Global.getImageUrl())
+                .add("lessonId", lessonId)
+                .add("classroomId", classroomId)
+                .add("coursewareType", courseware_type.value)
+                .add("coursewareName", courseware_type.name)
+        );
+    }
+
 
     /**
      * 创建默认图片课件

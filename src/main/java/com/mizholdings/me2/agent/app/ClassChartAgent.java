@@ -2,7 +2,7 @@ package com.mizholdings.me2.agent.app;
 
 import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.M2TYPE;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
@@ -71,7 +71,7 @@ public class ClassChartAgent extends MODBase<ClassChartAgent> {
      * @return
      */
     @Step("回放记录-学科（详情表）")
-    public JSONObject getVideoLesTypeClass(String lessonId, String stuId, M2TYPE.LESSON_TYPE_ID lesson_type_id,
+    public JSONObject getVideoLesTypeClass(String lessonId, String stuId, Global_enum.LESSON_TYPE_ID lesson_type_id,
                                            String startTime, String endTime) {
         return exec("getVideoLesTypeClass", Parameter.creat()
                 .add("lessonId", lessonId)
@@ -82,7 +82,7 @@ public class ClassChartAgent extends MODBase<ClassChartAgent> {
         );
     }
 
-    public JSONObject getVideoLesTypeClass(String lessonId, String stuId, M2TYPE.LESSON_TYPE_ID lesson_type_id) {
+    public JSONObject getVideoLesTypeClass(String lessonId, String stuId, Global_enum.LESSON_TYPE_ID lesson_type_id) {
         return getVideoLesTypeClass(lessonId, stuId, lesson_type_id, DateUtil.today(), DateUtil.today());
     }
 

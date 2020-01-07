@@ -18,7 +18,7 @@ public class ComboUtil {
         superAdmin.getManage().lessonAgent().passLesson(lessonId);
     }
 
-    public static void studentBuyLesson(UserBase student, String lesson){
+    public static void studentBuyLesson(UserBase student, String lesson) {
         student.getApp().payAgent().getPingxx(lesson);
     }
 

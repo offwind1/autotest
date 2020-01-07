@@ -2,12 +2,7 @@ package com.mizholdings.util;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.mizholdings.me2.M2TYPE;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
-import org.testng.Assert;
-import ru.yandex.qatools.allure.annotations.Attach;
 
 public class SampleAssert {
 

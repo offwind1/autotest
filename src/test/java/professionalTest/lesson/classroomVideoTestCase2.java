@@ -4,7 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.ComboUtil;
 import com.mizholdings.me2.Global;
-import com.mizholdings.me2.M2TYPE;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.me2.agent.web.LessonAgent;
 import com.mizholdings.me2.user.Jigou;
 import com.mizholdings.me2.user.SuperAdmin;
@@ -79,7 +79,7 @@ public class classroomVideoTestCase2 {
         object = jigou.getApp().classChartAgent().getVideoListClass(lessonId, stuId);
         assertGetVideoListClass(object, studentCount);
 
-        object = jigou.getApp().classChartAgent().getVideoLesTypeClass(lessonId, stuId, M2TYPE.LESSON_TYPE_ID.CHI);
+        object = jigou.getApp().classChartAgent().getVideoLesTypeClass(lessonId, stuId, Global_enum.LESSON_TYPE_ID.CHI);
         assertGetVideoLesTypeClass(object, studentCount);
     }
 

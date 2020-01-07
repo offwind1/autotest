@@ -3,7 +3,7 @@ package normalTest;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.Global;
-import com.mizholdings.me2.M2TYPE;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.me2.agent.web.LessonAgent;
 import com.mizholdings.me2.user.SuperAdmin;
 import com.mizholdings.me2.user.Teacher;
@@ -105,7 +105,7 @@ public class knowledgeTestCase {
         JSONObject object = teacher.getWeb().courseAgent().editCourseware(courseId,
                 Common.creatRandomString(), "0", knowledgeIds, knowledgeNames);
         object = teacher.getWeb().courseAgent().editCourseware(courseId, Common.creatRandomString(), "0", knowledgeIds, knowledgeNames);
-        object = teacher.getWeb().courseAgent().mylist(M2TYPE.GRADEID.ONE, M2TYPE.COURSEWARE_TYPE.ALL, M2TYPE.LESSON_TYPE_ID.ALL);
+        object = teacher.getWeb().courseAgent().mylist(Global_enum.GRADEID.ONE, Global_enum.COURSEWARE_TYPE.ALL, Global_enum.LESSON_TYPE_ID.ALL);
         object = Common.filder(object.getJSONObject("data").getJSONArray("list"), courseId, "coursewareId");
 
         if (!object.containsKey("knowledgeIds") || !knowledgeIds.equals(object.getString("knowledgeIds"))) {

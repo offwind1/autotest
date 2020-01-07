@@ -1,16 +1,24 @@
 package com.mizholdings.me2;
 
-public class M2TYPE {
+public class Global_enum {
     /**
      * 资源类型
      */
     public enum COURSEWARE_TYPE {
-        ALL("0"),
-        IMAGE("7");
+        ALL("0", "", ""),
+        IMAGE("7", Global.getImageUrl(), "图片"),
+        VIDEO("3", "http://images.mizholdings.com/NQhMizsnM9PpRus7.mp4", "测试视频"),
+        JIAO_AN("13", "http://images.mizholdings.com/zP2Fal2hMTCIsevy.pdf", "测试教案"),
+        OFFICE("9", "http://images.mizholdings.com/aB1EmfmB9AfmrtE5.docx", "测试WORD"),
+        ;
         public String value;
+        public String url;
+        public String name;
 
-        private COURSEWARE_TYPE(String value) {
+        COURSEWARE_TYPE(String value, String url, String name) {
             this.value = value;
+            this.url = url;
+            this.name = name;
         }
     }
 
@@ -100,5 +108,6 @@ public class M2TYPE {
             this.name = name;
         }
     }
+
 
 }

@@ -1,5 +1,7 @@
 package bugTest;
 
+import com.mizholdings.me2.Global;
+import com.mizholdings.me2.agent.manage.LessonAgent;
 import com.mizholdings.me2.user.SuperAdmin;
 import io.qameta.allure.Allure;
 import io.qameta.allure.model.TestResult;
@@ -12,14 +14,8 @@ public class TestTestCase {
     @Test
     public void tesssst() {
 
-        String asd = UUID.randomUUID().toString();
-        System.out.println(asd);
-
-        Allure.getLifecycle().scheduleTestCase(asd, (new TestResult()).withUuid(asd));
-//        Allure.getLifecycle().updateTestCase(asd, this.setStatus(Status.PASSED));
-        Allure.getLifecycle().stopTestCase(asd);
-        Allure.getLifecycle().writeTestCase(asd);
-        Allure.addAttachment("asdasd", "asdasd");
+        superAdmin = Global.init().getSuperAdmin();
+        superAdmin.getManage().lessonAgent().lessonReply("fc59b8d840ed4507babcbdf634a7495d", com.mizholdings.me2.agent.web.LessonAgent.PubType.PASS);
 
     }
 }

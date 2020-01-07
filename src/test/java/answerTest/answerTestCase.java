@@ -1,12 +1,10 @@
 package answerTest;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.mizholdings.me2.ComboUtil;
 import com.mizholdings.me2.Global;
-import com.mizholdings.me2.M2TYPE;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.me2.creater.LessonCreater;
 import com.mizholdings.me2.user.Teacher;
 import com.mizholdings.me2.user.UserBase;
@@ -14,7 +12,6 @@ import com.mizholdings.util.Common;
 import com.mizholdings.util.SampleAssert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import sun.dc.pr.PRError;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +25,7 @@ public class answerTestCase {
     private String answerCardId;
     private String classroomId;
     private String orgId;
+    private String classId;
     int k_count = 4;
     int z_count = 1;
     int answer_student = 4;
@@ -71,7 +69,7 @@ public class answerTestCase {
         orgId = getWorkSchoolList();
 
         //提交作业的班级列表
-        getWorkClassList();
+        classId = getWorkClassList();
 
         //作业统计结果
         object = getWorkStatisticsList();
@@ -98,13 +96,13 @@ public class answerTestCase {
 
         for (String userId : list) {
             JSONObject object = teacher.getWeb().answerAgent().updateStudentSubjectiveItem(answerCardId, classroomId,
-                    String.valueOf(k_count + z_count), userId, M2TYPE.AnswerResult.RIGHT);
+                    String.valueOf(k_count + z_count), userId, Global_enum.AnswerResult.RIGHT);
             SampleAssert.assertResult0(object);
         }
     }
 
     private JSONObject getStudentSubjectiveItemList() {
-        JSONObject object = teacher.getWeb().answerAgent().getStudentSubjectiveItemList(answerCardId, classroomId, orgId, String.valueOf(k_count + z_count));
+        JSONObject object = teacher.getWeb().answerAgent().getStudentSubjectiveItemList(answerCardId, classroomId, orgId, String.valueOf(k_count + z_count), classId);
         SampleAssert.assertResult0(object);
         return object;
     }
@@ -119,7 +117,7 @@ public class answerTestCase {
 
     private JSONObject getWorkStatisticsList() {
         //作业统计结果
-        JSONObject object = teacher.getWeb().answerAgent().getWorkStatisticsList(answerCardId, classroomId, orgId);
+        JSONObject object = teacher.getWeb().answerAgent().getWorkStatisticsList(answerCardId, classroomId, orgId, classId);
         SampleAssert.assertResult0(object);
         assert_getWorkStatisticsList(object);
         return object;
@@ -127,7 +125,7 @@ public class answerTestCase {
 
     private JSONObject getQuestionsSchedule(List<String> userIds) {
         //作业统计结果
-        JSONObject object = teacher.getWeb().answerAgent().getQuestionsSchedule(answerCardId, classroomId, orgId);
+        JSONObject object = teacher.getWeb().answerAgent().getQuestionsSchedule(answerCardId, classroomId, orgId, classId);
         SampleAssert.assertResult0(object);
         JSONArray array = object.getJSONObject("data").getJSONArray("answerUserList");
 
@@ -192,10 +190,11 @@ public class answerTestCase {
         return object.getJSONObject("data").getJSONArray("oiList").getJSONObject(0).getString("orgId");
     }
 
-    private void getWorkClassList() {
+    private String getWorkClassList() {
         //提交作业的班级列表
         JSONObject object = teacher.getWeb().answerAgent().getWorkClassList(answerCardId, classroomId, orgId);
         SampleAssert.assertResult0(object);
+        return object.getJSONObject("data").getJSONArray("crList").getJSONObject(0).getString("classId");
     }
 
 
