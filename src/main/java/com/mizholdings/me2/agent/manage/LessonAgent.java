@@ -2,6 +2,7 @@ package com.mizholdings.me2.agent.manage;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
@@ -526,6 +527,55 @@ public class LessonAgent extends MODBase<LessonAgent> {
     @Step("返回课程中的班级")
     public JSONObject groupByClass(Parameter parameter) {
         return exec("groupByClass", parameter);
+    }
+
+
+    @Step("公共课程库")
+    public JSONObject stockList(Parameter parameter) {
+        return exec(Common.getMethodName(), parameter);
+    }
+
+    public JSONObject stockList() {
+        return stockList(Parameter.creat()
+                .add("lessonName", "")
+                .add("lessonTypeId", "0")
+                .add("gradeId", "")
+                .add("currentPage", "1")
+                .add("pageSize", "12")
+                .add("orgId", "0")
+        );
+    }
+
+    @Step("已选择的课程库")
+    public JSONObject stockMy(Parameter parameter) {
+        return exec(Common.getMethodName(), parameter);
+    }
+
+    public JSONObject stockMy() {
+        return stockMy(Global_enum.GRADEID.ALL, Global_enum.LESSON_TYPE_ID.ALL);
+    }
+
+    public JSONObject stockMy(Global_enum.GRADEID gradeId, Global_enum.LESSON_TYPE_ID lessonTypeId) {
+        return stockMy(Parameter.creat()
+                .add("currentPage", "1")
+                .add("pageSize", "12")
+                .add("orgId", "0")
+                .add("gradeId", gradeId.value)
+                .add("lessonTypeId", lessonTypeId.value)
+        );
+    }
+
+    @Step("添加到我的课程库")
+    public JSONObject stockJoin(Parameter parameter) {
+        return exec(Common.getMethodName(), parameter);
+    }
+
+    public JSONObject stockJoin(String lessonIds) {
+        return stockJoin(Parameter.creat()
+                .add("lessonIds", lessonIds)
+                .add("orgId", "0")
+                .add("applyIds", "")
+        );
     }
 
 

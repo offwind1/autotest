@@ -74,13 +74,6 @@ public class UserBase extends User implements appInterface {
                 .getObjectMap()).json();
     }
 
-//    public JSONObject orgLogin(String orgId) {
-//        setOrgId(orgId);
-//        JSONObject object = login();
-//        setOrgId("0");
-//        return object;
-//    }
-
 
     public static JSONObject Login(String account, String password, String orgId) {
         return Request.go("app", "mobile", "login", Parameter.creat()

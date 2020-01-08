@@ -61,10 +61,8 @@ public class MODBase<T extends MODBase> {
     public JSONObject exec(String funcName, Map<String, Object> map) {
         Response response = Request.go(serve, agentName, funcName, map);
         if (response.state) {
-            logger.info(response.json().toJSONString());
             return response.json();
         }
-        logger.error(response.text);
         throw new RuntimeException(response.text);
     }
 

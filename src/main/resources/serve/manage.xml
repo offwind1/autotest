@@ -246,6 +246,9 @@
         <interface method="POST" name="根据班级ID添加学生" url="//lesson/studentByClassId" value="studentByClassId"/>
         <interface method="POST" name="根据账号，查询用户" url="//lesson/userListByAccount" value="userListByAccount"/>
         <interface method="POST" name="返回课程中的班级" url="/lesson/groupByClass" value="groupByClass"/>
+        <interface method="POST" name="公共课程库" url="/lesson/stockList" value="stockList"/>
+        <interface method="POST" name="添加到我的课程库" url="/lesson/stockJoin" value="stockJoin"/>
+        <interface method="POST" name="已选择的课程库" url="/lesson/stockMy" value="stockMy"/>
     </interfaces>
     <interfaces name="　标签管理" value="newTagInfo">
         <interface method="POST" name="获取标签列表" url="/newTagInfo/tagList" value="tagList"/>
@@ -282,7 +285,8 @@
         <interface method="POST" name="用户认证" url="/usr/authenUser" value="authenUser"/>
         <interface method="POST" name="安全问题列表" url="/usr/safeQuestion" value="safeQuestion"/>
         <interface method="POST" name="添加用户" url="/usr/addNewUser" value="addNewUser"/>
-        <interface method="POST" name="管理员登陆" url="/usr/manageLogin" value="manageLogin" schema="schema/manage/usr/manageLogin.json"/>
+        <interface method="POST" name="管理员登陆" url="/usr/manageLogin" value="manageLogin"
+                   schema="schema/manage/usr/manageLogin.json"/>
         <interface method="POST" name="修改用户米猪币或米猪时光" url="/usr/changeMoney" value="changeMoney"/>
         <interface method="POST" name="获取验证码" url="/usr/phoneCode" value="phoneCode"/>
         <interface method="POST" name="检验验证码" url="/usr/checkPhoneCode" value="checkPhoneCode"/>

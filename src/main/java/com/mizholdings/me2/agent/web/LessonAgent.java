@@ -2,6 +2,7 @@ package com.mizholdings.me2.agent.web;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
@@ -128,12 +129,6 @@ public class LessonAgent extends MODBase<LessonAgent> {
                 .add("org", "0"));
     }
 
-    /**
-     * 新增课程
-     *
-     * @param lessonName 课程名称
-     * @return json
-     */
     public JSONObject addLesson(String lessonName, FreeType free) {
         return addLesson(lessonName, 2, free);
     }
@@ -142,6 +137,9 @@ public class LessonAgent extends MODBase<LessonAgent> {
         return addLesson(lessonName, classroomCount, free, 0);
     }
 
+    public JSONObject addLesson(String lessonName, int classroomCount, FreeType free, int startDay) {
+        return addLesson(lessonName, classroomCount, free, startDay, Global_enum.CustRelease.NORMAL);
+    }
 
     /**
      * 新增课程
@@ -152,7 +150,7 @@ public class LessonAgent extends MODBase<LessonAgent> {
      * @return json
      */
     @Step("新增课程")
-    public JSONObject addLesson(String lessonName, int classroomCount, FreeType free, int startDay) {
+    public JSONObject addLesson(String lessonName, int classroomCount, FreeType free, int startDay, Global_enum.CustRelease custRelease) {
         JSONArray array = new JSONArray();
         for (int i = 0; i < classroomCount; i++) {
             JSONObject object = new JSONObject();
@@ -181,7 +179,7 @@ public class LessonAgent extends MODBase<LessonAgent> {
                 .add("free", free.value)
                 .add("classInfo", array.toJSONString())
                 .add("studentCount", "200")
-                .add("custRelease", "1");
+                .add("custRelease", custRelease.value);
         return exec("add", P);
     }
 
@@ -247,7 +245,6 @@ public class LessonAgent extends MODBase<LessonAgent> {
             return this.value;
         }
     }
-
 
 
     /**
@@ -531,6 +528,55 @@ public class LessonAgent extends MODBase<LessonAgent> {
     }
 
 
+    @Step("公共课程库")
+    public JSONObject stockList(Parameter parameter) {
+        return exec(Common.getMethodName(), parameter);
+    }
+
+    public JSONObject stockList(String orgId) {
+        return stockList(Parameter.creat()
+                .add("lessonName", "")
+                .add("lessonTypeId", "0")
+                .add("gradeId", "")
+                .add("currentPage", "1")
+                .add("pageSize", "12")
+                .add("orgId", orgId)
+        );
+    }
+
+
+    @Step("已选择的课程库")
+    public JSONObject stockMy(Parameter parameter) {
+        return exec(Common.getMethodName(), parameter);
+    }
+
+    public JSONObject stockMy(String orgId) {
+        return stockMy(Global_enum.GRADEID.ALL, Global_enum.LESSON_TYPE_ID.ALL, orgId);
+    }
+
+    public JSONObject stockMy(Global_enum.GRADEID gradeId, Global_enum.LESSON_TYPE_ID lessonTypeId, String orgId) {
+        return stockMy(Parameter.creat()
+                .add("currentPage", "1")
+                .add("lessonName", "")
+                .add("pageSize", "12")
+                .add("orgId", orgId)
+                .add("gradeId", gradeId.value)
+                .add("lessonTypeId", lessonTypeId.value)
+        );
+    }
+
+    @Step("添加到我的课程库")
+    public JSONObject stockJoin(Parameter parameter) {
+        return exec(Common.getMethodName(), parameter);
+    }
+
+    public JSONObject stockJoin(String lessonIds, String orgId) {
+        return stockJoin(Parameter.creat()
+                .add("lessonIds", lessonIds)
+                .add("orgId", orgId)
+                .add("applyIds", "")
+        );
+    }
 
 
 }

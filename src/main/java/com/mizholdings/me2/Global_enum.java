@@ -109,5 +109,19 @@ public class Global_enum {
         }
     }
 
+    public enum CustRelease {
+        NORMAL("1", "普通（非课程库）"),
+        CLASS_LIB("2", "课程库"),
+        CLASS_LIB_AUDIT("3", "课程库+选课审核");
+        public String value;
+        public String name;
+
+        CustRelease(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+    }
+
 
 }

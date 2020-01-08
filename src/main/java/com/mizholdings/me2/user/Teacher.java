@@ -1,6 +1,7 @@
 package com.mizholdings.me2.user;
 
 import com.alibaba.fastjson.JSONObject;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.me2.agent.web.LessonAgent;
 import com.mizholdings.me2.user.serve.Me2tiku;
 import com.mizholdings.me2.user.serve.Web;
@@ -42,12 +43,25 @@ public class Teacher extends UserBase implements webInterface, tikuInterface {
         String name = Common.creatRandomString();
         JSONObject object = web.lessonAgent().addLesson(name, classRoomCount, free, startDay);
         SampleAssert.assertCode200(object);
-        object = web.lessonAgent().list(name);
+
+        return fiddler_lesson(name);
+    }
+
+    public String newLessonAndGetLessonId(Global_enum.CustRelease custRelease) {
+        String name = Common.creatRandomString();
+        JSONObject object = web.lessonAgent().addLesson(name, 2, LessonAgent.FreeType.FREE, 0, custRelease);
+        SampleAssert.assertCode200(object);
+
+        return fiddler_lesson(name);
+    }
+
+    private String fiddler_lesson(String lesson_name) {
+        JSONObject object = web.lessonAgent().list(lesson_name);
         SampleAssert.assertCode200(object);
 
         List<Object> list = object.getJSONObject("data").getJSONArray("list").stream().filter(i -> {
             JSONObject o = (JSONObject) i;
-            return name.equals(o.getString("lessonName"));
+            return lesson_name.equals(o.getString("lessonName"));
         }).collect(Collectors.toList());
 
         assert list.size() > 0;

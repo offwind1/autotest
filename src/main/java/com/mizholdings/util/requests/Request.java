@@ -47,14 +47,14 @@ public class Request {
 
         showResponse(response);
 
-        String schema_path = "schema\\" + serve + "\\" + interfaces_value + "\\" + interface_value + ".json";
-        if (response.state && FileUtil.isFile(schema_path)) {
-            try {
-                JsonSchema(schema_path, response, map);
-            } catch (com.mizholdings.util.requests.SchemaCheckException e) {
-                throw new RuntimeException(e);
-            }
-        }
+//        String schema_path = "schema\\" + serve + "\\" + interfaces_value + "\\" + interface_value + ".json";
+//        if (response.state && FileUtil.isFile(schema_path)) {
+//            try {
+//                JsonSchema(schema_path, response, map);
+//            } catch (com.mizholdings.util.requests.SchemaCheckException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
         return response;
     }
 

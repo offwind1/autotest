@@ -39,7 +39,7 @@ public class CourseAgent extends MODBase<CourseAgent> {
 
     @Step("上传课堂资源")
     public JSONObject uploadFile2(Parameter parameter) {
-        return exec("uploadFile", parameter);
+        return exec("uploadFile2", parameter);
     }
 
 

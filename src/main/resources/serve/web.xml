@@ -30,8 +30,10 @@
         <interface method="POST" name="作业统计结果" url="/answer/getWorkStatisticsList" value="getWorkStatisticsList"/>
         <interface method="POST" name="答题进度" url="/answer/getQuestionsSchedule" value="getQuestionsSchedule"/>
         <interface method="POST" name="试题得分分析" url="/answer/answerAnalyze" value="answerAnalyze"/>
-        <interface method="POST" name="学生主观题列表" url="/answer/getStudentSubjectiveItemList" value="getStudentSubjectiveItemList"/>
-        <interface method="POST" name="学生主观题批改" url="/answer/updateStudentSubjectiveItem" value="updateStudentSubjectiveItem"/>
+        <interface method="POST" name="学生主观题列表" url="/answer/getStudentSubjectiveItemList"
+                   value="getStudentSubjectiveItemList"/>
+        <interface method="POST" name="学生主观题批改" url="/answer/updateStudentSubjectiveItem"
+                   value="updateStudentSubjectiveItem"/>
         <interface method="POST" name="提交作业的学校列表" url="/answer/getWorkSchoolList" value="getWorkSchoolList"/>
         <interface method="POST" name="提交作业的班级列表" url="/answer/getWorkClassList" value="getWorkClassList"/>
     </interfaces>
@@ -239,9 +241,12 @@
         <interface method="POST" name="上传导入学生1" url="/lesson/uploadFile" value="uploadFile"/>
         <interface method="POST" name="加入班级，根据导入文件" url="/lesson/joinClassByFile" value="joinClassByFile"/>
         <interface method="POST" name="加入班级，根据用户ID" url="/lesson/joinClassByUserId" value="joinClassByUserId"/>
-        <interface method="POST" name="根据班级ID添加学生" url="//lesson/studentByClassId" value="studentByClassId"/>
-        <interface method="POST" name="根据账号，查询用户" url="//lesson/userListByAccount" value="userListByAccount"/>
+        <interface method="POST" name="根据班级ID添加学生" url="/lesson/studentByClassId" value="studentByClassId"/>
+        <interface method="POST" name="根据账号，查询用户" url="/lesson/userListByAccount" value="userListByAccount"/>
         <interface method="POST" name="返回课程中的班级" url="/lesson/groupByClass" value="groupByClass"/>
+        <interface method="POST" name="公共课程库" url="/lesson/stockList" value="stockList"/>
+        <interface method="POST" name="添加到我的课程库" url="/lesson/stockJoin" value="stockJoin"/>
+        <interface method="POST" name="已选择的课程库" url="/lesson/stockMy" value="stockMy"/>
     </interfaces>
     <interfaces name="　标签管理" value="newTagInfo">
         <interface method="POST" name="获取标签列表" url="/newTagInfo/tagList" value="tagList"/>

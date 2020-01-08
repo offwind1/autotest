@@ -9,7 +9,7 @@ import com.mizholdings.util.User;
 import io.qameta.allure.Step;
 
 public class AdvertAgent extends MODBase<ChanAdvAgent> {
-//    public static AdvertInterface advertInterface = Requests.getService(AdvertInterface.class);
+    //    public static AdvertInterface advertInterface = Requests.getService(AdvertInterface.class);
     public AdvertAgent(User executor) {
         super(executor);
 //        interfaced = advertInterface;
@@ -75,7 +75,7 @@ public class AdvertAgent extends MODBase<ChanAdvAgent> {
      * @return
      */
     @Step("添加广告advert/add")
-    public JSONObject add(String advertImg, String advertSrc, String remark, ADVERT_TYPE advert_type, SRC_TYPE src_type) {
+    public JSONObject add(String advertImg, String advertSrc, String remark, ADVERT_TYPE advert_type, SRC_TYPE src_type, String orgId) {
         return exec("add", Parameter.creat()
                 .add("advertImg", advertImg)
                 .add("advertSrc", advertSrc)
@@ -86,14 +86,18 @@ public class AdvertAgent extends MODBase<ChanAdvAgent> {
                 .add("comIds", "1")
                 .add("advertType", advert_type.value)
                 .add("srcType", src_type.value)
+                .add("orgId", orgId)
 
         );
     }
 
     public JSONObject add(String remark) {
-        return add(Global.getImageUrl(), "https://www.baidu.com", remark, ADVERT_TYPE.HENG_FU, SRC_TYPE.LINK);
+        return add(Global.getImageUrl(), "https://www.baidu.com", remark, ADVERT_TYPE.HENG_FU, SRC_TYPE.LINK, "0");
     }
 
+    public JSONObject add(String remark, String orgId) {
+        return add(Global.getImageUrl(), "https://www.baidu.com", remark, ADVERT_TYPE.HENG_FU, SRC_TYPE.LINK, orgId);
+    }
 
     @Step("根据ID拿到广告详情advert/getAdvertById")
     public JSONObject getAdvertById(String advertId) {
