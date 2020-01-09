@@ -4,7 +4,6 @@
 
     <test name="机构权限测试">
         <classes>
-            <class name="jigouTest.CustomAgencyTest"/>
             <class name="jigouTest.advertTestCase"/>
             <class name="jigouTest.jigouAuthTestCase"/>
             <class name="jigouTest.orgMessageTestCase"/>
