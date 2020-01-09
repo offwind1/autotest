@@ -7,4 +7,10 @@
     <suite-files>
         <suite-file path="me2Test/me2businessTest.xml"/>
     </suite-files>
+    <suite-files>
+        <suite-file path="me2Test/SystemManageTest.xml"/>
+    </suite-files>
+    <suite-files>
+        <suite-file path="me2Test/bugTest.xml"/>
+    </suite-files>
 </suite>

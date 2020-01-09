@@ -34,15 +34,6 @@ public class jigouAuthTestCase {
         SampleAssert.assertMsg("您的账号不在授权范围内，请联系学校教务处!", object);
     }
 
-    @Test(description = "机构用户登录机构")
-    public void in_login() {
-        UserBase in_student = Global.init().getUserBase();
-        in_student.setOrgId(fengbi.getOrgId());
-        JSONObject object = in_student.login();
-        SampleAssert.assertMsg("查询成功", object);
-    }
-
-
     /**
      * 用户未加入机构时，登录。
      * 返回信息应是 您的账号不在授权范围内，请联系学校教务处!

@@ -11,7 +11,6 @@ public class UsrAuthenAgent extends MODBase<UsrAuthenAgent> {
     }
 
 
-    
     /**
      * 用户认证
      *
@@ -21,7 +20,7 @@ public class UsrAuthenAgent extends MODBase<UsrAuthenAgent> {
     public JSONObject addAuthen(Parameter parameter) {
         return exec("addAuthen", parameter);
     }
-    
+
     /**
      * 查询用户认证列表
      *
@@ -31,6 +30,10 @@ public class UsrAuthenAgent extends MODBase<UsrAuthenAgent> {
     public JSONObject list(Parameter parameter) {
         return exec("list", parameter);
     }
-    
+
+    public JSONObject list() {
+        return list(Parameter.creat());
+    }
+
 
 }

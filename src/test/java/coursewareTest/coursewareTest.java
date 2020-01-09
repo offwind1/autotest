@@ -67,7 +67,7 @@ public class coursewareTest {
      * 2、optionList 的资源分别是，视频，图片，教案，文档
      * 3、laList、videoList、homeworkList 为空
      */
-    @Test(description = "拿到课堂附加资源列表")
+    @Test(description = "拿到课堂附加资源列表 app")
     public void optionList_test() {
         JSONObject object = teacher.getApp().classInfoAgent().optionList(classroomId);
         SampleAssert.assertResult0(object);
@@ -110,15 +110,18 @@ public class coursewareTest {
             throw new RuntimeException(mag);
         }
 
-        if (ObjectUtil.isNotNull(object.getJSONObject("data").getJSONArray("homeworkList"))) {
+        System.out.println(object.getJSONObject("data").getJSONArray("homeworkList"));
+        System.out.println(object.getJSONObject("data").getJSONArray("homeworkList").size());
+
+        if (object.getJSONObject("data").getJSONArray("homeworkList").size() == 0) {
             throw new RuntimeException("homeworkList 不为空");
         }
 
-        if (ObjectUtil.isNotNull(object.getJSONObject("data").getJSONArray("videoList"))) {
+        if (object.getJSONObject("data").getJSONArray("videoList").size() == 0) {
             throw new RuntimeException("videoList 不为空");
         }
 
-        if (ObjectUtil.isNotNull(object.getJSONObject("data").getJSONArray("laList"))) {
+        if (object.getJSONObject("data").getJSONArray("laList").size() == 0) {
             throw new RuntimeException("laList 不为空");
         }
     }
@@ -130,9 +133,9 @@ public class coursewareTest {
      * 2、coursewareList 的资源分别是，视频，图片，教案，文档
      * 3、homeList、laList。为空
      */
-    @Test(description = "拿到课堂附加资源列表")
+    @Test(description = "拿到课堂附加资源列表 web")
     public void classroomOption_test() {
-        JSONObject object = teacher.getWeb().classroomAgent().classroomOptions(Parameter.creat().add("classroomId", classroomId));
+        JSONObject object = teacher.getWeb().classroomAgent().classroomOption(Parameter.creat().add("classroomId", classroomId));
 
         SampleAssert.assertResult0(object);
 

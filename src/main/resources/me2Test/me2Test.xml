@@ -4,7 +4,7 @@
 
     <test name="收款项目测试">
         <classes>
-            <class name="normalTest.itemTestCase">
+            <class name="itemTest.itemTestCase">
             </class>
         </classes>
     </test>
@@ -28,25 +28,24 @@
     </test>
     <test name="广告模块">
         <classes>
-            <class name="normalTest.advertTestCase">
-            </class>
+            <class name="normalTest.advertTestCase"/>
         </classes>
     </test>
     <test name="资源管理">
         <classes>
-            <class name="normalTest.courseTestCase">
-            </class>
+            <class name="normalTest.courseTestCase"/>
         </classes>
     </test>
-    <test name="答题卡测试">
+    <test name="课堂管理">
         <classes>
-            <class name="answerTest.answerTestCase">
-            </class>
+            <class name="normalTest.classroomInfoTestCase"/>
         </classes>
     </test>
-
-
-
+    <test name="钱包">
+        <classes>
+            <class name="normalTest.bankTestCase"/>
+        </classes>
+    </test>
 
 
 </suite>

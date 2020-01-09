@@ -129,6 +129,19 @@ public class ClassLibraryTest {
         }
     }
 
+    /**
+     * 另一个机构用户，添加课程后。在课程管理界面，筛选课程库课程
+     */
+    @Test(description = "另一个机构用户，添加课程后。在课程管理界面，筛选课程库课程", priority = 2)
+    public void filtrate_jigou_test() {
+        JSONObject object = other_jigou.getWeb().lessonAgent().list_stock();
+
+        object = Common.filder(object.getJSONObject("data").getJSONArray("list"), lessonId, "lessonId");
+        if (ObjectUtil.isNull(object)) {
+            throw new RuntimeException("筛选课程库课程，未搜索到该课程");
+        }
+    }
+
 
     /**
      * 另一个机构用户，添加课程后，该机构用户搜索课程
@@ -173,8 +186,6 @@ public class ClassLibraryTest {
             throw new RuntimeException("未加入的机构，也搜索到了该课程");
         }
     }
-
-
 
 
 }

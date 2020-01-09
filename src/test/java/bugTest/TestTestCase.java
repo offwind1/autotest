@@ -14,8 +14,8 @@ public class TestTestCase {
     @Test
     public void tesssst() {
 
-        superAdmin = Global.init().getSuperAdmin();
-        superAdmin.getManage().lessonAgent().lessonReply("fc59b8d840ed4507babcbdf634a7495d", com.mizholdings.me2.agent.web.LessonAgent.PubType.PASS);
+        int a =0;
 
+        System.out.println(a++);
     }
 }

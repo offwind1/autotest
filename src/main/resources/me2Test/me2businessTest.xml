@@ -11,20 +11,17 @@
     </test>
     <test name="学习模块测试">
         <classes>
-            <class name="professionalTest.XueXiPageTest">
-            </class>
+            <class name="professionalTest.XueXiPageTest"/>
         </classes>
     </test>
     <test name="积分相关测试">
         <classes>
-            <class name="professionalTest.TestIntegCase">
-            </class>
+            <class name="professionalTest.TestIntegCase"/>
         </classes>
     </test>
     <test name="学分管理">
         <classes>
-            <class name="professionalTest.creditTestCase">
-            </class>
+            <class name="professionalTest.creditTestCase"/>
         </classes>
     </test>
     <test name="通用测试">
@@ -47,5 +44,14 @@
             <class name="lessonTest.ClassLibraryTest"/>
         </classes>
     </test>
-
+    <test name="助教相关">
+        <classes>
+            <class name="TeacherTest.TeacherTestCase"/>
+        </classes>
+    </test>
+    <test name="答题卡测试">
+        <classes>
+            <class name="answerTest.answerTestCase"/>
+        </classes>
+    </test>
 </suite>

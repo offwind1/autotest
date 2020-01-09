@@ -334,6 +334,10 @@ public class ClassInfoAgent extends MODBase<ClassInfoAgent> {
         return exec("rtcAppList", parameter);
     }
 
+    public JSONObject rtcAppList() {
+        return rtcAppList(Parameter.creat());
+    }
+
     /**
      * 课堂结束，保存信息(白板服务器调用)
      *
@@ -372,6 +376,11 @@ public class ClassInfoAgent extends MODBase<ClassInfoAgent> {
     @Step("查询是否存在正在开课的课堂")
     public JSONObject notClose(Parameter parameter) {
         return exec("notClose", parameter);
+    }
+
+    @Step("查询是否存在正在开课的课堂")
+    public JSONObject notClose() {
+        return notClose(Parameter.creat());
     }
 
     /**
@@ -434,6 +443,10 @@ public class ClassInfoAgent extends MODBase<ClassInfoAgent> {
         return exec("roomToday", parameter);
     }
 
+    public JSONObject roomToday() {
+        return roomToday(Parameter.creat());
+    }
+
     /**
      * 管理员系统调用关闭课堂
      *
@@ -492,6 +505,28 @@ public class ClassInfoAgent extends MODBase<ClassInfoAgent> {
     @Step("获取课堂用户列表")
     public JSONObject roomUser(Parameter parameter) {
         return exec("roomUser", parameter);
+    }
+
+    @Step("切换主讲老师-手动")
+    public JSONObject switchMasterByManu(Parameter parameter) {
+        return exec(Common.getMethodName(), parameter);
+    }
+
+    public JSONObject switchMasterByManu(String classroomId, String masterId) {
+        return switchMasterByManu(Parameter.creat()
+                .add("classroomId", classroomId)
+                .add("masterId", masterId)
+        );
+    }
+
+
+    @Step("获取课堂老师列表")
+    public JSONObject getClassroomTeacher(Parameter parameter) {
+        return exec(Common.getMethodName(), parameter);
+    }
+
+    public JSONObject getClassroomTeacher(String classroomId) {
+        return getClassroomTeacher(Parameter.creat().add("classroomId", classroomId));
     }
 
 

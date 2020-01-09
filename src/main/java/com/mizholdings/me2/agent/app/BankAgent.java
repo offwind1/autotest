@@ -21,6 +21,10 @@ public class BankAgent extends MODBase<BankAgent> {
         return exec("list", parameter);
     }
 
+    public JSONObject list() {
+        return list(Parameter.creat());
+    }
+
     /**
      * 获取提现账号
      *
@@ -29,6 +33,10 @@ public class BankAgent extends MODBase<BankAgent> {
     @Step("获取提现账号")
     public JSONObject drawAccount(Parameter parameter) {
         return exec("drawAccount", parameter);
+    }
+
+    public JSONObject drawAccount() {
+        return drawAccount(Parameter.creat());
     }
 
     /**
@@ -81,6 +89,10 @@ public class BankAgent extends MODBase<BankAgent> {
         return exec("userWallet", parameter);
     }
 
+    public JSONObject userWallet() {
+        return userWallet(Parameter.creat());
+    }
+
     /**
      * 用户直播界面数据
      *
@@ -89,6 +101,10 @@ public class BankAgent extends MODBase<BankAgent> {
     @Step("用户直播界面数据")
     public JSONObject userDirect(Parameter parameter) {
         return exec("userDirect", parameter);
+    }
+
+    public JSONObject userDirect() {
+        return userDirect(Parameter.creat());
     }
 
 

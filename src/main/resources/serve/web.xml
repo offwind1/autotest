@@ -202,11 +202,13 @@
         <interface method="POST" name="根据课节ID删除记录" url="/classroom/delClassroomById" value="delClassroomById"/>
         <interface method="POST" name="课节申请列表" url="/classroom/applylist" value="applylist"/>
         <interface method="POST" name="直播课管理" url="/classroom/onlineList" value="onlineList"/>
-        <interface method="POST" name="查看课堂附件" url="/classroom/classroomOptions" value="classroomOptions"/>
+        <interface method="POST" name="查看课堂附件" url="/classroom/classroomOption" value="classroomOption"/>
         <interface method="POST" name="新增课堂视频" url="/classroom/addClassVideo" value="addClassVideo"/>
         <interface method="POST" name="修改课堂视频" url="/classroom/editClassVideo" value="editClassVideo"/>
         <interface method="POST" name="删除课堂视频" url="/classroom/deleteClassVideo" value="deleteClassVideo"/>
         <interface method="POST" name="直播课管理（V2）" url="/classroom/onlineListV2" value="onlineListV2"/>
+        <interface method="POST" name="获取课堂的助教老师列表" url="/classroom/getTeacherList" value="getTeacherList"/>
+        <interface method="POST" name="设置课堂助教老师" url="/classroom/setTeacher" value="setTeacher"/>
     </interfaces>
     <interfaces name="　退款" value="refund">
         <interface method="POST" name="退课记录" url="/refund/refundList" value="refundList"/>

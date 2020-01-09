@@ -83,8 +83,8 @@ public class Global_enum {
     public enum PUB_TYPE {
         NO_APPLY("0", "未提交"),
         APPLY("1", "提交审核"),
-        NO_PASS("1", "审核未通过"),
-        PASS("1", "审核通过");
+        NO_PASS("2", "审核未通过"),
+        PASS("9", "审核通过");
 
         public String value;
         public String name;
@@ -120,6 +120,10 @@ public class Global_enum {
             this.value = value;
             this.name = name;
         }
+    }
+
+    public enum AuthenStatus{
+
 
     }
 

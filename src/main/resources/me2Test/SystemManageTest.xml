@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="系统管理后台">
+    <test name="系统管理员，课程管理都可以直接编辑，不需要进行任何的下架审核操作限制(未完成)">
+        <classes>
+            <class name="superAdminTest.lessonEditTestCase">
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,10 +1,15 @@
 package itemTest;
 
+import cn.hutool.core.util.ObjectUtil;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.Global;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.me2.user.Jigou;
+import com.mizholdings.me2.user.SuperAdmin;
 import com.mizholdings.me2.user.UserBase;
 import com.mizholdings.util.Common;
+import com.mizholdings.util.Parameter;
 import com.mizholdings.util.SampleAssert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -19,21 +24,24 @@ public class itemTestCase {
     private String itemId;
     private String lessonIds;
 
-    @Test(description = "多项目收款流程测试")
-    public void ItemTest() {
-        add_test();
-        list_test();
-        delete_test();
-        getById_test();
+    private JSONArray getItemDiscountJson() {
+        JSONArray array = new JSONArray();
+        for (int i = 0; i < 3; i++) {
+            JSONObject object = new JSONObject();
+            object.put("meetPrice", 20 * (i + 1));
+            object.put("discountsPrice", 10 * (i + 1));
+            array.add(object);
+        }
+        return array;
     }
 
     @Test(description = "添加收款项目")
     public void add_test() {
-        JSONObject object = jigou.getWeb().lessonAgent().list();
+        JSONObject object = jigou.getWeb().lessonAgent().list(Global_enum.PUB_TYPE.PASS);
         List<String> list = Common.map(object.getJSONObject("data").getJSONArray("list"), "lessonId");
         lessonIds = String.join(",", list);
 
-        object = jigou.getWeb().itemAgent().add(lessonIds);
+        object = jigou.getWeb().itemAgent().add(lessonIds, getItemDiscountJson());
         SampleAssert.assertResult0(object);
     }
 
@@ -44,9 +52,21 @@ public class itemTestCase {
         itemId = Common.random(object.getJSONObject("data").getJSONArray("OrgPayitemList")).getString("itemId");
     }
 
-    @Test(description = "修改收费列表", dependsOnMethods = {"list_test"})
+
+    @Test(description = "管理员 查看收费列表", dependsOnMethods = {"list_test"})
+    public void superAdmin_list_test() {
+        SuperAdmin superAdmin = Global.init().getSuperAdmin();
+        JSONObject object = superAdmin.getManage().itemAgent().list(Parameter.creat().add("page", "1").add("pageSize", "10"));
+
+        object = Common.filder(object.getJSONObject("data").getJSONArray("opList"), itemId, "itemId");
+        if (ObjectUtil.isNull(object)) {
+            throw new RuntimeException("管理员收费列表中，未找到该收款项目");
+        }
+    }
+
+    @Test(description = "修改收费列表", dependsOnMethods = {"superAdmin_list_test"})
     public void update_test() {
-        JSONObject object = jigou.getWeb().itemAgent().update(itemId, lessonIds);
+        JSONObject object = jigou.getWeb().itemAgent().update(itemId, lessonIds, getItemDiscountJson());
         SampleAssert.assertResult0(object);
     }
 
@@ -62,7 +82,15 @@ public class itemTestCase {
     @Test(description = "用户购买课程", dependsOnMethods = {"getById_test"})
     public void buyLesson_test() {
         JSONObject object = jigou.getApp().payAgent().buyLesson(student.getUserId(), lessonIds);
-//        SampleAssert.assertResult0(object);
+        if ("课程下架或已购买".equals(object.getString("msg"))) {
+            return;
+        }
+
+        if ("0".equals(object.getString("result"))) {
+            return;
+        }
+
+        SampleAssert.assertResult0(object);
     }
 
     @Test(description = "删除收款项目", dependsOnMethods = {"buyLesson_test"})
@@ -70,6 +98,5 @@ public class itemTestCase {
         JSONObject object = jigou.getWeb().itemAgent().delete(itemId);
         SampleAssert.assertResult0(object);
     }
-
 
 }

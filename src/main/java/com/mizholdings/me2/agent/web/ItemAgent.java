@@ -1,5 +1,7 @@
 package com.mizholdings.me2.agent.web;
 
+import cn.hutool.core.util.ObjectUtil;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
@@ -31,33 +33,60 @@ public class ItemAgent extends MODBase<ItemAgent> {
                 .add("lessonIds", lessonIds));
     }
 
+    private JSONArray lessonIdJson(String lessonIds) {
+        JSONArray array = new JSONArray();
+
+        int seq = 0;
+        for (String lessonId : lessonIds.split(",")) {
+            JSONObject object = new JSONObject();
+            object.put("lessonId", lessonId);
+            object.put("required", 0);
+            object.put("seq", seq++);
+            array.add(object);
+        }
+        return array;
+    }
+
     public JSONObject add(String lessonIds) {
+        return add(lessonIds, null);
+    }
+
+    public JSONObject add(String lessonIds, JSONArray itemDiscount) {
+        String itemDiscountJson = "";
+        if (ObjectUtil.isNotNull(itemDiscount)) {
+            itemDiscountJson = itemDiscount.toJSONString();
+        }
+
         return exec("add", Parameter.creat()
                 .add("itemName", Common.getNowTime())
                 .add("introduce", "介绍")
                 .add("loginTypes", "2,3")
-                .add("lessonIds", lessonIds));
+                .add("lessonIdJson", lessonIdJson(lessonIds).toJSONString())
+                .add("itemDiscountJson", itemDiscountJson)
+        );
     }
 
 
     @Step("修改收款项目")
-    public JSONObject update(String itemId, String itemName, String loginTypes, String lessonIds) {
+    public JSONObject update(String itemId, String itemName, String loginTypes, String lessonIdJson, String itemDiscountJson) {
         return exec("update", Parameter.creat()
                 .add("itemId", itemId)
                 .add("itemName", itemName)
                 .add("introduce", "介绍")
                 .add("loginTypes", loginTypes)
-                .add("lessonIds", lessonIds));
+                .add("lessonIdJson", lessonIdJson)
+                .add("itemDiscountJson", itemDiscountJson)
+        );
     }
 
     public JSONObject update(String itemId, String lessonIds) {
-        return exec("update", Parameter.creat()
-                .add("itemId", itemId)
-                .add("itemName", Common.getNowTime())
-                .add("introduce", "介绍")
-                .add("loginTypes", "2,3")
-                .add("lessonIds", lessonIds));
+        return update(itemId, Common.getNowTime(), "2,3", lessonIdJson(lessonIds).toJSONString(), "");
     }
+
+    public JSONObject update(String itemId, String lessonIds, JSONArray itemDiscountJson) {
+        return update(itemId, Common.getNowTime(), "2,3", lessonIdJson(lessonIds).toJSONString(), itemDiscountJson.toJSONString());
+    }
+
 
     @Step("查询收款项目信息")
     public JSONObject getById(String itemId) {

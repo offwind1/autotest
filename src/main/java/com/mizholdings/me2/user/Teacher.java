@@ -102,4 +102,13 @@ public class Teacher extends UserBase implements webInterface, tikuInterface {
         return app.classInfoAgent().quickStart(Common.creatRandomString(), code);
     }
 
+    public JSONObject classroomStart(String classroomId) {
+        return app.classInfoAgent().classroomStart(classroomId);
+    }
+
+    public JSONObject classroomEnd(String classroomVideoId, String cloudAccount) {
+        return app.classInfoAgent().classroomEnd(classroomVideoId, cloudAccount);
+    }
+
 }
+

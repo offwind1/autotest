@@ -190,6 +190,8 @@
         <interface method="POST" name="web端白板url" url="/classInfo/weburl" value="weburl"/>
         <interface method="POST" name="未来两周的待上课节" url="/classInfo/weekRoom" value="weekRoom"/>
         <interface method="POST" name="获取课堂用户列表" url="/classInfo/roomUser" value="roomUser"/>
+        <interface method="POST" name="切换主讲老师-手动" url="/classInfo/switchMasterByManu" value="switchMasterByManu"/>
+        <interface method="POST" name="获取课堂老师列表" url="/classInfo/getClassroomTeacher" value="getClassroomTeacher"/>
     </interfaces>
     <interfaces name="　机构管理" value="org">
         <interface method="POST" name="查询机构/学校列表" url="/org/list" value="list"/>

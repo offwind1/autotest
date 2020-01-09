@@ -2,6 +2,7 @@ package com.mizholdings.me2.agent.web;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.Global;
+import com.mizholdings.util.Common;
 import com.mizholdings.util.MODBase;
 import com.mizholdings.util.Parameter;
 import com.mizholdings.util.User;
@@ -157,8 +158,8 @@ public class ClassroomAgent extends MODBase<ClassroomAgent> {
      * @return json
      */
     @Step("查看课堂附件")
-    public JSONObject classroomOptions(Parameter parameter) {
-        return exec("classroomOptions", parameter);
+    public JSONObject classroomOption(Parameter parameter) {
+        return exec("classroomOption", parameter);
     }
 
     /**
@@ -189,6 +190,32 @@ public class ClassroomAgent extends MODBase<ClassroomAgent> {
     @Step("删除课堂视频")
     public JSONObject deleteClassVideo(Parameter parameter) {
         return exec("deleteClassVideo", parameter);
+    }
+
+
+    @Step("获取课堂的助教老师列表")
+    public JSONObject getTeacherList(Parameter parameter) {
+        return exec(Common.getMethodName(), parameter);
+    }
+
+    public JSONObject getTeacherList_classroomId(String classroomId) {
+        return getTeacherList(Parameter.creat().add("classroomId", classroomId));
+    }
+
+    public JSONObject getTeacherList_lessonId(String lessonId) {
+        return getTeacherList(Parameter.creat().add("lessonId", lessonId));
+    }
+
+    @Step("设置课堂助教老师")
+    public JSONObject setTeacher(Parameter parameter) {
+        return exec(Common.getMethodName(), parameter);
+    }
+
+    public JSONObject setTeacher(String classroomIds, String teacherIds) {
+        return setTeacher(Parameter.creat()
+                .add("classroomIds", classroomIds)
+                .add("teacherIds", teacherIds)
+        );
     }
 
 

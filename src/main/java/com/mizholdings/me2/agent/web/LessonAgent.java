@@ -110,13 +110,37 @@ public class LessonAgent extends MODBase<LessonAgent> {
         return list("");
     }
 
+    public JSONObject list_stock() {
+        return list(Parameter.creat()
+                .add("lessonName", "")
+                .add("lessonTypeId", "0")
+                .add("pubType", "")
+                .add("recommend", "")
+                .add("currentPage", "1")
+                .add("pageSize", "10")
+                .add("lessonTerm", "0")
+                .add("org", "0")
+                .add("stockType", "1")
+        );
+    }
+
+
+    public JSONObject list(Global_enum.PUB_TYPE pub_type) {
+        return exec(Common.getMethodName(), Parameter.creat()
+                .add("pageSize", "10")
+                .add("currentPage", "1")
+                .add("pubType", pub_type.value)
+                .add("webItem", "1")
+        );
+    }
+
     /**
      * 根据课程名称，搜索课程列表
      *
      * @param lessonName 课程名称
      * @return json
      */
-    @Step("课程列表")
+    @Step("课程分页列表")
     public JSONObject list(String lessonName) {
         return exec("list", Parameter.creat()
                 .add("lessonName", lessonName)
@@ -126,7 +150,8 @@ public class LessonAgent extends MODBase<LessonAgent> {
                 .add("currentPage", "1")
                 .add("pageSize", "10")
                 .add("lessonTerm", "0")
-                .add("org", "0"));
+                .add("org", "0")
+        );
     }
 
     public JSONObject addLesson(String lessonName, FreeType free) {
