@@ -110,18 +110,15 @@ public class coursewareTest {
             throw new RuntimeException(mag);
         }
 
-        System.out.println(object.getJSONObject("data").getJSONArray("homeworkList"));
-        System.out.println(object.getJSONObject("data").getJSONArray("homeworkList").size());
-
-        if (object.getJSONObject("data").getJSONArray("homeworkList").size() == 0) {
+        if (object.getJSONObject("data").getJSONArray("homeworkList").size() != 0) {
             throw new RuntimeException("homeworkList 不为空");
         }
 
-        if (object.getJSONObject("data").getJSONArray("videoList").size() == 0) {
+        if (object.getJSONObject("data").getJSONArray("videoList").size() != 0) {
             throw new RuntimeException("videoList 不为空");
         }
 
-        if (object.getJSONObject("data").getJSONArray("laList").size() == 0) {
+        if (object.getJSONObject("data").getJSONArray("laList").size() != 0) {
             throw new RuntimeException("laList 不为空");
         }
     }
@@ -137,7 +134,7 @@ public class coursewareTest {
     public void classroomOption_test() {
         JSONObject object = teacher.getWeb().classroomAgent().classroomOption(Parameter.creat().add("classroomId", classroomId));
 
-        SampleAssert.assertResult0(object);
+        SampleAssert.assertCode200(object);
 
         String mag = "";
 

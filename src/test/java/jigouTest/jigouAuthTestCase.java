@@ -50,7 +50,6 @@ public class jigouAuthTestCase {
         studentJoinJigou(student);
         // 成功登录
         object = student.login();
-
         // 用户退出机构
         studentQuitJigou(student);
         // 断言
@@ -64,5 +63,10 @@ public class jigouAuthTestCase {
     private JSONObject studentQuitJigou(UserBase student) {
         return fengbi.getWeb().usrAgent().orgDelStudent(student.getUserId());
     }
+
+
+
+
+
 
 }

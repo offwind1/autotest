@@ -19,24 +19,24 @@ public class bankTestCase {
     @Test(description = "银行列表")
     public void bank_list() {
         JSONObject object = student.getApp().bankAgent().list();
-        SampleAssert.assertCode200(object);
+        SampleAssert.assertResult0(object);
     }
 
     @Test(description = "获取提现账号")
     public void drawAccount() {
         JSONObject object = student.getApp().bankAgent().drawAccount();
-        SampleAssert.assertCode200(object);
+        SampleAssert.assertResult0(object);
     }
 
     @Test(description = "用户钱包主界面")
     public void userWallet() {
         JSONObject object = student.getApp().bankAgent().userWallet();
-        SampleAssert.assertCode200(object);
+        SampleAssert.assertResult0(object);
     }
 
     @Test(description = "用户钱包主界面")
     public void userDirect() {
         JSONObject object = student.getApp().bankAgent().userDirect();
-        SampleAssert.assertCode200(object);
+        SampleAssert.assertResult0(object);
     }
 }
