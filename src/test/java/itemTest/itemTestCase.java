@@ -24,6 +24,15 @@ public class itemTestCase {
     private String itemId;
     private String lessonIds;
 
+    @BeforeClass
+    public void BeforeClass() {
+        JSONObject object = jigou.getWeb().lessonAgent().list(Global_enum.PUB_TYPE.PASS);
+        List<String> list = Common.map(object.getJSONObject("data").getJSONArray("list"), "lessonId");
+        lessonIds = String.join(",", list);
+
+        delete_all();
+    }
+
     private JSONArray getItemDiscountJson() {
         JSONArray array = new JSONArray();
         for (int i = 0; i < 3; i++) {
@@ -35,13 +44,15 @@ public class itemTestCase {
         return array;
     }
 
-    @Test(description = "添加收款项目")
+    @Test(description = "添加收款项目, 有满减")
     public void add_test() {
-        JSONObject object = jigou.getWeb().lessonAgent().list(Global_enum.PUB_TYPE.PASS);
-        List<String> list = Common.map(object.getJSONObject("data").getJSONArray("list"), "lessonId");
-        lessonIds = String.join(",", list);
+        JSONObject object = jigou.getWeb().itemAgent().add(lessonIds, getItemDiscountJson());
+        SampleAssert.assertResult0(object);
+    }
 
-        object = jigou.getWeb().itemAgent().add(lessonIds, getItemDiscountJson());
+    @Test(description = "添加收款项目, 无满减")
+    public void add_test2() {
+        JSONObject object = jigou.getWeb().itemAgent().add(lessonIds);
         SampleAssert.assertResult0(object);
     }
 
@@ -95,8 +106,20 @@ public class itemTestCase {
 
     @Test(description = "删除收款项目", dependsOnMethods = {"buyLesson_test"})
     public void delete_test() {
-        JSONObject object = jigou.getWeb().itemAgent().delete(itemId);
-        SampleAssert.assertResult0(object);
+//        JSONObject object = jigou.getWeb().itemAgent().delete(itemId);
+//        SampleAssert.assertResult0(object);
+        delete_all();
+    }
+
+
+    public void delete_all() {
+        JSONObject object = jigou.getWeb().itemAgent().list();
+        object.getJSONObject("data").getJSONArray("OrgPayitemList").stream().forEach(i -> {
+            JSONObject o = (JSONObject) i;
+            JSONObject ob = jigou.getWeb().itemAgent().delete(o.getString("itemId"));
+            SampleAssert.assertResult0(ob);
+        });
+
     }
 
 }
