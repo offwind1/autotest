@@ -166,16 +166,8 @@ public class LessonAgent extends MODBase<LessonAgent> {
         return addLesson(lessonName, classroomCount, free, startDay, Global_enum.CustRelease.NORMAL);
     }
 
-    /**
-     * 新增课程
-     *
-     * @param lessonName     课程名称
-     * @param classroomCount 课节数量
-     * @param free           是否免费 0 免费 1 不免费
-     * @return json
-     */
-    @Step("新增课程")
-    public JSONObject addLesson(String lessonName, int classroomCount, FreeType free, int startDay, Global_enum.CustRelease custRelease) {
+
+    public Parameter addLessonParameter(String lessonName, int classroomCount, FreeType free, int startDay, Global_enum.CustRelease custRelease) {
         JSONArray array = new JSONArray();
         for (int i = 0; i < classroomCount; i++) {
             JSONObject object = new JSONObject();
@@ -205,7 +197,20 @@ public class LessonAgent extends MODBase<LessonAgent> {
                 .add("classInfo", array.toJSONString())
                 .add("studentCount", "200")
                 .add("custRelease", custRelease.value);
-        return exec("add", P);
+        return P;
+    }
+
+    /**
+     * 新增课程
+     *
+     * @param lessonName     课程名称
+     * @param classroomCount 课节数量
+     * @param free           是否免费 0 免费 1 不免费
+     * @return json
+     */
+    @Step("新增课程")
+    public JSONObject addLesson(String lessonName, int classroomCount, FreeType free, int startDay, Global_enum.CustRelease custRelease) {
+        return exec("add", addLessonParameter(lessonName, classroomCount, free, startDay, custRelease));
     }
 
     /**

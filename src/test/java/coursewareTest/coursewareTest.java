@@ -175,11 +175,11 @@ public class coursewareTest {
             throw new RuntimeException(mag);
         }
 
-        if (ObjectUtil.isNotNull(object.getJSONObject("data").getJSONArray("homeworkList"))) {
-            throw new RuntimeException("homeworkList 不为空");
+        if (object.getJSONObject("data").getJSONArray("homeList").size() != 0) {
+            throw new RuntimeException("homeList 不为空");
         }
 
-        if (ObjectUtil.isNotNull(object.getJSONObject("data").getJSONArray("laList"))) {
+        if (object.getJSONObject("data").getJSONArray("laList").size() != 0) {
             throw new RuntimeException("laList 不为空");
         }
 

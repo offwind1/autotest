@@ -48,7 +48,7 @@ public class ItemAgent extends MODBase<ItemAgent> {
     }
 
     public JSONObject add(String lessonIds) {
-        return add(lessonIds, null);
+        return add(lessonIds, new JSONArray());
     }
 
     public JSONObject add(String lessonIds, JSONArray itemDiscount) {
@@ -80,7 +80,7 @@ public class ItemAgent extends MODBase<ItemAgent> {
     }
 
     public JSONObject update(String itemId, String lessonIds) {
-        return update(itemId, Common.getNowTime(), "2,3", lessonIdJson(lessonIds).toJSONString(), "");
+        return update(itemId, lessonIdJson(lessonIds).toJSONString(), new JSONArray());
     }
 
     public JSONObject update(String itemId, String lessonIds, JSONArray itemDiscountJson) {

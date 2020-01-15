@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.Global;
 import com.mizholdings.me2.Global_enum;
+import com.mizholdings.me2.agent.app.LessonInfoAgent;
 import com.mizholdings.me2.user.Jigou;
 import com.mizholdings.me2.user.SuperAdmin;
 import com.mizholdings.me2.user.UserBase;
@@ -75,22 +76,86 @@ public class itemTestCase {
         }
     }
 
-    @Test(description = "修改收费列表", dependsOnMethods = {"superAdmin_list_test"})
+    @Test(description = "修改收费列表_有满减+查询收款项目信息", dependsOnMethods = {"superAdmin_list_test"})
     public void update_test() {
         JSONObject object = jigou.getWeb().itemAgent().update(itemId, lessonIds, getItemDiscountJson());
         SampleAssert.assertResult0(object);
-    }
 
-    @Test(description = "查询收款项目信息", dependsOnMethods = {"update_test"})
-    public void getById_test() {
-        JSONObject object = jigou.getWeb().itemAgent().getById(itemId);
+        object = jigou.getWeb().itemAgent().getById(itemId);
         SampleAssert.assertResult0(object);
+
+        if (object.getJSONObject("data").getJSONObject("OrgPayitem").getJSONArray("liList").size() == 0) {
+            throw new RuntimeException("课程为空");
+        }
+
+        if (object.getJSONObject("data").getJSONObject("OrgPayitem").getJSONArray("idList").size() == 0) {
+            throw new RuntimeException("满减信息为空");
+        }
+
         List<String> list = Common.map(object.getJSONObject("data").getJSONObject("OrgPayitem").getJSONArray("liList"), "lessonId");
         lessonIds = String.join(",", list);
+
     }
 
+    @Test(description = "修改收费列表_无满减", dependsOnMethods = {"superAdmin_list_test"})
+    public void update_test_no() {
+        JSONObject object = jigou.getWeb().itemAgent().update(itemId, lessonIds);
+        SampleAssert.assertResult0(object);
 
-    @Test(description = "用户购买课程", dependsOnMethods = {"getById_test"})
+        object = jigou.getWeb().itemAgent().getById(itemId);
+        SampleAssert.assertResult0(object);
+
+        if (object.getJSONObject("data").getJSONObject("OrgPayitem").getJSONArray("liList").size() == 0) {
+            throw new RuntimeException("课程为空");
+        }
+
+        if (object.getJSONObject("data").getJSONObject("OrgPayitem").getJSONArray("idList").size() != 0) {
+            throw new RuntimeException("满减信息不为空");
+        }
+
+        List<String> list = Common.map(object.getJSONObject("data").getJSONObject("OrgPayitem").getJSONArray("liList"), "lessonId");
+        lessonIds = String.join(",", list);
+
+    }
+
+    /**
+     * 满减的额度一样
+     * 10减5
+     * 20减5
+     * 30减5
+     */
+    @Test(description = "修改收费列表_特殊满减", dependsOnMethods = {"superAdmin_list_test"})
+    public void update_test_super() {
+        JSONArray array = new JSONArray();
+        for (int i = 0; i < 3; i++) {
+            JSONObject object = new JSONObject();
+            object.put("meetPrice", 20 * (i + 1));
+            object.put("discountsPrice", 10);
+            array.add(object);
+        }
+
+        JSONObject object = jigou.getWeb().itemAgent().update(itemId, lessonIds, array);
+        SampleAssert.assertResult0(object);
+
+        object = jigou.getWeb().itemAgent().getById(itemId);
+        SampleAssert.assertResult0(object);
+
+        if (object.getJSONObject("data").getJSONObject("OrgPayitem").getJSONArray("liList").size() == 0) {
+            throw new RuntimeException("课程为空");
+        }
+
+        if (object.getJSONObject("data").getJSONObject("OrgPayitem").getJSONArray("idList").size() != 0) {
+            throw new RuntimeException("满减信息不为空");
+        }
+
+        List<String> list = Common.map(object.getJSONObject("data").getJSONObject("OrgPayitem").getJSONArray("idList"), "discountsPrice");
+
+        for (String discountsPrice : list) {
+            assert discountsPrice.equals("10");
+        }
+    }
+
+    @Test(description = "用户购买课程", priority = 2)
     public void buyLesson_test() {
         JSONObject object = jigou.getApp().payAgent().buyLesson(student.getUserId(), lessonIds);
         if ("课程下架或已购买".equals(object.getString("msg"))) {
@@ -104,10 +169,8 @@ public class itemTestCase {
         SampleAssert.assertResult0(object);
     }
 
-    @Test(description = "删除收款项目", dependsOnMethods = {"buyLesson_test"})
+    @Test(description = "删除收款项目", priority = 3)
     public void delete_test() {
-//        JSONObject object = jigou.getWeb().itemAgent().delete(itemId);
-//        SampleAssert.assertResult0(object);
         delete_all();
     }
 

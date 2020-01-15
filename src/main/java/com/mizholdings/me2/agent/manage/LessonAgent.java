@@ -128,31 +128,13 @@ public class LessonAgent extends MODBase<LessonAgent> {
                 .add("org", "0"));
     }
 
-    /**
-     * 新增课程
-     *
-     * @param lessonName 课程名称
-     * @return json
-     */
-    public JSONObject addLesson(String lessonName, com.mizholdings.me2.agent.web.LessonAgent.FreeType free) {
-        return addLesson(lessonName, 2, free);
+
+    public Parameter addLessonParameter(int classroomCount) {
+        String name = Common.creatRandomString();
+        return addLessonParameter(name, classroomCount, com.mizholdings.me2.agent.web.LessonAgent.FreeType.FREE, 0, Global_enum.CustRelease.NORMAL);
     }
 
-    public JSONObject addLesson(String lessonName, int classroomCount, com.mizholdings.me2.agent.web.LessonAgent.FreeType free) {
-        return addLesson(lessonName, classroomCount, free, 0);
-    }
-
-
-    /**
-     * 新增课程
-     *
-     * @param lessonName     课程名称
-     * @param classroomCount 课节数量
-     * @param free           是否免费 0 免费 1 不免费
-     * @return json
-     */
-    @Step("新增课程")
-    public JSONObject addLesson(String lessonName, int classroomCount, com.mizholdings.me2.agent.web.LessonAgent.FreeType free, int startDay) {
+    public Parameter addLessonParameter(String lessonName, int classroomCount, com.mizholdings.me2.agent.web.LessonAgent.FreeType free, int startDay, Global_enum.CustRelease custRelease) {
         JSONArray array = new JSONArray();
         for (int i = 0; i < classroomCount; i++) {
             JSONObject object = new JSONObject();
@@ -181,8 +163,21 @@ public class LessonAgent extends MODBase<LessonAgent> {
                 .add("free", free.value)
                 .add("classInfo", array.toJSONString())
                 .add("studentCount", "200")
-                .add("custRelease", "1");
-        return exec("add", P);
+                .add("custRelease", custRelease.value);
+        return P;
+    }
+
+    /**
+     * 新增课程
+     *
+     * @param lessonName     课程名称
+     * @param classroomCount 课节数量
+     * @param free           是否免费 0 免费 1 不免费
+     * @return json
+     */
+    @Step("新增课程")
+    public JSONObject addLesson(String lessonName, int classroomCount, com.mizholdings.me2.agent.web.LessonAgent.FreeType free, int startDay, Global_enum.CustRelease custRelease) {
+        return exec("add", addLessonParameter(lessonName, classroomCount, free, startDay, custRelease));
     }
 
     /**
@@ -308,6 +303,15 @@ public class LessonAgent extends MODBase<LessonAgent> {
     public JSONObject edit(Parameter parameter) {
         return exec("edit", parameter);
     }
+
+    public JSONObject edit(String lessonId, int classroomCount) {
+
+        Parameter parameter = addLessonParameter(classroomCount);
+        parameter.add("lessonId", lessonId);
+
+        return exec("edit", parameter);
+    }
+
 
     /**
      * 根据课程ID，删除课程
