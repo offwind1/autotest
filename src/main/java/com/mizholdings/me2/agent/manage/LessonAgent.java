@@ -6,19 +6,21 @@ import com.mizholdings.me2.Global_enum;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
 
+import java.util.Map;
+
 public class LessonAgent extends MODBase<LessonAgent> {
-    public enum PubType {
-        PASS("9"), NOPASS("3");
-        public String value;
-
-        private PubType(String value) {
-            this.value = value;
-        }
-
-        public String toString() {
-            return this.value;
-        }
-    }
+//    public enum PubType {
+//        PASS("9"), NOPASS("3");
+//        public String value;
+//
+//        private PubType(String value) {
+//            this.value = value;
+//        }
+//
+//        public String toString() {
+//            return this.value;
+//        }
+//    }
 
     public LessonAgent() {
         super();
@@ -41,7 +43,7 @@ public class LessonAgent extends MODBase<LessonAgent> {
      * @return
      */
     public JSONObject passLesson(String lessonId) {
-        JSONObject object = lessonReply(lessonId, com.mizholdings.me2.agent.web.LessonAgent.PubType.PASS);
+        JSONObject object = lessonReply(lessonId, Global_enum.PUB_TYPE.PASS);
         SampleAssert.assertCode200(object);
         return object;
     }
@@ -54,7 +56,7 @@ public class LessonAgent extends MODBase<LessonAgent> {
      * @return json
      */
     @Step("审核课程")
-    public JSONObject lessonReply(String lessonId, com.mizholdings.me2.agent.web.LessonAgent.PubType pubType) {
+    public JSONObject lessonReply(String lessonId, Global_enum.PUB_TYPE pubType) {
         return exec("lessonReply", Parameter.creat()
                 .add("lessonId", lessonId)
                 .add("pubType", pubType.value)
@@ -305,10 +307,16 @@ public class LessonAgent extends MODBase<LessonAgent> {
     }
 
     public JSONObject edit(String lessonId, int classroomCount) {
-
         Parameter parameter = addLessonParameter(classroomCount);
         parameter.add("lessonId", lessonId);
+        parameter.add("apply", "0");
+        return exec("edit", parameter);
+    }
 
+    public JSONObject edit(String lessonId, Extractable extractable) {
+        Parameter parameter = extractable.build();
+        parameter.add("lessonId", lessonId);
+        parameter.add("apply", "0");
         return exec("edit", parameter);
     }
 

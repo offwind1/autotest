@@ -3,9 +3,9 @@ package com.mizholdings.util;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Parameter {
+public class Parameter implements Extractable {
     private Map<String, String> map = new HashMap<>();
-    private Map<String, Object> oap = new HashMap<>();
+//    private Map<String, Object> oap = new HashMap<>();
 
     public static Parameter creat() {
         return new Parameter();
@@ -13,7 +13,7 @@ public class Parameter {
 
     public Parameter add(String key, String value) {
         map.put(key, value);
-        oap.put(key, value);
+//        oap.put(key, value);
         return this;
     }
 
@@ -32,15 +32,15 @@ public class Parameter {
     }
 
     public Object getObject(String key) {
-        if (oap.containsKey(key)) {
-            return oap.get(key);
+        if (map.containsKey(key)) {
+            return map.get(key);
         }
         return null;
     }
 
     public Object getObject(String key, Object define) {
-        if (oap.containsKey(key)) {
-            return oap.get(key);
+        if (map.containsKey(key)) {
+            return map.get(key);
         }
         return define;
     }
@@ -51,7 +51,16 @@ public class Parameter {
     }
 
     public Map<String, Object> getObjectMap() {
+        Map<String, Object> oap = new HashMap<>();
+        map.forEach((k, v) -> {
+            oap.put(k, v);
+        });
         return oap;
+    }
+
+    @Override
+    public Parameter build() {
+        return this;
     }
 
     public Boolean containsKey(String key) {

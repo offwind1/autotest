@@ -142,6 +142,24 @@ public class ClassLibraryTest {
         }
     }
 
+    /**
+     * 另一个机构用户，添加课程后。 在课程管理首页，不应该出现课程库课程
+     * 课程库课程应该单独出现在 课程库筛选栏。
+     * 不能混在自己的课程栏中出现
+     */
+    @Test(description = "另一个机构用户，添加课程后。在课程管理首页，不应该出现课程库课程", priority = 2)
+    public void lesson_list_filtrate_jigou_test() {
+        JSONObject object = other_jigou.getWeb().lessonAgent().list();
+
+        Common.run(object.getJSONObject("data").getJSONArray("list"), i -> {
+            JSONObject o = (JSONObject) i;
+            if (lessonId.equals(o.getString("lessonId"))) {
+                throw new RuntimeException("首页课程列表中，不能出现课程库的课程！");
+            }
+        });
+
+    }
+
 
     /**
      * 另一个机构用户，添加课程后，该机构用户搜索课程
@@ -168,7 +186,7 @@ public class ClassLibraryTest {
     /**
      * 未加入的机构，机构用户无法搜索到该课程
      */
-    @Test(description = "另一个机构用户，添加课程后，该机构用户搜索课程", priority = 2)
+    @Test(description = "未加入的机构，机构用户无法搜索到该课程", priority = 2)
     public void topMore_other_jigou_test() {
         UserBase student = Global.init().getUserBase();
         student.setOrgId("9017");

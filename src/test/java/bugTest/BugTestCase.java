@@ -6,6 +6,7 @@ import com.mizholdings.me2.Global;
 import com.mizholdings.me2.agent.web.LessonAgent;
 import com.mizholdings.me2.user.Jigou;
 import com.mizholdings.me2.user.UserBase;
+import com.mizholdings.util.Common;
 import com.mizholdings.util.Parameter;
 import com.mizholdings.util.SampleAssert;
 import org.testng.annotations.Test;
@@ -22,6 +23,7 @@ public class BugTestCase {
         SampleAssert.assertEquals(object.getJSONObject("data"), "authenStatus", "认证失败");
 
         object = student.getApp().usrAuthenAgent().list();
+        SampleAssert.assertCode200(object);
     }
 
     /**
@@ -43,6 +45,8 @@ public class BugTestCase {
             throw new RuntimeException("realPrice依旧是0，机构用户依旧免费");
         }
     }
+
+
 
 
 }

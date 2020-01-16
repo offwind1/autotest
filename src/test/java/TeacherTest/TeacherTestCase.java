@@ -60,15 +60,11 @@ public class TeacherTestCase {
     public void switchMasterByManu() {
         JSONObject object = jigou.getApp().classInfoAgent().switchMasterByManu(classroomId_list.get(0), teacher.getUserId());
         SampleAssert.assertResult0(object);
-
 //        List<String> teacher_list = Common.map(object.getJSONObject("data").getJSONArray("teacherList"), "cloudUsrAccount");
-
     }
-
 
     @AfterClass
     public void afterClass() {
         jigou.classroomEnd(classroomVideoId, teacherCloudeAccount);
     }
-
 }

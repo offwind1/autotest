@@ -2,11 +2,12 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="云课业务测试">
 
-    <test name="机构权限测试">
+    <test name="机构测试">
         <classes>
             <class name="jigouTest.advertTestCase"/>
             <class name="jigouTest.jigouAuthTestCase"/>
             <class name="jigouTest.orgMessageTestCase"/>
+            <class name="jigouTest.liveManageTestCase"/>
         </classes>
     </test>
     <test name="学习模块测试">
@@ -52,6 +53,11 @@
     <test name="答题卡测试">
         <classes>
             <class name="answerTest.answerTestCase"/>
+        </classes>
+    </test>
+    <test name="首页相关测试">
+        <classes>
+            <class name="topTest.searchTestCase"/>
         </classes>
     </test>
 </suite>

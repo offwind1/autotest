@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Common {
@@ -72,6 +73,11 @@ public class Common {
 
     public static int range(int a, int b) {
         return a + random.nextInt(b - a);
+    }
+
+
+    public static void run(JSONArray array, Consumer runnable) {
+        array.stream().forEach(runnable);
     }
 
 }

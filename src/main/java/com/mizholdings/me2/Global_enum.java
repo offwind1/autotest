@@ -122,10 +122,18 @@ public class Global_enum {
         }
     }
 
-    public enum AuthenStatus{
 
+    public enum FREE_TYPE {
+        FREE("0"), NO_FREE("1");
+        public String value;
 
+        private FREE_TYPE(String value) {
+            this.value = value;
+        }
+
+        public String toString() {
+            return this.value;
+        }
     }
-
 
 }

@@ -32,6 +32,17 @@ public class ClassroomAgent extends MODBase<ClassroomAgent> {
                 .add("currentPage", "1"));
     }
 
+    public JSONObject onlineListV2() {
+        return onlineListV2(Parameter.creat()
+                .add("orgName", "")
+                .add("lessonName", "")
+                .add("classroomCode", "")
+                .add("teacherAccount", "")
+                .add("teacherPhone", "")
+        );
+    }
+
+
     @Step("根据课程ID，查询课节信息")
     public JSONObject listByLessonId(String lessonId) {
         return exec("listByLessonId", Parameter.creat()
