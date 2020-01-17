@@ -55,6 +55,7 @@ public class lessonEditTestCase {
         lessonEditBean.setCustRelease(Global_enum.CustRelease.CLASS_LIB);
         lessonEditBean.setLesson_type_id(Global_enum.LESSON_TYPE_ID.MAT);//数学
         lessonEditBean.setLessonName("新修改后的名称");
+        lessonEditBean.setStartDay(1);
 
         superAdmin.getManage().lessonAgent().edit(lessonId, lessonEditBean);
         JSONObject object = superAdmin.getManage().lessonAgent().getLessonInfoById(lessonId);

@@ -2,6 +2,7 @@ package bugTest;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.Global;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.me2.agent.app.FullschAgent;
 import com.mizholdings.me2.user.UserBase;
 import com.mizholdings.me2.user.serve.ServeBase;
@@ -24,14 +25,14 @@ public class TestFullschCase {
     @Test(description = "bug8630")
     public void testBug8630() {
         student.setOrgId("8268");
-        JSONObject object = student.getApp().fullschAgent().searchAll2("1", FullschAgent.TYPE.LESSON, ServeBase.GRADEID.ONE);
+        JSONObject object = student.getApp().fullschAgent().searchAll2("1", Global_enum.TYPE.LESSON, ServeBase.GRADEID.ONE);
         SampleAssert.assertResult0(object);
     }
 
     @Test(description = "bug8637")
     public void testBug8637() {
         student.setOrgId("0");
-        JSONObject object = student.getApp().fullschAgent().searchAll2("2019", FullschAgent.TYPE.COURSE, ServeBase.GRADEID.ONE);
+        JSONObject object = student.getApp().fullschAgent().searchAll2("2019", Global_enum.TYPE.COURSE, ServeBase.GRADEID.ONE);
         SampleAssert.assertResult0(object);
 
         for (Object i : object.getJSONObject("data").getJSONArray("resultList")) {
@@ -48,7 +49,7 @@ public class TestFullschCase {
         String[] strs = {"2", "20", "2019"};
         for (String s : Arrays.asList(strs)) {
             Allure.addAttachment("keyword", s);
-            JSONObject object = student.getApp().fullschAgent().searchAll2(s, FullschAgent.TYPE.LESSON, ServeBase.GRADEID.ONE);
+            JSONObject object = student.getApp().fullschAgent().searchAll2(s, Global_enum.TYPE.LESSON, ServeBase.GRADEID.ONE);
             if (object.getJSONObject("data").getJSONArray("resultList").size() == 0) {
                 throw new RuntimeException("没有搜索到任何内容");
             }

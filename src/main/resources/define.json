@@ -1,10 +1,35 @@
 {
-  "grades": "一年级",
-  "lessonId": "64b3fa0fc4bd4a208f8f640a7ad17979",
-  "lessonName": "接口测试生成课2020-01-09_09:12",
-  "price": "0.00",
-  "startTime": "2020-01-09 09:12:05.0",
-  "faceImg": "http://images.mizholdings.com/bh4nopY6Mea.png",
-  "typeName": "语文",
-  "userName": "mizhu1130"
+
+  lessonId: b58ee8bcd67f4db2a40ef5b993e806a3,
+  gradeIds: 1,
+  gradeNames: 一年级,
+  lessonTypeId: 1,
+  startTime: "2020-01-16 09:07:53",
+  endTime: "2020-01-23 09:07:53",
+  tryLook: 0,
+//    apply: 0,
+  lessonTerm: 1,
+  lessonName: "接口测试生成课2020-01-16_09:07",
+  faceImg: "http: //images.mizholdings.com/rc-upload-1574823822923-5sss.jpg",
+  classroomCount: 1,
+  classTime: 60,
+  classroomPrice: 0,
+  discount: 10,
+  free: 0,
+//lessRemark: <p>12</p>
+//lessonTag:
+  studentCount: 200,
+  classInfo: [
+    {
+      "interaction": 4,
+      "classroomId": 1,
+      "startTime": "2020-01-16 09:07:53"
+    }
+  ],
+//password
+//price: 0
+//buyType: 0
+  custRelease: 1,
+  token: E2D5FE80-8065-48B0-88B4-92CC87B39DF4,
+  orgId: 0,
 }

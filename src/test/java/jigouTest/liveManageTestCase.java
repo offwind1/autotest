@@ -30,10 +30,13 @@ public class liveManageTestCase {
         JSONObject object = jigou.getWeb().lessonAgent().getLessonInfoById(lessonId);
         String classroomId = Common.random(object.getJSONObject("data").getJSONArray("classroomList")).getString("classroomId");
         object = jigou.classroomStart(classroomId);
-        SampleAssert.assertCode200(object);
+        SampleAssert.assertResult0(object);
 
         classroomVideoId = object.getJSONObject("data").getString("classroomVideoId");
         teacherCloudeAccount = object.getJSONObject("data").getJSONObject("classroomInfo").getString("teacherCloudeAccount");
+
+//        classroomVideoId = object.getJSONObject("data").getString("classroomVideoId");
+//        teacherCloudeAccount = object.getJSONObject("data").getJSONObject("classroomInfo").getString("teacherCloudeAccount");
 
         object = jigou.getWeb().classroomAgent().onlineListV2();
         SampleAssert.assertCode200(object);
@@ -46,7 +49,8 @@ public class liveManageTestCase {
 
     @AfterClass
     public void afterClass() {
-        jigou.classroomEnd(classroomVideoId, teacherCloudeAccount);
+        JSONObject object = jigou.classroomEnd(classroomVideoId, teacherCloudeAccount);
+        SampleAssert.assertResult0(object);
     }
 
 }

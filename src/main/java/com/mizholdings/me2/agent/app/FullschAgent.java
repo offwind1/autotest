@@ -1,6 +1,7 @@
 package com.mizholdings.me2.agent.app;
 
 import com.alibaba.fastjson.JSONObject;
+import com.mizholdings.me2.Global_enum;
 import com.mizholdings.me2.user.serve.ServeBase;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
@@ -14,15 +15,15 @@ public class FullschAgent extends MODBase<FullschAgent> {
 //        interfaced = fullschInterface;
     }
 
-    public enum TYPE {
-        LESSON("1"), COURSE("2"), TEACHER("3"), JIGOU("4");
-        public String value;
-
-        private TYPE(String value) {
-            this.value = value;
-        }
-    }
-
+//    public enum TYPE {
+//        LESSON("1"), COURSE("2"), TEACHER("3"), JIGOU("4");
+//        public String value;
+//
+//        private TYPE(String value) {
+//            this.value = value;
+//        }
+//    }
+//
 
 
     /**
@@ -34,7 +35,7 @@ public class FullschAgent extends MODBase<FullschAgent> {
      * @return json
      */
     @Step("首页搜索2")
-    public JSONObject searchAll2(String keyword, TYPE type, ServeBase.GRADEID gradeId) {
+    public JSONObject searchAll2(String keyword, Global_enum.TYPE type, ServeBase.GRADEID gradeId) {
         return exec("searchAll2", Parameter.creat()
                 .add("page", "1")
                 .add("keyword", keyword)

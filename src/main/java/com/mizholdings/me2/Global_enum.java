@@ -136,4 +136,16 @@ public class Global_enum {
         }
     }
 
+
+    public enum TYPE {
+        LESSON("1"), COURSE("2"), TEACHER("3"), JIGOU("4");
+        public String value;
+
+        private TYPE(String value) {
+            this.value = value;
+        }
+    }
+
+
+
 }

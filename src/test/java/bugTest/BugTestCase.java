@@ -23,7 +23,7 @@ public class BugTestCase {
         SampleAssert.assertEquals(object.getJSONObject("data"), "authenStatus", "认证失败");
 
         object = student.getApp().usrAuthenAgent().list();
-        SampleAssert.assertCode200(object);
+        SampleAssert.assertResult0(object);
     }
 
     /**

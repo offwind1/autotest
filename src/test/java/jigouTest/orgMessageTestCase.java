@@ -84,6 +84,32 @@ public class orgMessageTestCase {
         }
     }
 
+    @Test(description = "当前机构，新闻列表中可以看到最新的机构新闻")
+    public void v2OrgMsgList_in_jigou() {
+        // 接口v2OrgMsgList 机构用户只能查看本机构下的新闻
+        UserBase student = Global.init().getUserBase();
+        student.setOrgId(open.getOrgId());
+
+        JSONObject object = student.getApp().topAgent().v2OrgMsgList();
+        object = Common.filder(object.getJSONObject("data").getJSONArray("orgMsgList"), messageId, "messageId");
+        if (ObjectUtil.isNull(object)) {
+            throw new RuntimeException("机构新闻列表中没有该新闻");
+        }
+    }
+
+    @Test(description = "其他机构，新闻列表中不能看到这个新闻")
+    public void v2OrgMsgList_no_in_jigou() {
+        // 接口v2OrgMsgList 机构用户只能查看本机构下的新闻
+        UserBase student = Global.init().getUserBase();
+        student.setOrgId("9017");
+
+        JSONObject object = student.getApp().topAgent().v2OrgMsgList();
+        object = Common.filder(object.getJSONObject("data").getJSONArray("orgMsgList"), messageId, "messageId");
+        if (ObjectUtil.isNotNull(object)) {
+            throw new RuntimeException("其他机构也看到了这个新闻！");
+        }
+    }
+
 
     @AfterClass
     public void afterClass() {

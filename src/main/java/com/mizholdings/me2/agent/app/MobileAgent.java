@@ -18,6 +18,7 @@ public class MobileAgent extends MODBase<MobileAgent> {
      *
      * @return
      */
+    @Step("获取用户信息")
     public JSONObject userInfo() {
         return exec("userInfo");
     }
