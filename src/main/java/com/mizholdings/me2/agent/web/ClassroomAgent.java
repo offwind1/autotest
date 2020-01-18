@@ -123,6 +123,10 @@ public class ClassroomAgent extends MODBase<ClassroomAgent> {
         return exec("apply", parameter);
     }
 
+    public JSONObject apply(String classroomId) {
+        return apply(Parameter.creat().add("classroomId", classroomId));
+    }
+
     /**
      * 审批发布的申请
      *

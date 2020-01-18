@@ -337,6 +337,10 @@ public class LessonAgent extends MODBase<LessonAgent> {
         return exec("edit", parameter);
     }
 
+    public JSONObject edit(String lessonId, Parameter parameter) {
+        return edit(parameter.add("lessonId", lessonId).add("apply", "0"));
+    }
+
     /**
      * 根据课程ID，删除课程
      *

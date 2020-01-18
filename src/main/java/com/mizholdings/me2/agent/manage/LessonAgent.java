@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.Global_enum;
 import com.mizholdings.util.*;
 import io.qameta.allure.Step;
+import org.testng.annotations.Test;
 
 import java.util.Map;
 
@@ -123,11 +124,16 @@ public class LessonAgent extends MODBase<LessonAgent> {
                 .add("lessonName", lessonName)
                 .add("lessonTypeId", "0")
                 .add("priceType", "")
-                .add("recommend", "")
+                .add("pubType", "")
+                .add("recommend", "0")
+                .add("lessonTerm", "0")
+                .add("isOrg", "0")
                 .add("currentPage", "1")
                 .add("pageSize", "10")
-                .add("lessonTerm", "0")
-                .add("org", "0"));
+                .add("manageUser", "1")
+        );
+
+
     }
 
 

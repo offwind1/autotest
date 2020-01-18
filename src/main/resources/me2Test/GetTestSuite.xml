@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="GET测试">
+    <test name="课堂创建审核流程">
+        <!--
+        课程创建并且提交的完整流程
+        1、创建课程
+        2、课程提交审核
+        3、管理员驳回
+        4、课程修改
+        5、课程提交审核
+        6、管理员通过
+        7、修改课时
+        8、提交课时
+        9、管理员，驳回课时修改
+        10、修改课时
+        11、提交课时
+        12、管理员、通过课时修改
+        -->
+        <classes>
+            <class name="GetTestCase.LessonCreatFlow.CreatLessonTestCase"/>
+            <class name="GetTestCase.LessonCreatFlow.LessonApplyTestCase"/>
+            <class name="GetTestCase.LessonCreatFlow.AdminNoPassTestCase"/>
+            <class name="GetTestCase.LessonCreatFlow.LessonEditTestCase"/>
+            <!--            <class name="GetTestCase.LessonCreatFlow.LessonApplyTestCase"/>-->
+            <class name="GetTestCase.LessonCreatFlow.AdminPassTestCase"/>
+
+            <class name="GetTestCase.LessonCreatFlow.ClassroomEditTestCase"/>
+            <class name="GetTestCase.LessonCreatFlow.ClassroomApplyTestCase"/>
+            <!--管理员，驳回课时修改-->
+            <!--修改课时-->
+            <!--提交课时-->
+            <!--管理员、通过课时修改-->
+        </classes>
+    </test>
+    <test name="管理员直接修改课程信息">
+        <!--
+        管理员 直接修改课程信息
+        直接使用 （课程创建并且提交的完整流程）之后创建的课程 二次利用
+        -->
+        <classes>
+            <class name="GetTestCase.LessonCreatFlow.SuperAdminLessonEditTestCase"/>
+        </classes>
+    </test>
+
+</suite>

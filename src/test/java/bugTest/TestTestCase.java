@@ -16,11 +16,6 @@ public class TestTestCase {
     private SuperAdmin superAdmin;
     @Test
     public void tesssst() {
-
-        List<Global_enum.LESSON_TYPE_ID> lesson_type_ids = new ArrayList<>();
-
-
-        lesson_type_ids.add(Global_enum.LESSON_TYPE_ID.CHE);
-
+        System.out.println();
     }
 }

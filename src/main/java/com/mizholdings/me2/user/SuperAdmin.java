@@ -2,7 +2,9 @@ package com.mizholdings.me2.user;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mizholdings.me2.user.serve.Manage;
+import com.mizholdings.me2.user.serve.Web;
 import com.mizholdings.me2.user.serveInterface.manageInterface;
+import com.mizholdings.me2.user.serveInterface.webInterface;
 import com.mizholdings.util.*;
 import com.mizholdings.util.requests.Request;
 import io.qameta.allure.Step;
@@ -47,4 +49,6 @@ public class SuperAdmin extends User implements manageInterface {
         object = Common.filder(object.getJSONObject("data").getJSONArray("list"), chnName, "chnName");
         return object.getString("chnId");
     }
+
+
 }
